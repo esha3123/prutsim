@@ -246,6 +246,7 @@
   padding: 6px 0; /* Increased padding */
   margin-left: 4px;
   list-style: none; /* Remove bullet points */
+  pointer-events: none; /* Prevent interaction when hidden */
 }
 
 .compact-submenu-menu ul {
@@ -258,10 +259,21 @@
   list-style: none; /* Remove bullet points from li elements */
 }
 
-.compact-dropdown-submenu:hover .compact-submenu-menu {
+/* Show submenu only when parent is directly hovered */
+.compact-dropdown-submenu:hover > .compact-submenu-menu {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
+  pointer-events: auto; /* Allow interaction when visible */
+}
+
+/* Ensure nested submenus within submenus work correctly */
+.compact-submenu-menu .compact-dropdown-submenu:hover > .compact-submenu-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 1003; /* Higher z-index for nested submenus */
 }
 
 .compact-dropdown-submenu .compact-dropdown-item {
@@ -280,6 +292,12 @@
   border-left: 4px solid var(--m3-outline, #8c7c5a); /* Use material color */
   border-top: 3px solid transparent;
   border-bottom: 3px solid transparent;
+  transition: var(--compact-transition);
+}
+
+/* Rotate arrow on hover */
+.compact-dropdown-submenu:hover > .compact-dropdown-item::after {
+  transform: translateY(-50%) rotate(-90deg);
 }
 
 /* Responsive Design */
