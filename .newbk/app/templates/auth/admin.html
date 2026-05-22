@@ -1,0 +1,654 @@
+{% extends 'base.html' %}
+{% block title %}Admin Panel{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .notice-form, .image-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background: #218838;
+        }
+        .error {
+            color: #dc3545;
+            margin-top: 10px;
+        }
+        .success {
+            color: #28a745;
+            margin-top: 10px;
+        }
+        .notices-container, .images-container {
+            margin-top: 20px;
+        }
+        .notice-item, .image-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            transition: all 0.2s;
+            flex-wrap: wrap;
+        }
+        .notice-item:hover, .image-item:hover {
+            background: #e9ecef;
+        }
+        .notice-info {
+            flex: 1;
+            min-width: 0;
+            margin-right: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .notice-title, .image-title {
+            font-weight: bold;
+            color: #495057;
+            margin-right: 10px;
+        }
+        .notice-url {
+            color: #007bff;
+            text-decoration: none;
+            margin-left: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 300px;
+        }
+        .notice-url:hover {
+            text-decoration: underline;
+        }
+        .notice-date, .image-date {
+            color: #6c757d;
+            font-size: 0.8rem;
+            margin-right: 15px;
+        }
+        .notice-actions, .image-actions {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .delete-btn:hover {
+            background: #c82333;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+        }
+        .no-notices, .no-images {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            margin-right: 5px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+        .tab.active {
+            background: #fff;
+            border-bottom: 1px solid #fff;
+            margin-bottom: -1px;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .admin-image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .admin-image-item {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .admin-image-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+        .admin-image-info {
+            padding: 10px;
+            background: #f8f9fa;
+        }
+        .admin-image-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .admin-image-description {
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .admin-image-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+        .admin-image-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 3px 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .notice-item {
+            border-left: 4px solid #28a745;
+        }
+    </style>
+{% endblock %}
+{% block content%}
+    <div class="container">
+        <div class="header">
+            <h1>Admin Panel</h1>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="notices">Notices</div>
+            <div class="tab" data-tab="images">Cultural Event Images</div>
+        </div>
+        
+        <div id="notices-tab" class="tab-content active">
+            <form id="noticeForm" class="notice-form" method="post" enctype="multipart/form-data" action="/api/notices">
+                <div class="form-group">
+                    <label for="title">Notice Title:</label>
+                    <input type="text" id="title" name="title" required placeholder="Enter notice title">
+                </div>
+                
+                <div class="form-group" style="display: none;">
+                    <label for="notice_type">Notice Type:</label>
+                    <select id="notice_type" name="notice_type" required>
+                        <option value="general" selected>General Notice</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="url">URL (Optional if uploading file):</label>
+                    <input type="text" id="url" name="url" placeholder="Enter URL">
+                </div>
+                
+                <div class="form-group">
+                    <label for="file">Upload PDF:</label>
+                    <input type="file" id="file" name="file" accept="application/pdf">
+                </div>
+                
+                <button type="submit" class="submit-btn">Add Notice</button>
+            </form>
+            
+            <div id="notice-message" class="message"></div>
+            
+            <h2>Manage Existing Notices</h2>
+            <div id="notices-container" class="notices-container">
+                <div id="notices-loading" class="loading">Loading notices...</div>
+            </div>
+        </div>
+        
+        <div id="images-tab" class="tab-content">
+            <form id="imageForm" class="image-form" method="post" enctype="multipart/form-data" action="/api/images">
+                <div class="form-group">
+                    <label for="image-title">Image Title:</label>
+                    <input type="text" id="image-title" name="title" required placeholder="Enter image title">
+                </div>
+                
+                <div class="form-group">
+                    <label for="image-description">Description:</label>
+                    <textarea id="image-description" name="description" placeholder="Enter image description"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image-category">Category:</label>
+                    <select id="image-category" name="category" required>
+                        <option value="cultural" selected>Cultural Events</option>
+                        <option value="sports">Sports</option>
+                        <option value="clubs">Student Clubs</option>
+                        <option value="campus">Campus</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image-file">Upload Image:</label>
+                    <input type="file" id="image-file" name="file" accept="image/*" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Add Image</button>
+            </form>
+            
+            <div id="image-message" class="message"></div>
+            
+            <h2>Manage Existing Images</h2>
+            <div id="images-container" class="images-container">
+                <div id="images-loading" class="loading">Loading images...</div>
+                <div id="admin-image-grid" class="admin-image-grid"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Use IIFE to avoid global scope pollution
+        (function() {
+            'use strict';
+            const API_ENDPOINTS = {
+                NOTICES: '/api/notices',
+                IMAGES: '/api/images'
+            };
+            const elements = {
+                tabs: document.querySelectorAll('.tab'),
+                tabContents: document.querySelectorAll('.tab-content'),
+                noticeForm: document.getElementById('noticeForm'),
+                fileInput: document.getElementById('file'),
+                urlInput: document.getElementById('url'),
+                noticeMessageElem: document.getElementById('notice-message'),
+                noticesContainer: document.getElementById('notices-container'),
+                noticesLoadingElem: document.getElementById('notices-loading'),
+                imageForm: document.getElementById('imageForm'),
+                imageFileInput: document.getElementById('image-file'),
+                imageMessageElem: document.getElementById('image-message'),
+                imagesContainer: document.getElementById('images-container'),
+                imagesLoadingElem: document.getElementById('images-loading'),
+                adminImageGrid: document.getElementById('admin-image-grid')
+            };
+            
+            function init() {
+                elements.tabs.forEach(tab => {
+                    tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+                });
+                elements.noticeForm.addEventListener('submit', handleNoticeFormSubmit);
+                elements.imageForm.addEventListener('submit', handleImageFormSubmit);
+                const categorySelect = document.getElementById('image-category');
+                if (categorySelect) {
+                    categorySelect.addEventListener('change', function() {
+                        fetchImages(this.value);
+                    });
+                }
+                fetchNotices();
+                fetchImages(document.getElementById('image-category').value);
+            }
+
+            function switchTab(tabId) {
+                elements.tabs.forEach(tab => {
+                    tab.classList.toggle('active', tab.dataset.tab === tabId);
+                });
+                elements.tabContents.forEach(content => {
+                    if (content.id === tabId + '-tab') {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            }
+
+            function handleNoticeFormSubmit(e) {
+                e.preventDefault();
+                
+                if (!elements.fileInput.files.length && !elements.urlInput.value) {
+                    showMessage(elements.noticeMessageElem, 'error', 'Please either upload a file or provide a URL');
+                    return;
+                }
+                
+                const formData = new FormData(elements.noticeForm);
+                
+                fetch(API_ENDPOINTS.NOTICES, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showMessage(elements.noticeMessageElem, 'success', data.message);
+                        elements.noticeForm.reset();
+                        fetchNotices();
+                    } else {
+                        showMessage(elements.noticeMessageElem, 'error', data.message || 'An error occurred while adding the notice');
+                    }
+                })
+                .catch(error => {
+                    showMessage(elements.noticeMessageElem, 'error', 'Error: ' + error.message);
+                });
+            }
+
+            function handleImageFormSubmit(e) {
+                e.preventDefault();
+                
+                if (!elements.imageFileInput.files.length) {
+                    showMessage(elements.imageMessageElem, 'error', 'Please select an image file to upload');
+                    return;
+                }
+                const formData = new FormData(elements.imageForm);
+                fetch(API_ENDPOINTS.IMAGES, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showMessage(elements.imageMessageElem, 'success', data.message);
+                        elements.imageForm.reset();
+                        fetchImages();
+                    } else {
+                        showMessage(elements.imageMessageElem, 'error', data.message || 'An error occurred while adding the image');
+                    }
+                })
+                .catch(error => {
+                    showMessage(elements.imageMessageElem, 'error', 'Error: ' + error.message);
+                });
+            }
+            
+            function formatDate(dateString) {
+                const options = {
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    timeZone: 'Asia/Kolkata', // IST timezone
+                    hour12: true
+                };
+                
+                const date = new Date(dateString);
+                return date.toLocaleString('en-IN', options);
+            }
+
+            function fetchNotices() {
+                elements.noticesLoadingElem.style.display = 'block';
+                
+                fetch(API_ENDPOINTS.NOTICES)
+                    .then(response => response.json())
+                    .then(data => {
+                        elements.noticesLoadingElem.style.display = 'none';
+                        
+                        if (data.notices.length === 0) {
+                            elements.noticesContainer.innerHTML = '<div class="no-notices">No notices available</div>';
+                            return;
+                        }
+                        
+                        renderNotices(data.notices);
+                    })
+                    .catch(error => {
+                        elements.noticesLoadingElem.style.display = 'none';
+                        elements.noticesContainer.innerHTML = `
+                            <div class="error">
+                                Error loading notices: ${error.message}
+                            </div>
+                        `;
+                    });
+            }
+
+            function fetchImages(category = 'cultural') {
+                elements.imagesLoadingElem.style.display = 'block';
+                elements.adminImageGrid.innerHTML = '';
+                
+                fetch(`${API_ENDPOINTS.IMAGES}?category=${category}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        elements.imagesLoadingElem.style.display = 'none';
+                        
+                        if (!data.images || data.images.length === 0) {
+                            elements.adminImageGrid.innerHTML = `<div class="no-images">No ${category} images available</div>`;
+                            return;
+                        }
+                        
+                        renderImages(data.images);
+                    })
+                    .catch(error => {
+                        elements.imagesLoadingElem.style.display = 'none';
+                        elements.adminImageGrid.innerHTML = `
+                            <div class="error">
+                                Error loading images: ${error.message}
+                            </div>
+                        `;
+                    });
+            }
+
+            function renderNotices(notices) {
+                let noticesHtml = '';
+                
+                notices.forEach(notice => {
+                    noticesHtml += `
+                        <div class="notice-item" id="notice-${notice.id}">
+                            <div class="notice-info">
+                                <span class="notice-title">${notice.title}</span>
+                                <a href="${notice.url}" target="_blank" class="notice-url">${notice.url}</a>
+                            </div>
+                            <div class="notice-actions">
+                                <span class="notice-date">${formatDate(notice.date_uploaded)}</span>
+                                <button class="delete-btn notice-delete-btn" data-id="${notice.id}">Delete</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                elements.noticesContainer.innerHTML = noticesHtml;
+                
+                document.querySelectorAll('.notice-delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        deleteNotice(id);
+                    });
+                });
+            }
+
+            function renderImages(images) {
+                let imagesHtml = '';
+                
+                images.forEach(image => {
+                    imagesHtml += `
+                        <div class="admin-image-item" id="image-${image.id}">
+                            <img src="${image.url}" alt="${image.title}">
+                            <div class="admin-image-info">
+                                <div class="admin-image-title">${image.title}</div>
+                                <div class="admin-image-description">${image.description || 'No description'}</div>
+                                <div class="admin-image-date">Uploaded: ${formatDate(image.date_uploaded)}</div>
+                                <div class="admin-image-actions">
+                                    <button class="admin-image-delete" data-id="${image.id}">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                elements.adminImageGrid.innerHTML = imagesHtml;
+                
+                document.querySelectorAll('.admin-image-delete').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        deleteImage(id);
+                    });
+                });
+            }
+            
+            function showMessage(element, type, text) {
+                element.className = type;
+                element.textContent = text;
+                
+                if (type === 'success') {
+                    setTimeout(() => {
+                        element.textContent = '';
+                        element.className = 'message';
+                    }, 5000);
+                }
+            }
+            
+            function deleteNotice(id) {
+                if (!confirm('Are you sure you want to delete this notice?')) {
+                    return;
+                }
+                
+                fetch(`${API_ENDPOINTS.NOTICES}/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showMessage(elements.noticeMessageElem, 'success', data.message);
+                        
+                        const noticeElement = document.getElementById(`notice-${id}`);
+                        if (noticeElement) {
+                            noticeElement.remove();
+                        }
+
+                        if (!document.querySelector('.notice-item')) {
+                            elements.noticesContainer.innerHTML = '<div class="no-notices">No notices available</div>';
+                        }
+                    } else {
+                        showMessage(elements.noticeMessageElem, 'error', data.message || 'An error occurred while deleting the notice');
+                    }
+                })
+                .catch(error => {
+                    showMessage(elements.noticeMessageElem, 'error', 'Error: ' + error.message);
+                });
+            }
+            
+            function deleteImage(id) {
+                if (!confirm('Are you sure you want to delete this image?')) {
+                    return;
+                }
+                
+                fetch(`${API_ENDPOINTS.IMAGES}/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showMessage(elements.imageMessageElem, 'success', data.message);
+                        
+                        const imageElement = document.getElementById(`image-${id}`);
+                        if (imageElement) {
+                            imageElement.remove();
+                        }
+                        if (!document.querySelector('.admin-image-item')) {
+                            elements.adminImageGrid.innerHTML = '<div class="no-images">No cultural event images available</div>';
+                        }
+                    } else {
+                        showMessage(elements.imageMessageElem, 'error', data.message || 'An error occurred while deleting the image');
+                    }
+                })
+                .catch(error => {
+                    showMessage(elements.imageMessageElem, 'error', 'Error: ' + error.message);
+                });
+            }
+            
+            document.addEventListener('DOMContentLoaded', init);
+        })();
+    </script>
+{% endblock %}

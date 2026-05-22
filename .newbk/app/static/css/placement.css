@@ -1,0 +1,138 @@
+.placement-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.placement-content {
+  background-color: var(--m3-surface-container-low);
+  border-radius: var(--m3-shape-medium);
+  padding: 30px;
+  box-shadow: var(--m3-shadow-1);
+}
+
+.placement-content h2 {
+  color: var(--m3-primary);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+/* About Section */
+.about-section {
+  margin-bottom: 3rem;
+}
+
+.about-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.about-content img {
+  width: 300px;
+  border-radius: var(--m3-shape-medium);
+  object-fit: cover;
+}
+
+/* Navigation */
+.placement-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: var(--m3-surface-container);
+  border-radius: var(--m3-shape-medium);
+}
+
+/* Content Sections */
+.content-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  background-color: var(--m3-surface-container);
+  border-radius: var(--m3-shape-medium);
+  box-shadow: var(--m3-shadow-1);
+}
+
+.content-section h3 {
+  color: var(--m3-primary);
+  margin-bottom: 1rem;
+}
+
+/* Grids */
+.recruiters-grid,
+.activity-grid,
+.job-fair-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.recruiters-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.activity-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.job-fair-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Images */
+.recruiter-logo img,
+.activity-image img,
+.fair-image img {
+  width: 100%;
+  border-radius: var(--m3-shape-small);
+  transition: transform 0.3s ease;
+}
+
+.recruiter-logo img:hover,
+.activity-image img:hover,
+.fair-image img:hover {
+  transform: scale(1.05);
+}
+
+/* Lists */
+.m3-list {
+  list-style: none;
+  padding-left: 1.5rem;
+}
+
+.m3-list li {
+  position: relative;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.m3-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--m3-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+  }
+  
+  .about-content img {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .placement-nav {
+    flex-direction: column;
+  }
+  
+  .content-section {
+    padding: 1rem;
+  }
+}

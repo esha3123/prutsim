@@ -72,15 +72,23 @@
 /* Smooth scrolling for entire site */
 html {
   scroll-behavior: smooth;
+  min-height: 100%;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   color: var(--m3-on-surface);
   background-color: var(--m3-surface);
   line-height: 1.5;
+}
+
+main {
+  flex: 1;
 }
 
 /* Material 3 Typography */
@@ -335,10 +343,10 @@ table a.view-button:hover,
 header {
   background-color: var(--m3-surface-container);
   color: var(--m3-on-surface);
-  padding: 15px 20px;
+  padding: 15px 20px 6px 20px;
   border-radius: var(--m3-shape-medium) var(--m3-shape-medium) 0 0;
   box-shadow: var(--m3-shadow-1);
-  position: relative;
+  position: sticky;
   z-index: 100;
 }
 
@@ -399,6 +407,14 @@ header {
 /* ============================================
    Faculty Links (.facu)
 ============================================ */
+.facu-admission-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  width: auto;
+}
+
 .facu {
   display: flex;
   align-items: center;
@@ -418,6 +434,12 @@ header {
   transition: all 0.2s ease;
   font-weight: 500;
   position: relative;
+}
+
+.admission-enquiry-header {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .facu a:hover {
@@ -1045,7 +1067,7 @@ header {
   background: linear-gradient(135deg, var(--m3-primary) 0%, var(--m3-primary-container) 100%);
   box-shadow: var(--m3-shadow-3);
   border-bottom: 1px solid var(--m3-outline-variant);
-  position: relative;
+  position: sticky;
 }
 
 .mobile-nav-header::before {
@@ -2442,4 +2464,85 @@ html {
   #back-to-top {
     display: none;
   }
+}
+
+/* ============================================================
+   Admission Enquiry Header (All Pages)
+   ============================================================ */
+.admission-enquiry-header {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.admission-enquiry-inline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admission-enquiry-btn {
+  border: 1.5px solid var(--m3-primary);
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  background: var(--m3-primary);
+  color: var(--m3-on-primary);
+  letter-spacing: 0.4px;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+}
+
+.admission-enquiry-btn:hover {
+  background: var(--m3-primary-container);
+  color: var(--m3-on-primary-container);
+}
+
+.admission-enquiry-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--m3-primary);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.header-divider {
+  color: var(--m3-outline);
+  font-weight: 700;
+  opacity: 0.5;
+}
+
+.admission-social-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admission-social-link {
+  color: var(--m3-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--m3-outline-variant);
+  background: var(--m3-surface-container-lowest);
+  transition: background 0.2s, color 0.2s;
+}
+
+.admission-social-link:hover {
+  background: var(--m3-primary);
+  color: var(--m3-on-primary);
 }

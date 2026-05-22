@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}PRUTSIM{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/compact-nav.css') }}">
+  {% block head %}{% endblock %}
+  <style>{% block styles %}{% endblock %}</style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+     
+        <div class="logo-college-container">
+          <div class="logo">
+            <img src="{{ url_for('static', filename='logo2.png') }}" alt="College Logo" />
+          </div>
+          <div class="college-name">
+
+            <h1>Pramod Ram Ujagar Tiwari Saket Institute of Management</h1>
+            <p>(Approved by AICTE New Delhi, D.T.E(Code:MB3158),Govt of Maharashtra & Affiliated to University of Mumbai)</p>
+            <p>(NAAC Accredited by 'B++' Grade)</p>
+          </div>
+        </div>
+     
+      <div class="facu">
+        <a href="{{ url_for('frontend.facu', subpath='naac') }}">NAAC/IQAC</a>
+        <a href="{{ url_for('frontend.facu', subpath='staffs') }}">Staffs</a>
+        <a href="{{ url_for('frontend.facu', subpath='alumni') }}">Alumni</a>
+        <a href="{{ url_for('frontend.facu', subpath='placement') }}">Placement</a>
+        <a href="{{ url_for('frontend.facu', subpath='visit') }}">Visit</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="compact-nav">
+    <div class="compact-nav-container">
+      <div class="compact-mobile-header">
+        <a href="/" class="compact-mobile-home"><i class="fa fa-home"></i></a>
+        <button class="compact-hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <ul class="compact-nav-list">
+        <li class="compact-nav-item compact-desktop-home">
+          <a class="compact-nav-link" href="/"><i class="material-icons">home</i></a>
+        </li>
+        <li class="compact-nav-item dropdown">
+          <a class="compact-nav-link dropdown-toggle" href="#" role="button">
+            About us <i class="material-icons compact-dropdown-icon"></i>
+          </a>
+          <ul class="compact-dropdown-menu">
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.about', subpath='saket-gyaanpeeth')}}">About Saket Gyanpeeth</a></li>
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.about', subpath='message')}}">About PRUTSIM</a></li>
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.about', subpath='advisiory-board')}}">Advisory Board</a></li>
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.about', subpath='approval') }}">Approval & Affiliation</a></li>
+            <!------------------------------------------------------------- -->  
+             <li class="compact-dropdown-submenu">
+            <a class="compact-dropdown-item dropdown-toggle" href="#">
+              Approval & Affiliation <i class="material-icons compact-dropdown-icon"></i>
+            </a>
+            <ul class="compact-submenu-menu">
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/AICTE_Approval_Letter.pdf')}}" target="_blank">AICTE Approval</a></li>
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/University_of_Mumbai_Approval_Letter.pdf')}}" target="_blank">University of Mumbai</a></li>
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/AISHE_Certificate.pdf')}}" target="_blank">AISHE Certificate</a></li>
+            </ul>
+          </li>
+            <!---------------------------------------------------------- -->  
+             <!-- -<li><a class="compact-dropdown-item" href="{{ url_for('frontend.about', subpath='comitee') }}">Committees</a></li>---changed on 19-12-2025 -->  
+            <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/Comitee.pdf')}}" target="_blank">Committees</a></li> 
+          </ul>
+        </li>
+         <!-- ----------------------------------------------------------- -->
+          
+         <!-- ----------------------------------------------------------- -->
+        <li class="compact-nav-item dropdown">
+          <a class="compact-nav-link dropdown-toggle" href="#" role="button">
+            Programs <i class="material-icons compact-dropdown-icon"></i>
+          </a>
+          <ul class="compact-dropdown-menu">
+            <li class="compact-dropdown-submenu">
+              <a class="compact-dropdown-item dropdown-toggle" href="#">
+                MMS <i class="material-icons compact-dropdown-icon"></i>
+              </a>
+              <ul class="compact-submenu-menu">
+                <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/Eligibility.pdf')}}" target="_blank">Eligibility</a></li>
+                <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/Information_Brochure_UGPG_2025_26-1.pdf')}}" target="_blank">Info Brochure</a></li>
+                           <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/Admission-Schedule-2025-26.pdf')}}" target="_blank">Admission Schedule</a></li>
+                <!--<li><a class="compact-dropdown-item" href="{{ url_for('frontend.academics', subpath='current-syllabus')}}">Syllabus</a></li> -->
+                
+                   <li class="compact-dropdown-submenu">
+            <a class="compact-dropdown-item dropdown-toggle" href="#">
+              Syllabus <i class="material-icons compact-dropdown-icon"></i>
+            </a>
+            <ul class="compact-submenu-menu">
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/Syllabus-SEM01&02.pdf')}}" target="_blank">FY MMS</a></li>
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/SYLLABUS-Management-Studies-MMS-Sem.III-IV.pdf')}}" target="_blank">SY MMS</a></li>
+            </ul>
+          </li>
+                
+                <li><a class="compact-dropdown-item" href= "https://prutsim.acadmin.in/admission/onlineform" target="_blank">Online Registration Form</a></li>
+              </ul>
+            </li>
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.academics', subpath='phd') }}">Ph. D.</a></li>
+          </ul>
+        </li>
+         <!-- ----------------------------------------------------------- -->
+           <li class="compact-nav-item dropdown">
+          <a class="compact-nav-link dropdown-toggle" href="#" role="button">
+           FRA<i class="material-icons compact-dropdown-icon"></i>
+          </a>
+          <ul class="compact-dropdown-menu">
+            
+
+             <li class="compact-dropdown-submenu">
+            <a class="compact-dropdown-item dropdown-toggle" href="#">
+              Category Wise Fees <i class="material-icons compact-dropdown-icon"></i>
+            </a>
+            <ul class="compact-submenu-menu">
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/FY-MMS-FEES_2025-2026.pdf')}}" target="_blank">FY MMS</a></li>
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/SY-MMS-FEES-2024-2025.pdf')}}" target="_blank">SY MMS</a></li>
+            </ul>
+          </li>
+           
+            <li class="compact-dropdown-submenu">
+            <a class="compact-dropdown-item dropdown-toggle" href="#">
+              FRA- Fee Structure <i class="material-icons compact-dropdown-icon"></i>
+            </a>
+            <ul class="compact-submenu-menu">
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/fra_24_25.pdf')}}" target="_blank">2024-2025</a></li>
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/fra_25_26.pdf')}}" target="_blank">2025-2026</a></li>
+            </ul>
+          </li>
+          
+           <!-- ---------------------Added Below Lines on 31-Oct-2025 on Request From Vinayak Mane-------------------------------------- -->
+
+            <li class="compact-dropdown-submenu">
+            <a class="compact-dropdown-item dropdown-toggle" href="#">
+              Online Proposal for Approval of Fees<i class="material-icons compact-dropdown-icon"></i>
+            </a>
+            <ul class="compact-submenu-menu">
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/Online_2026_27.pdf')}}" target="_blank">2026-2027</a></li>
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/Online_2025_26.pdf')}}" target="_blank">2025-2026</a></li>
+            </ul>
+          </li>
+
+          </ul>
+        </li>
+
+          <!-- ----------------------------------------------------------- -->
+        
+        <li class="compact-nav-item dropdown">
+          <a class="compact-nav-link dropdown-toggle" href="#" role="button">
+            Library <i class="material-icons compact-dropdown-icon"></i>
+          </a> 
+          <ul class="compact-dropdown-menu">
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.library', subpath='librarians-message') }}">Librarian's Message</a></li>
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.library', subpath='facilities') }}">Library Facilities</a></li>
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.library', subpath='question-papers') }}">Question Papers</a></li>
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.library', subpath='delnet') }}">DELNET</a></li>
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.library', subpath='notices') }}">Notices</a></li>
+          </ul>
+        </li>
+       <!---------------------------------------------------------------------------------------------------->
+        <li class="compact-nav-item dropdown">
+          <a class="compact-nav-link dropdown-toggle" href="#" role="button">
+            R&D <i class="material-icons compact-dropdown-icon"></i>
+          </a>
+           <ul class="compact-dropdown-menu">
+           <!---- <li><a class="compact-dropdown-item" href="{{ url_for('frontend.rnd', subpath='conference') }}">Conference 2024-2025</a></li>
+             <ul class="compact-submenu-menu">
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/RD/Vision_for_10_Trillion_Dollar_Economy.pdf')}}" target="_blank">Vision for 10 Trillion Dollar Economy Brochure</a></li>
+              
+            </ul> ---- -->
+             <!-- ------<li><a class="compact-dropdown-item" href="{{ url_for('frontend.rnd', subpath='publications') }}">Research Publications</a></li>
+            <li><a class="compact-dropdown-item" href="{{ url_for('frontend.rnd', subpath='workshops') }}">Workshop/Seminar/FDP</a></li>
+
+                      " Removed after Prashant Sir's confirmation on 19-Dec-2025"  ---- -->
+                      
+                           <li class="compact-dropdown-submenu">
+            <a class="compact-dropdown-item dropdown-toggle" href="#">
+              Conference 2024-2025<i class="material-icons compact-dropdown-icon"></i>
+            </a>
+            <ul class="compact-submenu-menu">
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/RD/Vision_for_10_Trillion_Dollar_Economy.pdf')}}" target="_blank">Vision for 10 Trillion Dollar Economy Brochure</a></li>
+              
+            </ul>
+          </li>
+
+                  
+            
+            <li class="compact-dropdown-submenu">
+            <a class="compact-dropdown-item dropdown-toggle" href="#">
+              Conference-2025-2026<i class="material-icons compact-dropdown-icon"></i>
+            </a>
+            <ul class="compact-submenu-menu">
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/RD/Governing_AI_in_Industry.pdf')}}" target="_blank">Brochure</a></li>
+              <li><a class="compact-dropdown-item" href="https://forms.gle/rGzXAwVdLU5yQLd1A" target="_blank">Registration Link</a></li>
+            </ul>
+          </li>          
+          </ul>
+        </li>
+       <!----------------------------------------------------------------------------------------------------->
+        <li class="compact-nav-item dropdown">
+          <a class="compact-nav-link dropdown-toggle" href="#" role="button">
+            Feedback <i class="material-icons compact-dropdown-icon"></i>
+          </a>
+          <ul class="compact-dropdown-menu">
+            <li><a class="compact-dropdown-item" href="https://forms.office.com/pages/responsepage.aspx?id=YKCmE75f10G7ASJLYcxMsNpobeoGw8xIkWSVFFDYMZdUM0lCT0UyWlkzWFU2RlpTWTY3VzdCRDM4SSQlQCNjPTEu" target="_blank">Parents Feedback</a></li>
+            <li><a class="compact-dropdown-item" href="https://forms.office.com/pages/responsepage.aspx?id=YKCmE75f10G7ASJLYcxMsNpobeoGw8xIkWSVFFDYMZdUQUZSTEo1NTNWQklJQzlYMUpTT1M1VzFZNCQlQCNjPTEu" target="_blank">Employer Feedback</a></li>
+            <li><a class="compact-dropdown-item" href="https://forms.office.com/pages/responsepage.aspx?id=YKCmE75f10G7ASJLYcxMsNpobeoGw8xIkWSVFFDYMZdURE1UUkk3SlRPR0xKTUZVOFpPSlBKR1QwOCQlQCNjPTEu" target="_blank">Alumni Feedback</a></li>
+            <li><a class="compact-dropdown-item" href="https://forms.office.com/Pages/ResponsePage.aspx?id=YKCmE75f10G7ASJLYcxMsNpobeoGw8xIkWSVFFDYMZdURTFJRUxIQklMU09NTE5HMDdEUzNRNUo0TyQlQCNjPTEu" target="_blank">Teachers Feedback</a></li>
+            <li><a class="compact-dropdown-item" href="https://forms.office.com/pages/responsepage.aspx?id=YKCmE75f10G7ASJLYcxMsNpobeoGw8xIkWSVFFDYMZdUMzBKRlRXTjNGM1JOMENBOTNYTENMRkdTSyQlQCNjPTEu" target="_blank">Students Feedback</a></li>
+            <!--<li><a class="compact-dropdown-item" href="https://prutsim.edu.in/Doc/ATR.pdf?_t=1701151421" target="_blank">Action Taken Report</a></li>
+            <li><a class="compact-dropdown-item" href="https://prutsim.edu.in/Doc/Analysis.pdf?_t=1701151421" target="_blank">Analysis Report</a></li>  -->
+          </ul>
+        </li>
+        <li class="compact-nav-item">
+          <a class="compact-nav-link" href="{{ url_for('frontend.more', subpath='contact-us') }}">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul class="m3-list">
+                <li><a href="{{ url_for('frontend.about', subpath='saket-gyaanpeeth') }}"><span class="material-icons">arrow_right</span>About Us</a></li>
+                <li><a href="{{ url_for('frontend.about', subpath='saket-gyaanpeeth') }}"><span class="material-icons">arrow_right</span>Alumni</a></li>
+                <li><a href="{{ url_for('frontend.about', subpath='saket-gyaanpeeth') }}"><span class="material-icons">arrow_right</span>Student Corner</a></li>
+                <li><a href="{{ url_for('frontend.library', subpath='librarians-message') }}"><span class="material-icons">arrow_right</span>Library</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Programs</h3>
+            <ul class="m3-list">
+                <li><a href="{{ url_for('frontend.academics', subpath='program_courses') }}"><span class="material-icons">arrow_right</span>Program & Courses</a></li>
+                <li><a href="{{ url_for('frontend.academics', subpath='course_outcomes') }}"><span class="material-icons">arrow_right</span>Course Outcomes</a></li>
+                <li><a href="{{ url_for('frontend.extension', subpath='nss') }}"><span class="material-icons">arrow_right</span>NSS</a></li>
+                <li><a href="{{ url_for('frontend.extension', subpath='dlle') }}"><span class="material-icons">arrow_right</span>DLLE</a></li>
+                <li><a href="{{ url_for('frontend.extension', subpath='best-practices') }}"><span class="material-icons">arrow_right</span>Best Practices</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <div class="contact-info">
+                <span class="material-icons">location_on</span>
+                <p>Saket Vidyanagari Marg, Kalyan (East) - 421306</p>
+            </div>
+            <div class="contact-info">
+                <span class="material-icons">phone</span>
+                <p>+91 72080 20258</p>
+            </div>
+            <div class="contact-info">
+                <span class="material-icons">email</span>
+                <p>info@saketcollege.edu</p>
+            </div>
+            <div class="social-links">
+                <a href="#" class="m3-icon-button"><span class="material-icons">facebook</span></a>
+                <a href="#" class="m3-icon-button"><span class="material-icons">public</span></a>
+                <a href="#" class="m3-icon-button"><span class="material-icons">business_center</span></a>
+                <a href="#" class="m3-icon-button"><span class="material-icons">photo_camera</span></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Subscribe to our newsletter for updates and news.</p>
+            <form class="m3-form">
+                <div class="m3-text-field">
+                    <input type="email" id="newsletter-email" placeholder=" ">
+                    <label for="newsletter-email">Email Address</label>
+                </div>
+                <button type="submit" class="m3-button">
+                    <span class="material-icons">mail</span>
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Saket College. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='js/compact-nav.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/base.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+  <button id="back-to-top" aria-label="Back to top">
+    <i class="material-icons">arrow_upward</i>
+  </button>
+  </body>
+</html>

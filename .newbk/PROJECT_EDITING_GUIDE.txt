@@ -1,0 +1,550 @@
+===============================================================================
+                     PROJECT EDITING GUIDE - PRUTSIM COLLEGE WEBSITE
+                          FOR NON-TECHNICAL USERS TO
+===============================================================================
+
+This guide explains how to edit and modify the college website project.
+NO CODING EXPERIENCE REQUIRED - Just follow the step-by-step instructions!
+
+===============================================================================
+1. UNDERSTANDING YOUR WEBSITE FOLDER STRUCTURE
+===============================================================================
+
+Think of your website like a filing cabinet with organized folders:
+
+📁 app/                     
+  📁 templates/             ← This is where your website PAGES are stored
+  📁 static/               ← This is where IMAGES, PDFs, and styling files go
+    📁 docs/               ← Put PDF files here (admission forms, syllabi, etc.)
+    📁 images/             ← Put photos here (staff photos, event pictures, etc.)
+    📁 css/                ← Website colors and design files (don't touch unless needed)
+    📁 js/                 ← Website functionality files (don't touch)
+  📁 frontend/             ← Website navigation rules (advanced users only)
+  📁 models/               ← Database settings (advanced users only)
+
+📁 instance/               ← Website database files (don't touch)
+📁 migrations/             ← Database backup files (don't touch)
+
+SIMPLE RULE: 
+- Want to add a PDF? → Put it in app/static/docs/
+- Want to add a photo? → Put it in app/static/images/
+- Want to change page content? → Edit files in app/templates/
+
+===============================================================================
+2. HOW TO ADD A NEW MENU ITEM TO YOUR WEBSITE (STEP-BY-STEP)
+===============================================================================
+
+The menu bar at the top of your website is controlled by ONE file.
+
+🎯 GOAL: Add a new menu item like "Events" or "Gallery"
+
+STEP 1: Open the menu file
+- Using File Explorer, navigate to your website folder
+- Open: app → templates → base.html
+- This file controls what appears in your website's menu
+
+STEP 2: Find the menu section  
+- Press Ctrl+F (or Cmd+F on Mac) to search
+- Search for: "About us"
+- You'll see a section that looks like a list of menu items
+
+STEP 3: Copy and modify an existing menu
+- Find this section (it will look similar):
+        <li class="compact-nav-item dropdown">
+          <a class="compact-nav-link dropdown-toggle" href="#" role="button">
+            About us <i class="material-icons compact-dropdown-icon"></i>
+          </a>
+          <ul class="compact-dropdown-menu">
+            <li><a class="compact-dropdown-item" href="/about/message">About PRUTSIM</a></li>
+          </ul>
+        </li>
+
+- Copy this entire section
+- Paste it right after (before the closing </ul>)
+- Change "About us" to your new menu name like "Events"
+- Change the link "/about/message" to match your new page
+
+STEP 4: Save the file
+- Press Ctrl+S (or Cmd+S on Mac)
+- Your new menu item will appear on the website!
+
+⚠️ IMPORTANT: If this seems complicated, ask someone technical to help with this step.
+The rest of this guide focuses on easier tasks like uploading files.
+
+===============================================================================
+3. UPLOADING FILES TO YOUR WEBSITE (EASIEST TASKS)
+===============================================================================
+
+📄 UPLOADING PDF DOCUMENTS (Admission forms, notices, syllabi, etc.)
+
+STEP 1: Find your PDF file on your computer
+- Make sure it has a clear, descriptive name
+- Examples: "Admission-Form-2025.pdf", "MMS-Syllabus.pdf"
+
+STEP 2: Copy the PDF to your website
+- Open File Explorer/Finder
+- Navigate to your website folder
+- Go to: app → static → docs
+- COPY and PASTE your PDF file here
+
+STEP 3: Link the PDF on your website
+- Find the page where you want the PDF to appear
+- Look for existing PDF links (they look like this):
+  <a href="{{ url_for('static', filename='docs/existing-file.pdf') }}" target="_blank">Download PDF</a>
+- Copy this line and change 'existing-file.pdf' to your new PDF filename
+- Change "Download PDF" to a descriptive title
+
+📸 UPLOADING PHOTOS/IMAGES
+
+STEP 1: Prepare your images
+- Use common formats: JPG, PNG
+- Keep file sizes reasonable (under 2MB each)
+- Use descriptive names: "staff-john-doe.jpg", "campus-library.jpg"
+
+STEP 2: Choose the right folder
+- Staff photos: app → static → images → staff
+- Event photos: app → static → images → events  
+- General photos: app → static → images
+
+STEP 3: Copy images to website
+- COPY and PASTE your image files into the chosen folder
+
+STEP 4: Display images on your website
+- Find where you want the image to appear
+- Look for existing image code (looks like this):
+  <img src="{{ url_for('static', filename='images/existing-image.jpg') }}" alt="Description">
+- Copy this line and change 'existing-image.jpg' to your new image filename
+- Change "Description" to describe what the image shows
+
+💡 TIP: Always use the web admin panel (explained later) for uploading notices and gallery images - it's much easier!
+
+===============================================================================
+4. USING THE ADMIN PANEL (EASIEST WAY TO MANAGE CONTENT)
+===============================================================================
+
+The admin panel is a simple web interface - no file editing needed!
+
+🔐 ACCESSING THE ADMIN PANEL
+
+STEP 1: Start your website
+- Open your website in a web browser
+- Add "/auth/login" to the end of your website address
+- Example: http://localhost:5000/auth/login
+
+STEP 2: Login
+- Enter your admin username and password
+- (Ask your technical person for these credentials)
+
+📋 UPLOADING NOTICES/ANNOUNCEMENTS
+
+STEP 1: In admin panel, click "Upload Notice"
+STEP 2: Fill out the form:
+- Title: Enter a clear title like "Admission Open 2025"
+- Type: Choose "General" or "Exam" 
+- File: Click "Choose File" and select your PDF
+STEP 3: Click "Upload" button
+STEP 4: The notice will automatically appear on your website!
+
+📷 UPLOADING PHOTO GALLERIES
+
+STEP 1: In admin panel, click "Upload Image"
+STEP 2: Fill out the form:
+- Title: Describe the photo
+- Category: Choose appropriate category (events, cultural, sports, etc.)
+- Description: Optional details about the photo
+- File: Click "Choose File" and select your image
+STEP 3: Click "Upload" button
+STEP 4: The image will automatically appear in your gallery!
+
+💡 WHY USE ADMIN PANEL?
+- No need to edit files manually
+- Automatic organization
+- Built-in backup
+- Anyone can use it (no technical skills needed)
+
+===============================================================================
+5. CHANGING WEBSITE COLORS AND APPEARANCE (BASIC CUSTOMIZATION)
+===============================================================================
+
+⚠️ WARNING: Only make these changes if you're comfortable, or ask for technical help!
+
+🎨 CHANGING WEBSITE COLORS
+
+STEP 1: Find the color file
+- Navigate to: app → static → css → base.css
+- Open this file in a text editor (Notepad++ recommended)
+
+STEP 2: Find the color section
+- Look at the very top of the file
+- You'll see lines that look like:
+  --primary-color: #1976d2;
+  --secondary-color: #424242;
+
+STEP 3: Change colors
+- Replace the color codes with new ones
+- Use a color picker website like colorpicker.com to find color codes
+- Save the file
+
+🖼️ CHANGING THE COLLEGE LOGO
+
+STEP 1: Prepare your new logo
+- Save it as "logo2.png" 
+- Make sure it's a reasonable size (recommended: 100x100 pixels)
+
+STEP 2: Replace the logo file
+- Navigate to: app → static
+- Replace the existing "logo2.png" with your new one
+- Keep the same filename: "logo2.png"
+
+STEP 3: The logo will automatically update on your website!
+
+💡 TIP: Always backup your original files before making changes!
+
+===============================================================================
+6. COMMON EDITING TASKS FOR NON-TECHNICAL USERS
+===============================================================================
+
+📝 UPDATING TEXT CONTENT ON PAGES
+
+STEP 1: Find the page you want to edit
+- Navigate to: app → templates → [section]
+- Sections include: about, academics, library, facu, more
+- Find the .html file for the page you want to change
+
+STEP 2: Open the file
+- Right-click the file → "Open with" → Choose a text editor
+- Recommended: Notepad++, Sublime Text, or even regular Notepad
+
+STEP 3: Find and change text
+- Press Ctrl+F to search for the text you want to change
+- Make your changes carefully
+- DON'T change anything inside < > brackets
+- Only change the regular text between > and <
+
+STEP 4: Save the file
+- Press Ctrl+S to save
+
+👥 ADDING A NEW STAFF MEMBER
+
+STEP 1: Add staff photo
+- Take/prepare a professional photo of the staff member  
+- Save it as: "staff-firstname-lastname.jpg"
+- Copy to: app → static → images → staff
+
+STEP 2: Edit the staff page
+- Open: app → templates → facu → staffs.html
+- Find an existing staff member section
+- Copy the entire section (from one <div> to the closing </div>)
+- Paste it below existing staff members
+
+STEP 3: Update the information
+- Change the image filename to your new photo
+- Update the name, designation, qualifications
+- Update contact information
+
+📧 UPDATING CONTACT INFORMATION
+
+STEP 1: Update footer contact
+- Open: app → templates → base.html
+- Search for "Contact Us" (Ctrl+F)
+- Update phone number, email, address as needed
+
+STEP 2: Update contact page
+- Open: app → templates → more → contact-us.html
+- Update all contact details
+
+📰 ADDING NEWS TO HOMEPAGE
+
+STEP 1: Open homepage file
+- Open: app → templates → index.html
+
+STEP 2: Find news section
+- Search for "news" or "announcement"
+- Add your news item following the existing pattern
+
+💡 GOLDEN RULE: When editing text, only change what's between > and <
+Never touch anything inside < > brackets unless you know what you're doing!
+
+===============================================================================
+7. SIMPLE TROUBLESHOOTING FOR NON-TECHNICAL USERS
+===============================================================================
+
+❌ PROBLEM: I uploaded a PDF but it's not showing on the website
+
+✅ SOLUTION:
+1. Check if the PDF is in the right folder: app/static/docs/
+2. Make sure the filename matches exactly what you wrote in the page
+3. Check for typos in the filename
+4. Make sure there are no spaces in the filename (use dashes instead)
+
+❌ PROBLEM: I uploaded a photo but it's not appearing
+
+✅ SOLUTION:
+1. Check if the image is in the right folder: app/static/images/
+2. Make sure it's a .jpg or .png file
+3. Check that the filename matches exactly in your page
+4. Image files are case-sensitive: "Photo.jpg" is different from "photo.jpg"
+
+❌ PROBLEM: I made changes but they're not showing on the website
+
+✅ SOLUTION:
+1. Make sure you saved the file (Ctrl+S)
+2. Refresh your web browser (F5 or Ctrl+F5)
+3. Clear your browser cache (Google "how to clear cache" for your browser)
+4. Wait a few minutes - sometimes changes take time to appear
+
+❌ PROBLEM: The website looks broken after my changes
+
+✅ SOLUTION:
+1. Don't panic! This is fixable
+2. Try to remember what you changed
+3. Open the file you edited and undo your changes (Ctrl+Z)
+4. If that doesn't work, restore the backup file (if you made one)
+5. Ask for technical help - provide details about what you changed
+
+💡 PREVENTION TIPS:
+- Always make a backup copy of files before editing them
+- Only change text content, never HTML code (the stuff in < > brackets)
+- Test small changes before making big ones
+- Keep a list of what you've changed
+
+🆘 WHEN TO ASK FOR HELP:
+- If you need to add new menu items
+- If you need to create entirely new pages  
+- If the website stops working
+- If you need to change how things function (not just content)
+- If you're not sure about something - it's better to ask!
+
+===============================================================================
+8. QUICK REFERENCE CHEAT SHEET
+===============================================================================
+
+📋 MOST COMMON TASKS (EASIEST TO HARDEST):
+
+✅ EASY TASKS (Anyone can do):
+1. Upload PDFs → Copy to app/static/docs/
+2. Upload images → Copy to app/static/images/
+3. Use admin panel → Go to yourwebsite.com/auth/login
+4. Update contact info → Edit text in templates
+5. Change staff information → Edit app/templates/facu/staffs.html
+
+⚠️ MEDIUM TASKS (Need some comfort with computers):
+1. Update page content → Edit .html files in templates folder
+2. Add news to homepage → Edit app/templates/index.html
+3. Change website colors → Edit app/static/css/base.css
+4. Replace logo → Replace app/static/logo2.png
+
+🚫 HARD TASKS (Need technical help):
+1. Add new menu items → Edit base.html navigation
+2. Create new pages → Need routing and template creation
+3. Database changes → Need programming knowledge
+4. Security settings → Need server administration
+
+📁 FOLDER CHEAT SHEET:
+
+Want to add...                    | Put file in...
+----------------------------------|----------------------------------------
+PDF documents                     | app/static/docs/
+Photos/Images                     | app/static/images/
+Change text on pages              | app/templates/[section]/[page].html
+Update homepage                   | app/templates/index.html
+Change website colors             | app/static/css/base.css
+Update staff page                 | app/templates/facu/staffs.html
+Update contact information        | app/templates/base.html (footer)
+
+🔧 FILE NAMING RULES:
+- No spaces (use dashes: "my-file.pdf" not "my file.pdf")
+- Use lowercase when possible
+- Be descriptive: "admission-form-2025.pdf" not "form.pdf"
+- For staff photos: "staff-firstname-lastname.jpg"
+
+⚡ EMERGENCY BACKUP PLAN:
+1. Before making ANY changes, copy the entire app folder
+2. Name it "app-backup-[today's date]"
+3. If something breaks, delete the broken app folder
+4. Rename your backup folder to "app"
+5. Everything will be back to normal!
+
+===============================================================================
+9. STEP-BY-STEP EXAMPLES FOR COMMON TASKS
+===============================================================================
+
+📄 EXAMPLE 1: Adding a New PDF Notice
+
+SCENARIO: You want to add "Exam Schedule 2025.pdf" to the website
+
+STEP 1: Prepare the file
+- Save your PDF as: "Exam-Schedule-2025.pdf" (no spaces!)
+- Make sure the file is actually a PDF
+
+STEP 2: Copy to website
+- Open File Explorer
+- Navigate to your website folder → app → static → docs
+- Copy and paste "Exam-Schedule-2025.pdf" here
+
+STEP 3: Add link on website (Option A - Easy Way)
+- Go to yourwebsite.com/auth/login
+- Login to admin panel
+- Click "Upload Notice"
+- Title: "Exam Schedule 2025"
+- Choose your PDF file
+- Click Upload
+
+STEP 3: Add link on website (Option B - Manual Way)
+- Find the page where you want the link (example: academics page)
+- Open: app/templates/academics/[appropriate-page].html
+- Find where other PDF links are
+- Copy an existing link and change it:
+  FROM: <a href="{{ url_for('static', filename='docs/old-file.pdf') }}">Old Title</a>
+  TO:   <a href="{{ url_for('static', filename='docs/Exam-Schedule-2025.pdf') }}">Exam Schedule 2025</a>
+
+📸 EXAMPLE 2: Adding Staff Member Photo and Information
+
+SCENARIO: New faculty member "Dr. Priya Sharma" joins as Assistant Professor
+
+STEP 1: Prepare photo
+- Take professional photo
+- Save as: "staff-priya-sharma.jpg"
+- Copy to: app/static/images/staff/
+
+STEP 2: Add to staff page
+- Open: app/templates/facu/staffs.html
+- Find an existing staff member section (it will look like a card/box)
+- Copy the entire section from <div> to </div>
+- Paste it at the end of the staff list
+
+STEP 3: Update information
+- Change image source from old photo to "staff-priya-sharma.jpg"
+- Change name to "Dr. Priya Sharma"
+- Change designation to "Assistant Professor"
+- Update qualifications, contact details, etc.
+
+🏠 EXAMPLE 3: Adding News to Homepage
+
+SCENARIO: You want to announce "New Library Wing Opening"
+
+STEP 1: Open homepage
+- Open: app/templates/index.html
+
+STEP 2: Find news section
+- Press Ctrl+F and search for "news" or "announcement"
+- Look for existing news items
+
+STEP 3: Add your news
+- Copy an existing news item structure
+- Change the title, date, and description
+- Save the file
+
+💡 Remember: When in doubt, use the admin panel - it's much easier!
+
+===============================================================================
+10. SAFETY TIPS AND BEST PRACTICES
+===============================================================================
+
+🛡️ BEFORE YOU START EDITING:
+
+1. ALWAYS MAKE A BACKUP
+   - Copy the entire "app" folder
+   - Name it "app-backup-[today's-date]"
+   - Keep it safe - this is your lifeline!
+
+2. START SMALL
+   - Don't try to change everything at once
+   - Make one small change and test it
+   - If it works, make the next change
+
+3. WRITE DOWN WHAT YOU DO
+   - Keep a notebook of changes you make
+   - Include file names and what you changed
+   - This helps when something goes wrong
+
+🚨 WHAT NOT TO TOUCH:
+
+❌ NEVER EDIT THESE FOLDERS (unless you're technical):
+- app/frontend/
+- app/models/
+- app/auth/
+- app/api/
+- migrations/
+- instance/
+
+❌ NEVER DELETE THESE FILES:
+- base.html (this controls your entire website layout)
+- Any file ending in .py (these are programming files)
+- Any file in the css folder (unless changing colors)
+
+✅ SAFE TO EDIT:
+- Files in app/templates/ (but be careful!)
+- Adding files to app/static/docs/
+- Adding files to app/static/images/
+- Using the admin panel
+
+🔧 IF SOMETHING GOES WRONG:
+
+LEVEL 1: Simple fix
+- Undo your changes (Ctrl+Z)
+- Refresh browser (F5)
+
+LEVEL 2: File restore
+- Replace broken file with backup
+- Restart website
+
+LEVEL 3: Full restore
+- Delete entire "app" folder
+- Rename "app-backup-[date]" to "app"
+- Restart website
+
+LEVEL 4: Ask for help
+- Contact your technical support person
+- Explain exactly what you changed
+- Provide error messages if any
+
+💡 GOLDEN RULES:
+1. When in doubt, don't do it
+2. Always backup before changing anything
+3. Test changes immediately
+4. Use the admin panel when possible (it's safer)
+5. Ask for help rather than guessing
+
+===============================================================================
+11. WHO TO CONTACT FOR DIFFERENT TASKS
+===============================================================================
+
+🟢 YOU CAN DO YOURSELF:
+- Upload PDFs and images
+- Use admin panel
+- Update text content
+- Change contact information
+- Add news/announcements
+
+🟡 NEED SOME HELP (from computer-savvy colleague):
+- Change website colors
+- Add staff members
+- Replace logo
+- Edit page layouts
+
+🔴 NEED TECHNICAL EXPERT:
+- Add new menu items
+- Create new pages
+- Fix broken website
+- Database issues
+- Server problems
+- Security settings
+
+📞 SUPPORT CONTACT TEMPLATE:
+When asking for technical help, provide:
+1. What you were trying to do
+2. What steps you took
+3. What went wrong
+4. What error messages you see
+5. What files you changed
+
+===============================================================================
+
+🎉 CONGRATULATIONS! 
+You now have everything you need to maintain your college website.
+Remember: Start small, backup everything, and don't be afraid to ask for help!
+
+Last Updated: September 2025
+Website: PRUTSIM College Management System
+===============================================================================

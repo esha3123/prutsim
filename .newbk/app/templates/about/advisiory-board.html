@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Advisory Board {% endblock %}
+
+{% block content %}
+        <div class="cardu">
+            <img src="{{ url_for('static', filename='adivisiory.png') }}" alt="Advisory Board">
+        </div>
+{% endblock %}
+
+{% block styles %}
+<style>
+   .cardu {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: transparent;
+        border: none;
+    }
+    .cardu img {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+    }
+    @media (max-width: 600px) {
+        .cardu {
+            padding: 10px;
+        }
+    }
+    @media (min-width: 601px) and (max-width: 1200px) {
+        .cardu {
+            padding: 15px;
+        }
+    }
+</style>
+{% endblock %}

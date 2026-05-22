@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% block title %}Approvals - PRUTSIM{% endblock %}
+
+{% block styles %}
+.content-container {
+  max-width: 1140px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--m3-surface);
+  border-radius: var(--m3-shape-medium);
+  box-shadow: var(--m3-shadow-2);
+  position: relative;
+  overflow: hidden;
+}
+
+.content-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--m3-primary), var(--m3-tertiary));
+}
+
+.page-title {
+  font-size: 2.5rem;
+  color: var(--m3-primary);
+  margin-bottom: 1.2rem;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+}
+
+.page-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--m3-primary), var(--m3-tertiary));
+  border-radius: 2px;
+}
+
+.page-subtitle {
+  text-align: center;
+  color: var(--m3-on-surface-variant);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.approval-card {
+  background-color: var(--m3-surface-container);
+  border-radius: var(--m3-shape-medium);
+  box-shadow: var(--m3-shadow-1);
+  height: 100%;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-title {
+  color: var(--m3-primary);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  color: var(--m3-on-surface-variant);
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.btn-primary {
+  background-color: var(--m3-primary);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--m3-shape-medium);
+  font-weight: 500;
+  color: var(--m3-on-primary);
+  text-decoration: none;
+  transition: 0.3s ease;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: var(--m3-primary-container);
+  color: var(--m3-on-primary-container);
+  box-shadow: var(--m3-shadow-1);
+  transform: translateY(-2px);
+}
+
+.section-title {
+  color: var(--m3-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--m3-outline-variant);
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .content-container {
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
+}
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+  <h1 class="page-title">Institutional Approvals</h1>
+  <p class="page-subtitle">
+    PRUTSIM is approved by AICTE, affiliated to the University of Mumbai, and recognized by various regulatory bodies. You can view and download official documents below.
+  </p>
+
+  <div class="row g-4">
+    <!-- AICTE Approval -->
+    <div class="col-md-4">
+      <div class="approval-card">
+        <h5 class="card-title">AICTE Approval</h5>
+        <p class="card-text">All India Council for Technical Education approval documents.</p>
+        <a href="https://prutsim.edu.in/Docs/AICTE%20Approvals(LOA%20and%20EOA%20of%20subsequent%20years).pdf" 
+           class="btn btn-primary" target="_blank">
+          View Document <i class="fa fa-external-link ms-2"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- University of Mumbai Approval -->
+    <div class="col-md-4">
+      <div class="approval-card">
+        <h5 class="card-title">University of Mumbai</h5>
+        <p class="card-text">University of Mumbai affiliation and approval documents.</p>
+        <a href="https://prutsim.edu.in/Docs/University%20of%20Mumbai.pdf" 
+           class="btn btn-primary" target="_blank">
+          View Document <i class="fa fa-external-link ms-2"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- AISHE Certificate -->
+    <div class="col-md-4">
+      <div class="approval-card">
+        <h5 class="card-title">AISHE Certificate</h5>
+        <p class="card-text">All India Survey on Higher Education certification.</p>
+        <a href="https://prutsim.edu.in/Docs/AISHE.pdf" 
+           class="btn btn-primary" target="_blank">
+          View Document <i class="fa fa-external-link ms-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,459 @@
+{% extends "base.html" %}
+
+{% block title %}Library Notices - PRUTSIM{% endblock %}
+
+{% block head %}
+<style>
+    .notices-container {
+        padding: 2rem 0;
+        min-height: 60vh;
+        background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+    }
+
+    .notices-header {
+        background: linear-gradient(135deg, var(--m3-primary) 0%, #1976d2 100%);
+        color: white;
+        padding: 3rem 2rem;
+        border-radius: 16px;
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(25, 118, 210, 0.3);
+    }
+
+    .notices-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translate(-25%, -25%) rotate(0deg); }
+        50% { transform: translate(-25%, -25%) rotate(180deg); }
+    }
+
+    .notices-title {
+        font-size: 2.8rem;
+        margin: 0;
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        letter-spacing: -0.5px;
+    }
+
+    .notices-subtitle {
+        font-size: 1.2rem;
+        margin: 1rem 0 0 0;
+        opacity: 0.95;
+        position: relative;
+        z-index: 1;
+        font-weight: 300;
+    }
+
+    .notices-content {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+    }
+
+    .notices-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .notice-item {
+        border-bottom: 1px solid #f0f0f0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        background: white;
+    }
+
+    .notice-item:last-child {
+        border-bottom: none;
+    }
+
+    .notice-item:hover {
+        background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .notice-link {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem;
+        color: #333;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+    }
+
+    .notice-link::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1;
+    }
+
+    .notice-item:hover .notice-link::before {
+        width: 4px;
+    }
+
+    .notice-icon {
+        flex-shrink: 0;
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
+        color: white;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+        position: relative;
+        z-index: 2;
+    }
+
+    .notice-icon::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(135deg, #1976d2, #2196f3, #03a9f4);
+        border-radius: 18px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .notice-item:hover .notice-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 8px 25px rgba(25, 118, 210, 0.4);
+    }
+
+    .notice-item:hover .notice-icon::before {
+        opacity: 1;
+    }
+
+    .notice-details {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .notice-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0 0 0.75rem 0;
+        color: #1a1a1a;
+        line-height: 1.4;
+        word-wrap: break-word;
+        position: relative;
+        z-index: 2;
+    }
+
+    .notice-meta {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 2;
+    }
+
+    .notice-date {
+        font-size: 0.9rem;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #f8f9fa;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 500;
+    }
+
+    .notice-type {
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        color: #1565c0;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border: 1px solid #e1f5fe;
+    }
+
+    .notice-arrow {
+        color: var(--m3-outline);
+        transition: all var(--animation-standard);
+    }
+
+    .notice-item:hover .notice-arrow {
+        color: var(--m3-primary);
+        transform: translateX(4px);
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--m3-on-surface-variant);
+    }
+
+    .empty-icon {
+        font-size: 4rem;
+        color: var(--m3-outline);
+        margin-bottom: 1rem;
+    }
+
+    .empty-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--m3-on-surface);
+    }
+
+    .empty-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .stats-bar {
+        background: var(--m3-surface-variant);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.875rem;
+        color: var(--m3-on-surface-variant);
+        border-bottom: 1px solid var(--m3-outline-variant);
+    }
+
+    .stats-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .refresh-btn {
+        background: none;
+        border: none;
+        color: var(--m3-primary);
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: var(--m3-shape-small);
+        transition: all var(--animation-standard);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .refresh-btn:hover {
+        background: var(--m3-primary-container);
+        color: var(--m3-on-primary-container);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .notices-header {
+            padding: 2rem 1rem;
+        }
+
+        .notices-title {
+            font-size: 2rem;
+        }
+
+        .notice-link {
+            padding: 1rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .notice-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .notice-meta {
+            gap: 0.5rem;
+        }
+
+        .stats-bar {
+            padding: 0.75rem 1rem;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .notices-container {
+            padding: 1rem 0;
+        }
+
+        .notices-header {
+            padding: 1.5rem 1rem;
+        }
+
+        .notices-title {
+            font-size: 1.75rem;
+        }
+
+        .notice-link {
+            padding: 0.75rem;
+        }
+    }
+
+    /* Loading Animation */
+    .loading {
+        text-align: center;
+        padding: 2rem;
+        color: var(--m3-on-surface-variant);
+    }
+
+    .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--m3-outline-variant);
+        border-top: 3px solid var(--m3-primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="notices-container">
+    <div class="notices-header">
+        <h1 class="notices-title"> Notices</h1>
+        <p class="notices-subtitle">Stay updated with the latest announcements and information from the college</p>
+    </div>
+
+    <div class="notices-content">
+        {% if notices %}
+            <div class="stats-bar">
+                <div class="stats-info">
+                    <i class="material-icons">notifications</i>
+                    <span>{{ notices|length }} notice{{ 's' if notices|length != 1 else '' }} available</span>
+                </div>
+                <button class="refresh-btn" onclick="window.location.reload()">
+                    <i class="material-icons">refresh</i>
+                    <span>Refresh</span>
+                </button>
+            </div>
+
+            <ul class="notices-list">
+                {% for notice in notices %}
+                <li class="notice-item">
+                    <a href="{{ notice.url }}" class="notice-link" 
+                       {% if notice.url.startswith('http') %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                        <div class="notice-icon">
+                            {% if notice.url.endswith('.pdf') %}
+                                <i class="material-icons">picture_as_pdf</i>
+                            {% elif notice.url.startswith('http') %}
+                                <i class="material-icons">link</i>
+                            {% else %}
+                                <i class="material-icons">description</i>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="notice-details">
+                            <h3 class="notice-title">{{ notice.title }}</h3>
+                            <div class="notice-meta">
+                                <div class="notice-date">
+                                    <i class="material-icons">schedule</i>
+                                    {% if notice.date_uploaded %}
+                                        {% set upload_date = notice.date_uploaded.split('T')[0] if 'T' in notice.date_uploaded else notice.date_uploaded %}
+                                        {{ upload_date }}
+                                    {% else %}
+                                        Recently added
+                                    {% endif %}
+                                </div>
+                                {% if notice.notice_type %}
+                                <span class="notice-type">{{ notice.notice_type }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <i class="material-icons notice-arrow">arrow_forward</i>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="material-icons">notifications_none</i>
+                </div>
+                <h2 class="empty-title">No Notices Available</h2>
+                <p class="empty-description">
+                    There are currently no li notices to display. 
+                    Please check back later for updates and announcements.
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+// Add smooth scroll behavior for better UX
+document.addEventListener('DOMContentLoaded', function() {
+    // Add loading animation for external links
+    const externalLinks = document.querySelectorAll('a[target="_blank"]');
+    externalLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Add a brief loading indicator for external links
+            const icon = this.querySelector('.notice-icon i');
+            const originalIcon = icon.textContent;
+            icon.textContent = 'open_in_new';
+            setTimeout(() => {
+                icon.textContent = originalIcon;
+            }, 2000);
+        });
+    });
+
+    // Add keyboard navigation support
+    const noticeItems = document.querySelectorAll('.notice-link');
+    noticeItems.forEach((item, index) => {
+        item.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowDown' && index < noticeItems.length - 1) {
+                e.preventDefault();
+                noticeItems[index + 1].focus();
+            } else if (e.key === 'ArrowUp' && index > 0) {
+                e.preventDefault();
+                noticeItems[index - 1].focus();
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,446 @@
+{% extends "base.html" %}
+{% block title %}about-PRUTSIM{% endblock %};
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/message.css') }}">
+{% endblock %}
+{% block content %}
+<section class="about-section">
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>About PRUTSIM</h2>
+      <p>In 2009, Saket Gyanpeeth, a prominent educational trust based in Kalyan, Maharashtra, expanded its academic portfolio by establishing the Pramod Ram Ujagar Tiwari Saket Institute of Management (PRUTSIM). This initiative marked the trust's foray into the realm of management education, aiming to provide quality postgraduate programs in business administration.</p>
+
+<p>PRUTSIM offers a two-year full-time Master of Management Studies (M.M.S.) program, which is equivalent to an MBA. This program is affiliated with the University of Mumbai and has received approvals from the All India Council for Technical Education (AICTE) and the Directorate of Technical Education (DTE), Government of Maharashtra, under the code MB 3158.&#x20;</p>
+
+<p>Initially, the institute had an intake capacity of 60 students. However, in the academic year 2010-11, PRUTSIM obtained approval from AICTE to increase its intake to 120 students, accommodating the growing demand for management education. 
+Through its commitment to academic excellence and social responsibility, PRUTSIM continues to contribute significantly to the field of management education in the region.</p>
+    </div>
+    <div class="about-image">
+      <img src="{{ url_for('static', filename='images/visit/collegecampus.jpg') }}"
+        alt="Campus Life" style="width: 100%; border-radius: 10px;">
+    </div>
+  </div>
+</section>
+ <h1 class="page-title">Messages from Leadership</h1>
+<div class="container message-grid">
+    <div class="message-item">
+        <div class="message-header">
+            <img src="{{ url_for('static', filename='images/chairman.png') }}" alt="Chairman" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
+            <div class="person-info">
+                <h2>Shri Vinod R Tiwari</h2>
+                <p class="title">Hon'ble Chairman, Saket Gyanpeeth</p>
+            </div>
+        </div>
+        <div class="message-content">
+            <p>Our vision at Saket College extends beyond traditional education.</p>
+            <p>We strive to create an environment that nurtures intellectual curiosity, personal growth, and professional development.<span class="dots" id="dots-chairman">...</span></p>
+            <div class="message-expanded" id="more-chairman">
+                <p>To make the students aware of the various career opportunities and professions.</p>
+                <p>Our commitment is to prepare students not just for their immediate educational goals, but for lifelong learning and success in a rapidly changing world.</p>
+                <div class="message-signature">
+                    – Shri Vinod R Tiwari<br>
+                    Chairman, Saket Gyanpeeth
+                </div>
+            </div>
+            <button class="read-more-btn" id="btn-chairman" onclick="toggleMessage('chairman')">Read more</button>
+        </div>
+    </div>
+    <div class="message-item">
+        <div class="message-header">
+            <img src="{{ url_for('static', filename='images/secretary.png') }}" alt="Secretary" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
+            <div class="person-info">
+                <h2>Shri Saket A Tiwari</h2>
+                <p class="title">Hon'ble Secretary</p>
+            </div>
+        </div>
+        <div class="message-content">
+            <p>Greetings to all!</p>
+            <p>As the Secretary of this institution, I anticipate the full participation and cooperation of the students and parents to make it possible for us to transform our dreams to reality.<span class="dots" id="dots-secretary">...</span></p>
+            <div class="message-expanded" id="more-secretary">
+                <p>It is very much apparent that we live today in a world that is so very different from the one we grew up in, the one we were educated in. Change in today's world is riding an accelerated pace and we need to pause and reflect on the entire education system.</p>
+                <p>I firmly believe that students must be taught how to think, not what to think. That reminds me of the great words of wisdom by Aristotle, 'Educating the mind without educating the heart is no education at all.' As we impart education to match the advancement of globalized world, we march our children ahead with the ethos of moral and ethical principles.</p>
+                <p>We at Saket Gyanpeeth, are committed to continually improve our quality management system and develop our students as intellectually alive and socially responsible citizens, so as to enable them to meet the future development and challenges.</p>
+                <div class="message-signature">
+                    – Shri Saket A Tiwari<br>
+                  Secretary, Saket Gyanpeeth
+                </div>
+            </div>
+            <button class="read-more-btn" id="btn-secretary" onclick="toggleMessage('secretary')">Read more</button>
+        </div>
+    </div>
+    <div class="message-item">
+        <div class="message-header">
+            <img src="{{ url_for('static', filename='images/ceo.png') }}" alt="CEO" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
+            <div class="person-info">
+                <h2> Mrs. Shobha Nair</h2>
+                <p class="title">Hon'ble CEO, Saket Gyanpeeth</p>
+            </div>
+        </div>
+        <div class="message-content">
+            <p>Warm greetings to all!</p>
+            <p>Higher-education is not just a means to enter into a profession but it is the path of transforming a youngster into a complete, responsible and dutiful adult.<span class="dots" id="dots-ceo">...</span></p>
+            <div class="message-expanded" id="more-ceo">
+                <p>Change is the only constant in the present world and the pace of change is very rapid.</p>
+                <p>We prepare students to deal with this ever-changing world and emerge victorious as the change-makers of the world. At Saket College we believe in not just educating students for their professions but also in educating them for leading a successful and happy life as global citizens.</p>
+                <p>Apart from professional skills, students are inculcated with life skills which enable them to succeed in even the most averse situations. Present day youngsters are not as emotionally strong as older generations and here at Saket, we train our students in not just intellectual prowess but also mental wellbeing.</p>
+                <p>Our professors are our intellectual capital; who are highly trained and passionate about needs of students. I would also mention our non-teaching staff who are the administrative backbone of the institution who keep it running smoothly.</p>
+                <div class="message-signature">
+                    – Mrs. Shobha Nair<br>
+                   Hon'ble CEO, Saket Gyanpeeth
+                </div>
+            </div>
+            <button class="read-more-btn" id="btn-ceo" onclick="toggleMessage('ceo')">Read more</button>
+        </div>
+    </div>
+    <div class="message-item">
+        <div class="message-header">
+            <img src="{{ url_for('static', filename='images/director.png') }}" alt="Principal" class="profile-image" onerror="this.src='{{ url_for('static', filename='images/default-profile.png') }}'">
+            <div class="person-info">
+                <h2>Dr. Sanoj Kumar</h2>
+                <p class="title">Director</p>
+            </div>
+        </div>
+        <div class="message-content">
+            <p>Dear Students,</p>
+            <p>We are all aware that current young generation is the largest, the world has ever seen. They stand with a lot of aspiration to be matched with what educationalist like us have to offer them. For us quality education is the alchemy to human, social & economic growth.<span class="dots" id="dots-principal">...</span></p>
+            <div class="message-expanded" id="more-principal">
+                <p>Increasing equity & access to enhance the knowledge & skill level is an answer to issues concerning sustainable development in the current scenario. We believe that teachers are the most important & powerful force to quality education. Thus we have the galaxy of talented faculties.
+                  The right kind of grooming and well equipped training given here transform students into a worthy candidate. A candidate the industry and economy is looking for!!</p>
+                  <p>We focus on developing a mind set, geared up to face the dynamics of current world and stand out in the competition.
+A vibrant industry interface through seminars, workshops, alumni interactions & industrial visits both in India & abroad helps the student to get the feel of the real business world before they actually take a plunge into it. At PRUTSIM we are committed to grooming leaders with value based education. We inculcate the values of humility, honesty and hard work for individual and corporate success and also endeavour for holistic development of individuals, institutions and society at large. With the confidence that our intention has matched our efforts; it’s great pleasure to welcome you to SAKET GYANPEETH’s PRAMOD RAM UJAGAR TIWARI SAKET INSTITUTE OF MANAGEMENT.</p>
+                <div class="message-signature">
+                    – Dr. Sanoj Kumar<br>
+                    Director
+                </div>
+            </div>
+            <button class="read-more-btn" id="btn-principal" onclick="toggleMessage('principal')">Read more</button>
+        </div>
+    </div>
+</div>
+<!-- -------------hhhhhhh------------- -->
+<div class="vision">
+    <h1>Our Vision, Mission & Values</h1>
+    <div class="vision-mission-container">
+      <div class="vision-mission-content">
+        <div class="vm-box">
+          <div class="content" id="vision">
+            <h2>Our Vision</h2>
+            <div class="expandable-content">
+              <p>“To became a pioneer in Management Education by creating global leaders with strong ethical and social commitment”</p>
+              <div class="expanded-content">
+                <!-- <p>We envision Saket College as a center of excellence that transforms students into leaders.</p> -->
+              </div>
+             
+            </div>
+          </div>
+          
+          <div class="content" id="mission">
+            <h2>Our Mission</h2>
+            <div class="expandable-content">
+              <ul class="mission-list">
+                <li>To equip students with advanced knowledge and skills.</li>
+               
+                <li>To provide quality value-based education.</li>
+                 <div class="expanded-content">
+                  <li>To metamorphose budding talent into managers par excellence.</li>
+                </div>
+              </ul>
+             
+              <button class="expand-btn" onclick="toggleContent('mission')">Read More</button>
+            </div>
+          </div>
+          <div class="content" id="values">
+            <h2>Our Values</h2>
+            <div class="expandable-content">
+              <ul class="mission-list">
+                <li>To instill a sense of social responsibility so as to create ethical leaders.</li>
+                <li>To provide students with competitive edge in dynamic / global business environment scenario.</li>
+                <div class="expanded-content">
+                  <li>To enrich students with pragmatic knowledge.
+                      To facilitate personality development of the students.</li>
+                  <li>To offer a platform for student community to develop professionally.</li>
+                </div>
+              </ul>
+            </div>
+            <button class="expand-btn" onclick="toggleContent('values')">Read More</button>
+          </div>
+        </div>
+      </div>
+      </div></div>
+<section class="achievements parallax-section">
+  
+  <div class="parallax-overlay"></div>
+  <h2 style="text-align: center; font-size:60px;">Why Choose Us?</h2>
+  <div class="achievement-grid">
+    <div class="achievement-card">
+      <div class="achievement-icon">💼</div>
+      <h3>Upskilling</h3>
+      <p>Getting an attractive paycheck needs UpToDate skillset too. At PRUTSIM we provide beyond syllabus add on course and extra focus on soft skill development.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🎓</div>
+      <h3>Dream Job Profiles</h3>
+      <p>Our association with country wide recruiters in each field gives arena for students to choose their favorite field for beginning their career.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🌟</div>
+      <h3>Industry-Academia Interaction</h3>
+      <p>We have tradition of bringing guest speakers from industry where platform is provided to students to interact with them, get their doubts resolved, get a realistic picture of current
+corporate world.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🤝</div>
+      <h3>Extra Activities</h3>
+      <p>Our annual socio-cultural event Rohak is well known and most awaited event in the city. We believe in maintaining a balance of fun and learning..</p>
+    </div>
+  </div>
+</section>
+<!-- ----------campus-life------------- -->
+<section class="campus-life">
+  <h2>Campus Life</h2>
+  <div class="campus-grid">
+    <div class="campus-card">
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.29-3.jpeg"
+        alt="Cultural Events">
+      <div class="campus-overlay">
+        <h3>Cultural Events</h3>
+        <p>Vibrant cultural festivals and celebrations</p>
+        <a href="javascript:void(0);" onclick="ViewCampusImages('cultural', 'Cultural Events')"><span>View</span></a>
+      </div>
+    </div>
+    <div class="campus-card">
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-28-at-13.38.00-2.jpeg"
+        alt="Sports Activities">
+      <div class="campus-overlay">
+        <h3>Sports Activities</h3>
+        <p>State-level tournaments and fitness facilities</p>
+        <a href="javascript:void(0);" onclick="ViewCampusImages('sports', 'Sports Activities')"><span>View</span></a>
+      </div>
+    </div>
+    <div class="campus-card">
+      <img src="https://saketcollege.edu.in/wp-content/uploads/2024/04/WhatsApp-Image-2024-03-30-at-18.50.34.jpeg"
+        alt="Student Clubs">
+      <div class="campus-overlay">
+        <h3>Student Clubs</h3>
+        <p>Over 30 active student clubs and societies</p>
+        <a href="javascript:void(0);" onclick="ViewCampusImages('clubs', 'Student Clubs')"><span>View</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/campus-life.js') }}"></script>
+<script>
+  function ViewCampusImages(category, title) {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000;';
+
+    const modalContent = document.createElement('div');
+    modalContent.className = 'modal-content';
+    modalContent.style.cssText = 'background-color:#fff; border-radius:8px; width:80%; max-width:1200px; max-height:90vh; overflow-y:auto; padding:20px; position:relative;';
+
+    const closeBtn = document.createElement('span');
+    closeBtn.innerHTML = '&times;';
+    closeBtn.className = 'close-button';
+    closeBtn.style.cssText = 'position:absolute; top:10px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; color:#333;';
+    closeBtn.onclick = function() {
+      document.body.removeChild(modal);
+    };
+    
+    const header = document.createElement('h2');
+    header.textContent = title;
+    header.style.cssText = 'margin-bottom:20px; color:#333; border-bottom:1px solid #ddd; padding-bottom:10px;';
+
+    const imageGrid = document.createElement('div');
+    imageGrid.className = 'image-grid';
+    imageGrid.style.cssText = 'display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:15px; margin-top:20px;';
+
+    const loadingDiv = document.createElement('div');
+    loadingDiv.textContent = 'Loading images...';
+    loadingDiv.style.cssText = 'text-align:center; padding:20px; width:100%;';
+    
+    modalContent.appendChild(closeBtn);
+    modalContent.appendChild(header);
+    modalContent.appendChild(loadingDiv);
+    modalContent.appendChild(imageGrid);
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    fetch(`/api/images?category=${category}&per_page=20`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch images');
+        }
+        return response.json();
+      })
+      .then(data => {
+        loadingDiv.style.display = 'none';
+        
+        if (!data.images || data.images.length === 0) {
+          const noImagesMsg = document.createElement('p');
+          noImagesMsg.textContent = `No ${title.toLowerCase()} images available.`;
+          noImagesMsg.style.cssText = 'text-align:center; padding:20px; width:100%;';
+          imageGrid.appendChild(noImagesMsg);
+          return;
+        }
+        data.images.forEach(image => {
+          const imgContainer = document.createElement('div');
+          imgContainer.className = 'image-item';
+          imgContainer.style.cssText = 'border-radius:8px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:relative;';
+          
+          const img = document.createElement('img');
+          img.src = image.url;
+          img.alt = image.title;
+          img.style.cssText = 'width:100%; height:200px; object-fit:cover; display:block;';
+          const overlay = document.createElement('div');
+          overlay.className = 'image-overlay';
+          overlay.style.cssText = 'position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.7); color:white; padding:10px; transition:all 0.3s ease;';
+          
+          const imageTitle = document.createElement('h4');
+          imageTitle.textContent = image.title;
+          imageTitle.style.cssText = 'margin:0 0 5px 0; font-size:16px;';
+          
+          overlay.appendChild(imageTitle);
+          
+          if (image.description) {
+            const imageDesc = document.createElement('p');
+            imageDesc.textContent = image.description;
+            imageDesc.style.cssText = 'margin:0; font-size:14px;';
+            overlay.appendChild(imageDesc);
+          }
+          
+          img.onclick = function() {
+            const fullView = document.createElement('div');
+            fullView.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); display:flex; justify-content:center; align-items:center; z-index:1100;';
+            
+            const fullImg = document.createElement('img');
+            fullImg.src = image.url;
+            fullImg.alt = image.title;
+            fullImg.style.cssText = 'max-width:90%; max-height:90%; object-fit:contain;';
+            
+            fullView.appendChild(fullImg);
+            fullView.onclick = function() {
+              document.body.removeChild(fullView);
+            };
+            
+            document.body.appendChild(fullView);
+          };
+          
+          imgContainer.appendChild(img);
+          imgContainer.appendChild(overlay);
+          imageGrid.appendChild(imgContainer);
+        });
+        if (data.has_next) {
+          const loadMoreBtn = document.createElement('button');
+          loadMoreBtn.textContent = 'Load More';
+          loadMoreBtn.style.cssText = 'grid-column:1/-1; padding:10px 20px; background-color:#4a89dc; color:white; border:none; border-radius:4px; margin-top:15px; cursor:pointer; font-weight:bold;';
+          let currentPage = 1;
+          
+          loadMoreBtn.onclick = function() {
+            currentPage++;
+    
+            loadMoreBtn.textContent = 'Loading...';
+            loadMoreBtn.disabled = true;
+            
+            fetch(`/api/images?category=${category}&per_page=20&page=${currentPage}`)
+              .then(response => response.json())
+              .then(moreData => {
+                moreData.images.forEach(image => {
+                  const imgContainer = document.createElement('div');
+                  imgContainer.className = 'image-item';
+                  imgContainer.style.cssText = 'border-radius:8px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:relative;';
+                  
+                  const img = document.createElement('img');
+                  img.src = image.url;
+                  img.alt = image.title;
+                  img.style.cssText = 'width:100%; height:200px; object-fit:cover; display:block;';
+                  
+                  const overlay = document.createElement('div');
+                  overlay.className = 'image-overlay';
+                  overlay.style.cssText = 'position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.7); color:white; padding:10px;';
+                  
+                  const imageTitle = document.createElement('h4');
+                  imageTitle.textContent = image.title;
+                  imageTitle.style.cssText = 'margin:0 0 5px 0; font-size:16px;';
+                  
+                  overlay.appendChild(imageTitle);
+                  
+                  if (image.description) {
+                    const imageDesc = document.createElement('p');
+                    imageDesc.textContent = image.description;
+                    imageDesc.style.cssText = 'margin:0; font-size:14px;';
+                    overlay.appendChild(imageDesc);
+                  }
+
+                  img.onclick = function() {
+                    const fullView = document.createElement('div');
+                    fullView.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); display:flex; justify-content:center; align-items:center; z-index:1100;';
+                    
+                    const fullImg = document.createElement('img');
+                    fullImg.src = image.url;
+                    fullImg.alt = image.title;
+                    fullImg.style.cssText = 'max-width:90%; max-height:90%; object-fit:contain;';
+                    
+                    fullView.appendChild(fullImg);
+                    fullView.onclick = function() {
+                      document.body.removeChild(fullView);
+                    };
+                    
+                    document.body.appendChild(fullView);
+                  };
+                  
+                  imgContainer.appendChild(img);
+                  imgContainer.appendChild(overlay);
+                  imageGrid.appendChild(imgContainer);
+                });
+                
+                loadMoreBtn.disabled = false;
+                loadMoreBtn.textContent = 'Load More';
+                
+                if (!moreData.has_next) {
+                  loadMoreBtn.style.display = 'none';
+                }
+              })
+              .catch(error => {
+                console.error('Error loading more images:', error);
+                loadMoreBtn.textContent = 'Error Loading More';
+                setTimeout(() => {
+                  loadMoreBtn.textContent = 'Try Again';
+                  loadMoreBtn.disabled = false;
+                }, 2000);
+              });
+          };
+          
+          imageGrid.appendChild(loadMoreBtn);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching images:', error);
+        loadingDiv.textContent = 'Error loading images. Please try again later.';
+        loadingDiv.style.color = 'red';
+      });
+  
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        document.body.removeChild(modal);
+      }
+    });
+    
+    document.body.style.overflow = 'hidden';
+    
+    closeBtn.addEventListener('click', function() {
+      document.body.style.overflow = '';
+    });
+    
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        document.body.style.overflow = '';
+      }
+    });
+  } 
+</script>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/message.js') }}"></script>
+{% endblock %}
+{% endblock %}

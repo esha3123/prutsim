@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+{% block title %}Internal Complaint Committee - PRUTSIM{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1 class="page-title">Constitution of Internal Complaint Committee</h1>
+    <p class="page-subtitle">Academic Year 2025-26</p>
+     <p class="page-subtitle">e-mail: internalcomplaintcommittee@prutsim.edu.in</p>
+    <div class="committee-table-container">
+        <table class="committee-table">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Role in Committee</th>
+                    <th>Mobile Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Ms. Sameen Patel</td>
+                    <td>Faculty</td>
+                    <td>Presiding Officer</td>
+                    <td>9987154703</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Dr. Shrikesh Poojari</td>
+                    <td>Dean Academics</td>
+                    <td>Member</td>
+                    <td>9820295895</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Ms. Deepika Rao</td>
+                    <td>Faculty</td>
+                    <td>Member</td>
+                    <td>8766900125</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Ms. Shruti More</td>
+                    <td>Non-Teaching</td>
+                    <td>Member</td>
+                    <td>9152765509</td>
+                   
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Ms. Poonam Jagadale</td>
+                    <td>Non-Teaching</td>
+                    <td>Member</td>
+                    <td>8108263757</td>
+                    
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Mr. Chavhan Dipak</td>
+                    <td>Student Representative</td>
+                    <td>Member</td>
+                    <td>7378897622</td>
+                    
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Ms. Khare Manali</td>
+                    <td>Student Representative</td>
+                    <td>Member</td>
+                    <td>7666392328</td>
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+
+    
+
+    
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .content-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+    }
+
+    .page-title {
+        color: var(--m3-primary);
+        margin-bottom: 10px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--m3-primary);
+        font-size: 2.2em;
+        text-align: center;
+    }
+
+    .page-subtitle {
+        text-align: center;
+        color: var(--m3-on-surface-variant);
+        margin-bottom: 40px;
+        font-size: 1.1em;
+        font-style: italic;
+    }
+
+    .committee-table-container {
+        margin: 30px 0;
+        overflow-x: auto;
+        box-shadow: var(--m3-shadow-2);
+        border-radius: var(--m3-shape-medium);
+    }
+
+    .committee-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--m3-surface);
+    }
+
+    .committee-table th {
+        background: var(--m3-primary);
+        color: var(--m3-on-primary);
+        padding: 15px 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.95em;
+    }
+
+    .committee-table td {
+        padding: 12px;
+        border-bottom: 1px solid var(--m3-outline-variant);
+        color: var(--m3-on-surface);
+    }
+
+    .committee-table tbody tr:hover {
+        background: var(--m3-surface-variant);
+    }
+
+    .committee-table tbody tr:nth-child(even) {
+        background: var(--m3-surface-container-lowest);
+    }
+
+    .committee-functions,
+    .committee-guidelines {
+        margin-top: 40px;
+        padding: 25px;
+        background: var(--m3-surface-container-low);
+        border-radius: var(--m3-shape-medium);
+        border-left: 4px solid var(--m3-primary);
+    }
+
+    .emergency-contact {
+        margin-top: 40px;
+        padding: 25px;
+        background: var(--m3-error-container);
+        border-radius: var(--m3-shape-medium);
+        border-left: 4px solid var(--m3-error);
+    }
+
+    .committee-functions h3,
+    .committee-guidelines h3 {
+        color: var(--m3-primary);
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+
+    .emergency-contact h3 {
+        color: var(--m3-error);
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+
+    .helpline-info {
+        display: grid;
+        gap: 10px;
+    }
+
+    .helpline-item {
+        padding: 10px;
+        background: var(--m3-surface);
+        border-radius: var(--m3-shape-small);
+        border-left: 3px solid var(--m3-error);
+        color: var(--m3-on-surface);
+    }
+
+    .committee-functions ul,
+    .committee-guidelines ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .committee-functions li,
+    .committee-guidelines li {
+        padding: 8px 0;
+        padding-left: 20px;
+        position: relative;
+        color: var(--m3-on-surface);
+    }
+
+    .committee-functions li::before,
+    .committee-guidelines li::before {
+        content: "•";
+        color: var(--m3-primary);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+    }
+
+    @media (max-width: 768px) {
+        .content-container {
+            padding: 40px 15px;
+        }
+        
+        .page-title {
+            font-size: 1.8em;
+        }
+        
+        .committee-table th,
+        .committee-table td {
+            padding: 8px 6px;
+            font-size: 0.9em;
+        }
+
+        .helpline-info {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .helpline-info {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+    }
+</style>
+{% endblock %}

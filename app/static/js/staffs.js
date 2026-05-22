@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     facultyMembers.forEach(member => {
         member.addEventListener('click', () => {
             const staffId = member.dataset.facultyId;
-            const detailImagePath = staffImages[staffId] || '/static/images/default-detail-template.jpg';
+            const detailImagePath = staffImages[staffId] || '/static/images/default-profile.png';
             
             // Set the detail template image
             modalImage.src = detailImagePath;

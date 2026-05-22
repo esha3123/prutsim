@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+
+{% block title %}Alumni - Saket College{% endblock %}
+
+{% block styles %}
+.content-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: transparent;
+}
+
+.page-title {
+  color: var(--m3-primary);
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--m3-primary);
+  font-size: 2.5em;
+  text-align: center;
+}
+
+.nav-container {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(var(--m3-primary-rgb), 0.05));
+    padding: 25px 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    text-align: center;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 0 0 30px 30px;
+    margin: 0 -20px;
+    padding: 20px;
+}
+
+.view-button {
+    background: linear-gradient(135deg, var(--m3-primary), var(--m3-primary-dark));
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: var(--m3-shape-large);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 10px 15px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(var(--m3-primary-rgb), 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.view-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.view-button:hover:before {
+    left: 100%;
+}
+
+.view-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--m3-primary-rgb), 0.3);
+    background: linear-gradient(135deg, var(--m3-primary-dark), var(--m3-primary));
+}
+
+.view-button.active-section {
+    background: linear-gradient(135deg, var(--m3-primary-dark), var(--m3-primary));
+    box-shadow: 0 6px 20px rgba(var(--m3-primary-rgb), 0.4);
+    transform: translateY(-2px);
+}
+
+.section {
+  margin-top: 40px;
+  padding: 30px 0;
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.section.active {
+  display: block;
+}
+
+.section-title {
+  color: var(--m3-primary);
+  font-size: 2em;
+  text-align: center;
+  position: relative;
+}
+
+.section-title:after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--m3-primary);
+  margin: 15px auto 0;
+}
+
+.event-description {
+  color: var(--m3-on-surface);
+  line-height: 1.3;
+  font-size: 1.1em;
+  <!-- margin: 0px auto; -->
+  max-width: 800px;
+  text-align: center;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.testimonial-image {
+  width: 100%;
+  max-height: 900px;
+  object-fit: contain;
+  margin: 40px auto;
+  display: block;
+}
+
+.distinctive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 40px auto;
+  max-width: 1300px;
+  padding: 0 15px;
+}
+
+.distinctive-image {
+  width: 100%;
+  height: auto;
+  max-height: 700px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.distinctive-image:hover {
+  transform: scale(1.02);
+}
+
+.event-title {
+  color: var(--m3-primary);
+  font-size: 1.8em;
+  margin: 40px 0 20px;
+  text-align: center;
+}
+
+.document-container {
+    text-align: center;
+    padding: 40px;
+    background: rgba(var(--m3-primary-rgb), 0.05);
+    border-radius: var(--m3-shape-large);
+    margin: 30px auto;
+    max-width: 800px;
+}
+
+.document-message {
+    color: var(--m3-on-surface-variant);
+    margin: 20px 0;
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .distinctive-grid {
+    grid-template-columns: 1fr;
+    padding: 0 10px;
+  }
+
+  .distinctive-image {
+    max-height: 500px;
+  }
+
+  .event-description {
+    padding: 0 15px;
+    font-size: 1em;
+  }
+
+  .section-title {
+    font-size: 1.6em;
+  }
+
+  .nav-container {
+    padding: 15px 10px;
+    margin: 0 -10px;
+  }
+
+  .view-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    margin: 0 5px 10px;
+  }
+}
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1 class="page-title">Alumni</h1>
+    
+    <div class="nav-container">
+        <a href="#committee" class="view-button" data-section="committee">Alumni Association Committee</a>
+        <!-- <a href="#alumni-interaction" class="view-button" data-section="interaction">Alumni Interaction</a> -->
+        <a href="#eminent-alumni" class="view-button" data-section="testimonials">Alumni Testimonials</a>
+        <a href="#distinctive" class="view-button">Distinctive Alumni</a>
+    </div>
+
+    <!-- Committee Section -->
+    <div id="committee" class="section">
+        <h2 class="section-title">Alumni Association Committee</h2>
+        <div class="document-container">
+            <p class="event-description">
+                View our Alumni Association Committee details in the document below:
+            </p>
+            <a href="https://prutsim.edu.in/Docs/Alumni%20Association%20Committee_removed.pdf?_t=1683822888" 
+               class="view-button" 
+               target="_blank" 
+               rel="noopener noreferrer">Download Committee Document</a>
+        </div>
+    </div>
+
+    <!-- Alumni Interaction Section -->
+    <div id="alumni-interaction" class="section">
+        <h2 class="section-title">Alumni Interaction</h2>
+        
+        <h3 class="event-title">Reminiscence - 2k19</h3>
+        <p class="event-description">
+            In 2019 PRUTSIM arranged Alumni meet "Reminiscence" where students from past batches visited the campus. 
+            They all got nostalgic and lost in the memories of the good old days. They shared their work experiences 
+            and updated current batch students on how to prepare for the corporate world and what the expectations 
+            are from a management student in the professional environment.
+        </p>
+
+        <h3 class="event-title">Saketians Speak Your Mind</h3>
+        <p class="event-description">
+            A unique competition was conducted for students of Saket Gyanpeeth where they chose to speak upon topics 
+            of their choice and expressed their views. The special element was that these students were judged by our 
+            own alumni, creating a joyful sharing of knowledge and thought processes. We invited alumni and felicitated 
+            them for being judges in this competition.
+        </p>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div id="eminent-alumni" class="section">
+        <h2 class="section-title">Alumni Testimonials</h2>
+        <img src="{{ url_for('static', filename='testimonal(alumni-page).png') }}" 
+             alt="Alumni Testimonials" 
+             class="testimonial-image">
+    </div>
+
+    <!-- Distinctive Alumni Section -->
+    <div id="distinctive" class="section">
+        <h2 class="section-title">Distinctive Alumni</h2>
+        <div class="distinctive-grid">
+            <img src="{{ url_for('static', filename='distinctive(1).png') }}" 
+                 alt="Distinctive Alumni 1" 
+                 class="distinctive-image">
+            <img src="{{ url_for('static', filename='distinctive(2).png') }}" 
+                 alt="Distinctive Alumni 2" 
+                 class="distinctive-image">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/alumni.js') }}"></script>
+{% endblock %}

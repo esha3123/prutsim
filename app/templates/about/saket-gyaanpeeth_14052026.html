@@ -1,0 +1,386 @@
+{% extends 'base.html' %}
+
+{% block title %}About Saket Gyanpeeth | Saket College of Arts, Science & Commerce{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+{% endblock %}
+
+{% block styles %}
+.about-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    /* background-color: var(--m3-surface-container-lowest);
+    box-shadow: var(--m3-shadow-2); */
+    border-radius: var(--m3-shape-medium);
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.about-header h1 {
+    color: var(--m3-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.about-header h1:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100px;
+    height: 4px;
+    background-color: var(--m3-tertiary);
+    transform: translateX(-50%);
+}
+
+.about-header h2 {
+    color: var(--m3-on-surface-variant);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.about-content {
+    line-height: 1.8;
+    color: var(--m3-on-surface);
+    font-size: 1.1rem;
+}
+
+.about-content p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.timeline {
+    position: relative;
+    margin: 3rem 0;
+    padding: 2rem 0;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 4px;
+    background: var(--m3-primary);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-content {
+    width: 45%;
+    padding: 1.5rem;
+    background: var(--m3-surface-container);
+    box-shadow: var(--m3-shadow-1);
+    border-radius: var(--m3-shape-small);
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--m3-shadow-3);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    float: left;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    float: right;
+}
+
+.timeline-year {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: var(--m3-tertiary);
+    border-radius: 50%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--m3-on-tertiary);
+    font-weight: bold;
+    z-index: 1;
+}
+
+.timeline-content h3 {
+    color: var(--m3-primary);
+    margin-bottom: 0.8rem;
+}
+
+.timeline-content p {
+    margin: 0;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.values-section {
+    background-color: var(--m3-surface-variant);
+    padding: 2rem;
+    border-radius: var(--m3-shape-medium);
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.values-section h2 {
+    color: var(--m3-primary);
+    margin-bottom: 1.5rem;
+}
+
+.values-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.value-item {
+    flex: 1;
+    min-width: 250px;
+    padding: 1.5rem;
+    background: var(--m3-surface-container-lowest);
+    border-radius: var(--m3-shape-medium);
+    box-shadow: var(--m3-shadow-1);
+    transition: all 0.3s ease;
+}
+
+.value-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--m3-shadow-3);
+}
+
+.value-item i {
+    font-size: 2.5rem;
+    color: var(--m3-tertiary);
+    margin-bottom: 1rem;
+}
+
+.value-item h3 {
+    color: var(--m3-primary);
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .timeline:before {
+        left: 10px;
+    }
+    
+    .timeline-content {
+        width: calc(100% - 40px);
+        float: right !important;
+        margin-left: 40px;
+        margin-bottom: 3rem;
+    }
+    
+    .timeline-year {
+        left: 1px;
+        transform: none;
+        width: 50px;
+        height: 50px;
+        font-size: 0.9rem;
+    }
+    
+    .values-container {
+        flex-direction: column;
+    }
+    
+    .about-container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+    
+    .about-header h1 {
+        font-size: 2rem;
+    }
+    
+    .about-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .about-content {
+        font-size: 1rem;
+    }
+    
+    .value-item {
+        min-width: 200px;
+        padding: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .about-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-content {
+        padding: 1rem;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.1rem;
+       
+    }
+    h3{
+        right: 18%;
+        transform: translateX(18%);
+    }
+    
+    .timeline-content p {
+        font-size: 0.95rem;
+    }
+    
+    .value-item i {
+        font-size: 2rem;
+    }
+    
+    .value-item h3 {
+        font-size: 1.1rem;
+    }
+    
+    .value-item p {
+        font-size: 0.95rem;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <div class="about-header">
+        <h1>About Saket Gyanpeeth</h1>
+        <h2>"GYANAM ANANTAM" - Knowledge is Infinite</h2>
+    </div>
+    
+    <div class="about-content">
+        <p><strong>Delivering quality education for over 29+ years</strong></p>
+        
+        <p>Saket Gyanpeeth was established in the year 1994 with "GYANAM ANANTAM" as its motto. The main purpose of the trust is to render selfless service to the society through value-based education. The noble concept of service to humanity: service to God has truly inspired our founder Chairman Dr. Ram Ujagar Tiwari, under whose guidance Saket Gyanpeeth is promoting better cause of education in Kalyan, Maharashtra and other remote areas as well.</p>
+        
+        <p>The Trust provides medical facilities to needy and deserving persons by organizing camps from time to time and encourages all-round development of the future generation by giving numerous scholarships and free ships to brilliant and needy students.</p>
+        
+        <div class="timeline">
+            <div class="timeline-item clearfix">
+                <div class="timeline-year">1994</div>
+                <div class="timeline-content">
+                    <h3>Foundation</h3>
+                    <p>Establishment of Saket Gyanpeeth with the motto "GYANAM ANANTAM" under the guidance of Dr. Ram Ujagar Tiwari.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item clearfix">
+                <div class="timeline-year">1998</div>
+                <div class="timeline-content">
+                    <h3>Saket Vidya Mandir</h3>
+                    <p>Started Saket Vidya Mandir English Primary School on 9th February 1998.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item clearfix">
+                <div class="timeline-year">2002</div>
+                <div class="timeline-content">
+                    <h3>Saket College</h3>
+                    <p>Established Saket College Of Art's Science And Commerce(Degree-Junior College)</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item clearfix">
+                <div class="timeline-year">2003</div>
+                <div class="timeline-content">
+                    <h3>High School</h3>
+                    <p>Established Saket Vidya Mandir English High School.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item clearfix">
+                <div class="timeline-year">2007</div>
+                <div class="timeline-content">
+                    <h3>B.Ed. College</h3>
+                    <p>Started Saket College of Education (B.Ed) Affiliated and recognized by NCTE And Government Of Maharashtra .</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item clearfix">
+                <div class="timeline-year">2009</div>
+                <div class="timeline-content">
+                    <h3>Management Institute</h3>
+                    <p>Established "Pramod Ram Ujagar Tiwari Saket Institute of Management – (PRUTSIM)" offering M.B.A. / M.M.S. programs affiliated to University of Mumbai and approved by AICTE.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item clearfix">
+                <div class="timeline-year">2011</div>
+                <div class="timeline-content">
+                    <h3>Part-time Courses</h3>
+                    <p>Started 3 years part-time courses: MMM, MFM, MHRDM affiliated to University of Mumbai.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item clearfix">
+                <div class="timeline-year">2012</div>
+                <div class="timeline-content">
+                    <h3>Nursing Institute</h3>
+                    <p>Extended social responsibility by starting Saket Institute of Nursing.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item clearfix">
+                <div class="timeline-year">2017</div>
+                <div class="timeline-content">
+                    <h3>Ph.D. Research Center</h3>
+                    <p>Received approval for Ph.D. Research Center in Management, And Affiliated By University Of Mumbai.</p>
+                </div>
+            </div>
+        </div>
+        
+        <p>Today, Saket College of Arts, Science and Commerce, affiliated to University of Mumbai, provides education leading to B.A, B.Com, B.Com(Managment Studies), B.Com(Accountancy & Finance), B.Com(Banking & Insurance), B.Com(Investment Management), B.Com(Finance Management), B.Sc(Computer Science), B.Sc(Information & Technology), M.Com(Advanced Accountancy), M.Sc (Information & Technology) and M.A(Hindi).</p>
+        
+        <p>We also have tie up with "Saket Institute of Professional Training and Skill Development" to offer courses and programs related to computer programming, communication skills, direct & indirect taxes, tours & tourism, logistics supply chain management, retail management, and more.</p>
+        
+        <p>We are proud to have received permanent Hindi Linguistic Minority status from the Government of Maharashtra and we continue to expand our educational offerings to serve the community better.</p>
+        
+        <div class="values-section">
+            <h2>Our Core Values</h2>
+            <div class="values-container">
+                <div class="value-item">
+                    <i class="material-icons">school</i>
+                    <h3>Quality Education</h3>
+                    <p>Providing outstanding academic experiences that foster intellectual growth and career preparedness.</p>
+                </div>
+                
+                <div class="value-item">
+                    <i class="material-icons">diversity_3</i>
+                    <h3>Community Service</h3>
+                    <p>Committed to selfless service to society through education and various outreach programs.</p>
+                </div>
+                
+                <div class="value-item">
+                    <i class="material-icons">psychology</i>
+                    <h3>Holistic Development</h3>
+                    <p>Nurturing the intellectual, social, cultural, and physical development of our students.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,432 @@
+{% extends "base.html" %}
+
+{% block title %}Ph.D. Programme in Management Studies - PRUTSIM{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+<style>
+  .phd-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--m3-surface);
+    border-radius: var(--m3-shape-medium);
+    box-shadow: var(--m3-shadow-1);
+  }
+  
+  .page-title {
+    font-size: 2.5rem;
+    color: var(--m3-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .page-subtitle {
+    font-size: 1.2rem;
+    color: var(--m3-on-surface-variant);
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 400;
+  }
+
+  .info-section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: var(--m3-surface-container);
+    border-radius: var(--m3-shape-medium);
+    border-left: 4px solid var(--m3-primary);
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    color: var(--m3-primary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .section-title::before {
+    content: "📋";
+    font-size: 1.2rem;
+  }
+
+  .objectives-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .objectives-list li {
+    padding: 0.5rem 0;
+    padding-left: 2rem;
+    position: relative;
+    line-height: 1.6;
+    color: var(--m3-on-surface);
+  }
+
+  .objectives-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    color: var(--m3-secondary);
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, var(--m3-primary-container), var(--m3-secondary-container));
+    padding: 1.5rem;
+    border-radius: var(--m3-shape-medium);
+    margin: 1.5rem 0;
+    border: 1px solid var(--m3-outline-variant);
+  }
+
+  .highlight-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--m3-primary);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .highlight-text {
+    text-align: center;
+    font-weight: 500;
+    color: var(--m3-on-primary-container);
+  }
+
+  .admission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .admission-card {
+    background: var(--m3-surface-container-high);
+    padding: 1.5rem;
+    border-radius: var(--m3-shape-medium);
+    border: 1px solid var(--m3-outline-variant);
+    transition: all var(--animation-standard);
+  }
+
+  .admission-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--m3-shadow-2);
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--m3-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .card-content {
+    color: var(--m3-on-surface);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .fee-structure {
+    background: linear-gradient(135deg, var(--m3-tertiary-container), var(--m3-surface-container));
+    padding: 2rem;
+    border-radius: var(--m3-shape-medium);
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .fee-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--m3-tertiary);
+    margin-bottom: 1rem;
+  }
+
+  .fee-details {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .fee-item {
+    background: var(--m3-surface);
+    padding: 1rem;
+    border-radius: var(--m3-shape-small);
+    border: 1px solid var(--m3-outline-variant);
+    min-width: 200px;
+  }
+
+  .fee-year {
+    font-weight: 600;
+    color: var(--m3-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .fee-amount {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--m3-secondary);
+  }
+
+  .framework-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .framework-item {
+    background: var(--m3-surface-container-low);
+    padding: 1rem;
+    border-radius: var(--m3-shape-small);
+    border-left: 3px solid var(--m3-secondary);
+    transition: all var(--animation-standard);
+  }
+
+  .framework-item:hover {
+    background: var(--m3-surface-container);
+    transform: translateX(5px);
+  }
+
+  .fellowship-section {
+    background: linear-gradient(135deg, var(--m3-primary-container), var(--m3-surface-container));
+    padding: 2rem;
+    border-radius: var(--m3-shape-medium);
+    margin: 3rem 0;
+    border: 2px solid var(--m3-primary);
+  }
+
+  .fellowship-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--m3-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .fellowship-content {
+    line-height: 1.7;
+    color: var(--m3-on-surface);
+    text-align: justify;
+  }
+
+  .contact-cta {
+    background: var(--m3-primary);
+    color: var(--m3-on-primary);
+    padding: 1.5rem;
+    border-radius: var(--m3-shape-medium);
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .contact-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .external-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+
+  .external-link {
+    background: var(--m3-secondary);
+    color: var(--m3-on-secondary);
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--m3-shape-small);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--animation-standard);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .external-link:hover {
+    background: var(--m3-secondary-container);
+    color: var(--m3-on-secondary-container);
+    transform: translateY(-2px);
+    box-shadow: var(--m3-shadow-2);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .phd-container {
+      margin: 1rem;
+      padding: 1rem;
+    }
+    
+    .page-title {
+      font-size: 2rem;
+    }
+    
+    .admission-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .fee-details {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .framework-list {
+      grid-template-columns: 1fr;
+    }
+    
+    .external-links {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="phd-container">
+  <h1 class="page-title">Ph.D. Programme in Management Studies</h1>
+  <p class="page-subtitle">Doctoral-level Programme at PRUTSIM, University of Mumbai</p>
+
+  <!-- Course Information Section -->
+  <div class="info-section">
+    <h2 class="section-title">Course Information</h2>
+    <p>PRUTSIM offers doctoral-level programme, Ph.D. (Management studies) through its well recognized research center affiliated with the University of Mumbai. The Ph.D. programme is designed for students interested in management teaching, research, and consultancy.</p>
+    
+    <h3 style="color: var(--m3-primary); margin-top: 2rem; margin-bottom: 1rem;">Main Objectives of the Programme:</h3>
+    <ul class="objectives-list">
+      <li>Develop management teachers well equipped with the skills required for imparting education to business school students</li>
+      <li>Develop bright young academicians with research bent of mind to conduct research in contemporary issues in management</li>
+    </ul>
+  </div>
+
+  <!-- Intake Capacity -->
+  <div class="highlight-box">
+    <div class="highlight-number">5</div>
+    <div class="highlight-text">Intake Capacity</div>
+  </div>
+
+  <!-- Selection Procedure/Admission -->
+  <div class="info-section">
+    <h2 class="section-title">Selection Procedure / Admission</h2>
+    <div class="admission-grid">
+      <div class="admission-card">
+        <div class="card-title">Educational Qualification</div>
+        <div class="card-content">
+          Candidate should have Post Graduation in Business Management and related discipline of Management.
+        </div>
+      </div>
+      
+      <div class="admission-card">
+        <div class="card-title">Entrance Examination</div>
+        <div class="card-content">
+          Candidate should qualify any of these Examinations: PET/NET/SET/GRF
+        </div>
+      </div>
+      
+      <div class="admission-card">
+        <div class="card-title">Personal Interview</div>
+        <div class="card-content">
+          Candidate should have Personal Interview with your Research Proposal.
+        </div>
+      </div>
+    </div>
+    
+    <p style="text-align: center; margin-top: 2rem; font-style: italic; color: var(--m3-on-surface-variant);">
+      For other details refer VCD/947 2018 of University of Mumbai.
+    </p>
+  </div>
+
+  <!-- Important Documents -->
+  <div class="info-section">
+    <h2 class="section-title">Important Documents</h2>
+    <div class="admission-grid">
+      <div class="admission-card">
+        <div class="card-title">📋 PhD Guidelines</div>
+        <div class="card-content">
+          <p>Comprehensive guidelines for M.Phil and Ph.D programmes as per University of Mumbai regulations.</p>
+          <div style="text-align: center; margin-top: 1rem;">
+            <a href="{{ url_for('static', filename='docs/M.Phil-Ph.D-VCD-947-of-2018-re-promulgated.pdf') }}" 
+               class="external-link" target="_blank">
+             
+              Download Guidelines
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="admission-card">
+        <div class="card-title">🔄 Validity Extension Details</div>
+        <div class="card-content">
+          <p>Latest circular regarding PhD programme validity, extensions and important updates dated June 7, 2022.</p>
+          <div style="text-align: center; margin-top: 1rem;">
+            <a href="{{ url_for('static', filename='docs/Ph.D. Circular dated 07-06-2022.pdf') }}" 
+               class="external-link" target="_blank">
+             
+              Download Circular
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Programme/Course Framework -->
+  <div class="info-section">
+    <h2 class="section-title">Programme / Course Framework</h2>
+    <div class="framework-list">
+      <div class="framework-item">
+        📚 Doctoral Coursework Research Methodology in Business Management
+      </div>
+      <div class="framework-item">
+        📖 State of Art Library & Database for Research Publications
+      </div>
+      <div class="framework-item">
+        🏛️ Research Oriented Workshops, Guest Sessions & Conferences
+      </div>
+      <div class="framework-item">
+        👨‍🏫 Highly quality inhouse faculty and guides
+      </div>
+      <div class="framework-item">
+        💻 Software tools for Statistical Analysis
+      </div>
+    </div>
+  </div>
+
+  <!-- University Guidelines -->
+  <div class="external-links">
+    <a href="#" class="external-link">
+      📄 VCD/947 2018 Guidelines
+    </a>
+    <a href="#" class="external-link">
+      📋 Validity Extension Details
+    </a>
+  </div>
+
+ 
+
+  <!-- Contact Information -->
+  <div class="contact-cta">
+    <div class="contact-title">For More Information</div>
+    <p>Contact Admin Department of the Institute</p>
+  </div>
+
+  <!-- Additional Notes -->
+  <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: var(--m3-surface-container-low); border-radius: var(--m3-shape-small);">
+    <p style="margin: 0; font-size: 0.9rem; color: var(--m3-on-surface-variant);">
+      We are following the VCD/947 2018 of University of Mumbai<br>
+      The circular for the Validity of VCD/947 of 2018 extended up to 14th December 2022 (circular no. 2022-23/1)
+    </p>
+  </div>
+</div>
+{% endblock %}

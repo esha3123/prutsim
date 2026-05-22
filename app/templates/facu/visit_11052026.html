@@ -1,0 +1,607 @@
+{% extends "base.html" %}
+
+{% block title %}Visit - Prutsim MMS College{% endblock %}
+
+{% block styles %}
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--m3-surface);
+  border-radius: var(--m3-shape-medium);
+  box-shadow: var(--m3-shadow-1);
+}
+
+.page-title {
+  color: var(--m3-primary);
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--m3-outline-variant);
+  text-align: center;
+}
+
+.visit-section {
+  margin-bottom: 40px;
+}
+
+.visit-section h2 {
+  color: var(--m3-primary);
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--m3-outline-variant);
+}
+
+.visit-section p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.image-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.image-container {
+  flex: 1;
+  min-width: 250px;
+  height: 200px;
+  border: 1px solid var(--m3-outline-variant);
+  border-radius: var(--m3-shape-small);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--m3-surface-variant);
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-container:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--m3-shadow-2);
+}
+
+.image-container::after {
+  content: "Click to enlarge";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-container:hover::after {
+  opacity: 1;
+}
+
+.campus-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.image-container:hover .campus-image {
+  transform: scale(1.05);
+}
+
+.image-placeholder {
+  color: var(--m3-outline);
+  text-align: center;
+  padding: 10px;
+  font-style: italic;
+}
+
+.map-container {
+  width: 100%;
+  height: 450px;
+  border: 1px dashed var(--m3-outline);
+  border-radius: var(--m3-shape-small);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--m3-surface-variant);
+  margin: 20px 0;
+}
+
+.contact-details {
+  background-color: var(--m3-surface-variant);
+  padding: 20px;
+  border-radius: var(--m3-shape-small);
+  margin-top: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.contact-item .material-icons {
+  margin-right: 15px;
+  color: var(--m3-primary);
+}
+
+.directions-list {
+  margin: 20px 0;
+}
+
+.directions-list li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.transport-option {
+  background-color: var(--m3-surface);
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: var(--m3-shape-small);
+  box-shadow: var(--m3-shadow-1);
+}
+
+.transport-option h3 {
+  color: var(--m3-primary);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+/* Modal styles for enlarged image */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  overflow: auto;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.enlarged-image {
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
+  border: 3px solid white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  border-radius: 5px;
+}
+
+.zoom-controls {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.zoom-btn {
+  background-color: var(--m3-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+.zoom-btn:hover {
+  background-color: var(--m3-tertiary);
+  transform: scale(1.1);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+  transition: transform 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 1rem;
+}
+
+.loading-indicator .material-icons.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .image-row {
+    flex-direction: column;
+  }
+  
+  .image-container {
+    width: 100%;
+  }
+}
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+  <h1 class="page-title">Visit Prutsim MMS College</h1>
+  
+  <div class="visit-section">
+    <h2> <a href="https://saketgyanpeethkalyan-my.sharepoint.com/:v:/g/personal/iqac_prutsim_edu_in/IQB9SHlqPZAyQYGIohaMTDPRAdNltDjcSz5bWOG57SgOVK8?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=ruRfRH" target="_blank" class="view-btn">About Our Campus</a></h2>
+    <p>Prutsim MMS College is located in the serene city of Kalyan. Our campus provides a perfect blend of modern infrastructure and natural beauty, offering cutting-edge facilities for academic and extracurricular activities. We warmly welcome prospective students, parents, alumni, and visitors to explore our vibrant campus.</p>
+    
+    <div class="image-row">
+      <div class="image-container" data-image="image1">
+        <img src="/static/images/visit/collegecampus.jpg" alt="Campus Main Building" class="campus-image" data-src="/static/images/visit/collegecampus.jpg">
+      </div>
+      <div class="image-container" data-image="image2">
+        <img src="/static/images/visit/CampusGardenImage.jpg" alt="Campus Garden" class="campus-image" data-src="/static/images/visit/CampusGardenImage.jpg">
+      </div>
+      <div class="image-container" data-image="image3">
+        <img src="/static/images/visit/auditorum1.jpg" alt="Auditorium" class="campus-image" data-src="/static/images/visit/auditorum1.jpg">
+      </div>
+    </div>
+  </div>
+  
+  <div class="visit-section">
+    <h2>Campus Infrastructure</h2>
+    <p>Prutsim MMS College boasts state-of-the-art infrastructure designed to provide students with an exceptional learning environment. Our facilities are thoughtfully planned to promote academic excellence and holistic development.</p>
+    
+    <div class="transport-option">
+      <h3>Advanced Library</h3>
+      <p>Our library is a comprehensive learning resource center with over 30,000 volumes covering various disciplines, digital resources, and research journals. The library features quiet study areas, group discussion rooms, and a digital section with access to online databases and e-journals.</p>
+      <div class="image-row">
+        <div class="image-container" data-image="library1">
+          <img src="/static/images/visit/BookCollections.jpg" alt="Book Collections" class="campus-image" data-src="/static/images/visit/BookCollections.jpg">
+        </div>
+        <div class="image-container" data-image="library2">
+          <img src="/static/images/visit/auditorum2.jpg" alt="Auditorium 2" class="campus-image" data-src="/static/images/visit/auditorum2.jpg">
+        </div>
+      </div>
+    </div>
+    
+    <!-- <div class="transport-option">
+      <h3>Modern Classrooms</h3>
+      <p>Each classroom is equipped with interactive smartboards, high-definition projectors, and ergonomic furniture. Our air-conditioned lecture halls feature advanced audio systems and digital teaching aids to facilitate an interactive learning experience.</p>
+      <div class="image-row">
+        <div class="image-container" data-image="classroom1">
+          <img src="/static/images/visit/LectureHall.jpg" alt="Lecture Hall" class="campus-image" data-src="/static/images/visit/LectureHall.jpg">
+        </div>
+        <div class="image-container" data-image="classroom2">
+          <img src="/static/images/visit/Computer Lab.jpg" alt="Computer Lab" class="campus-image" data-src="/static/images/visit/Computer Lab.jpg">
+        </div>
+      </div>
+    </div> -->
+
+    <div class="transport-option">
+      <h3>Research Centers</h3>
+      <p>Our specialized research centers are equipped with advanced equipment and technology to support cutting-edge research in various fields. These centers provide students and faculty with opportunities for innovative research and development projects.</p>
+      <div class="image-row">
+        <div class="image-container" data-image="research1">
+          <img src="/static/images/visit/lab1.jpg" alt="Research Lab" class="campus-image" data-src="/static/images/visit/lab1.jpg">
+        </div>
+        <div class="image-container" data-image="research2">
+          <img src="/static/images/visit/Incubation room 2.jpg" alt="Incubation Room" class="campus-image" data-src="/static/images/visit/Incubation room 2.jpg">
+        </div>
+      </div>
+    </div>
+    
+    <div class="transport-option">
+      <h3>Sports Complex</h3>
+      <p>Our comprehensive sports complex includes indoor and outdoor facilities for various sports. We have dedicated courts for basketball, volleyball, and badminton, along with a well-maintained cricket ground and athletic track. Indoor facilities include a modern gymnasium, table tennis arena, and yoga center.</p>
+      <div class="image-row">
+        <div class="image-container" data-image="sports1">
+          <img src="/static/images/visit/SportsGround.jpg" alt="Sports Ground" class="campus-image" data-src="/static/images/visit/SportsGround.jpg">
+        </div>
+        <div class="image-container" data-image="sports2">
+          <img src="/static/images/visit/IndoorSportsArea.JPG" alt="Indoor Sports Area" class="campus-image" data-src="/static/images/visit/IndoorSportsArea.JPG">
+        </div>
+      </div>
+    </div>
+    
+    <div class="transport-option">
+      <h3>Student Amenities</h3>
+      <p>Our campus features modern amenities including a spacious cafeteria serving nutritious meals, student lounges, medical center, and counseling facilities. We also maintain a dedicated career development center to support students in their professional growth.</p>
+      <div class="image-row">
+        <div class="image-container" data-image="amenities1">
+          <img src="/static/images/visit/CampusGardenImage.jpg" alt="Campus Garden Area" class="campus-image" data-src="/static/images/visit/CampusGardenImage.jpg">
+        </div>
+        <div class="image-container" data-image="amenities2">
+          <img src="/static/images/visit/collegecampus.jpg" alt="Campus Overview" class="campus-image" data-src="/static/images/visit/collegecampus.jpg">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="visit-section">
+    <h2>Campus Tour</h2>
+    <p>Experience our campus firsthand through our guided tours. Our student ambassadors will show you around our academic facilities, research centers, and recreational areas. Campus tours are available on weekdays from 9:30 AM to 4:00 PM.</p>
+    <p>Please schedule your tour at least three working days in advance to ensure the best experience.</p>
+    
+    <div class="image-container" style="width: 100%; height: 300px;">
+      <img src="/static/images/visit/collegecampus.jpg" alt="Campus Panoramic View" class="campus-image" data-src="/static/images/visit/collegecampus.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+  </div>
+  
+  <div class="visit-section">
+    <h2>Location & Directions</h2>
+    <p>PUTSIM College is strategically located at Saket Vidyanagari, Chinchpada Road in Kalyan East, Maharashtra. Our campus is easily accessible by public transport and private vehicles, with excellent connectivity to Mumbai and surrounding areas.</p>
+    
+    <div class="map-container">
+      <iframe src="https://maps.google.com/maps?q=Pramod+Ram+Ujagar+Tiwari+Saket+Institute+Of+Management,+649V%2B98F,+Saket+Vidyanagari+Marg,+Chinchpada+Road,+Katemanivali,+Kalyan,+Maharashtra+421306&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+  
+  <div class="visit-section">
+    <h2>Contact Information</h2>
+    <p>For campus visits and tours, please contact our admission office:</p>
+    
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="material-icons">location_on</span>
+        <div>
+          <strong>Address:</strong>
+          <p>Prutsim College<br>
+           649V+98F, Saket Vidyanagari Marg, Chinchpada Road<br>
+          Katemanivali, Kalyan, Maharashtra - 421306</p>
+        </div>
+      </div>
+      
+      <div class="contact-item">
+        <span class="material-icons">phone</span>
+        <div>
+          <strong>Phone:</strong>
+          <p>+91 89765 31155<br>+91 89765 31166</p>
+        </div>
+      </div>
+      
+      <div class="contact-item">
+        <span class="material-icons">email</span>
+        <div>
+          <strong>Email:</strong>
+          <p>admissions@prutsim.edu.in<br>info@prutsim.edu.in</p>
+        </div>
+      </div>
+      
+      <div class="contact-item">
+        <span class="material-icons">access_time</span>
+        <div>
+          <strong>Office Hours:</strong>
+          <p>Monday to Friday: 9:00 AM - 5:00 PM<br>
+          Saturday: 9:00 AM - 1:00 PM<br>
+          Sunday: Closed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+      <img id="enlargedImage" class="enlarged-image" alt="Enlarged Campus Image">
+      <div class="zoom-controls">
+        <button class="zoom-btn" onclick="zoomIn()"><span class="material-icons">add</span></button>
+        <button class="zoom-btn" onclick="zoomOut()"><span class="material-icons">remove</span></button>
+        <button class="zoom-btn" onclick="resetZoom()"><span class="material-icons">refresh</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Modal functionality
+  const modal = document.getElementById('imageModal');
+  const enlargedImage = document.getElementById('enlargedImage');
+  let currentZoom = 1;
+
+  function openModal(imageSrc, altText) {
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent scrolling while modal is open
+    
+    // Set image src directly first
+    enlargedImage.src = imageSrc;
+    enlargedImage.alt = altText || "Campus Image";
+    enlargedImage.style.opacity = '1';
+    
+    // Reset zoom
+    currentZoom = 1;
+    enlargedImage.style.transform = `scale(${currentZoom})`;
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = ''; // Re-enable scrolling
+  }
+
+  function zoomIn() {
+    currentZoom += 0.2;
+    if (currentZoom > 3) currentZoom = 3; // Maximum zoom
+    enlargedImage.style.transform = `scale(${currentZoom})`;
+  }
+
+  function zoomOut() {
+    currentZoom -= 0.2;
+    if (currentZoom < 0.5) currentZoom = 0.5; // Minimum zoom
+    enlargedImage.style.transform = `scale(${currentZoom})`;
+  }
+
+  function resetZoom() {
+    currentZoom = 1;
+    enlargedImage.style.transform = `scale(${currentZoom})`;
+  }
+
+  // Add click event listeners to all image containers
+  document.addEventListener('DOMContentLoaded', function() {
+    const imageContainers = document.querySelectorAll('.image-container');
+    imageContainers.forEach(function(container) {
+      container.addEventListener('click', function() {
+        const imageElement = this.querySelector('img');
+        if (imageElement && imageElement.src && !imageElement.src.endsWith('#')) {
+          const imageSrc = imageElement.src;
+          openModal(imageSrc, imageElement.alt);
+        } else {
+          // Show a placeholder or message if image isn't loaded yet
+          showImagePlaceholder(this.dataset.image);
+        }
+      });
+    });
+    
+    // Apply placeholder styling to empty images
+    applyPlaceholderStyling();
+    
+    // Initialize lazy loading
+    loadImages();
+  });
+
+  // Apply placeholder styling to empty images or images with # src
+  function applyPlaceholderStyling() {
+    const images = document.querySelectorAll('.campus-image');
+    images.forEach(function(img) {
+      if (!img.src || img.src.endsWith('#')) {
+        // Create placeholder container for the image
+        const container = img.parentElement;
+        const placeholderText = document.createElement('div');
+        placeholderText.className = 'image-placeholder';
+        placeholderText.textContent = img.alt || 'Image coming soon';
+        
+        // Hide the image and add placeholder
+        img.style.display = 'none';
+        if (!container.querySelector('.image-placeholder')) {
+          container.appendChild(placeholderText);
+        }
+      }
+    });
+  }
+
+  // Show temporary placeholder for images that aren't available
+  function showImagePlaceholder(imageId) {
+    const tempModal = document.createElement('div');
+    tempModal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); display:flex; justify-content:center; align-items:center; z-index:1000; flex-direction:column;';
+    
+    const message = document.createElement('div');
+    message.innerHTML = `<h3 style="color:white; margin-bottom:20px;">Image Not Available Yet</h3><p style="color:white;">The image "${imageId}" will be added soon.</p>`;
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = 'Close';
+    closeBtn.style.cssText = 'margin-top:20px; padding:10px 20px; background-color:var(--m3-primary); color:white; border:none; border-radius:4px; cursor:pointer;';
+    closeBtn.onclick = function() {
+      document.body.removeChild(tempModal);
+    };
+    
+    tempModal.appendChild(message);
+    tempModal.appendChild(closeBtn);
+    document.body.appendChild(tempModal);
+    
+    // Auto close after 3 seconds
+    setTimeout(function() {
+      if (document.body.contains(tempModal)) {
+        document.body.removeChild(tempModal);
+      }
+    }, 3000);
+  }
+
+  // Close modal when clicking outside the image
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      closeModal();
+    }
+  }
+
+  // Lazy load images when they become available
+  function loadImages() {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    // Create intersection observer for lazy loading
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          
+          // If image data-src is available, try loading the image
+          if (img.dataset.src) {
+            const checkImage = new Image();
+            checkImage.onload = function() {
+              img.src = img.dataset.src;
+              img.style.display = 'block';
+              
+              // Remove placeholder if it exists
+              const placeholder = img.parentElement.querySelector('.image-placeholder');
+              if (placeholder) {
+                placeholder.remove();
+              }
+              
+              observer.unobserve(img);
+            };
+            checkImage.onerror = function() {
+              // Keep the placeholder if image doesn't exist yet
+              console.log('Image not yet available: ' + img.dataset.src);
+            };
+            checkImage.src = img.dataset.src;
+          }
+        }
+      });
+    }, {
+      rootMargin: '0px 0px 200px 0px', // Load images 200px before they enter viewport
+      threshold: 0.1
+    });
+    
+    // Observe all images with data-src attribute
+    images.forEach(img => observer.observe(img));
+  }
+</script>
+{% endblock %}

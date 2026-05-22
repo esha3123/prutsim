@@ -1,0 +1,35 @@
+DetailsImages
+        'shrikesh': '/static/images/staff-details/shrikesh-details.jpg',
+        'prashant': '/static/images/staff-details/prashant-details.jpg',
+        'jayant': '/static/images/staff-details/jayant-details.jpg',
+        'duvannadhan': '/static/images/staff-details/duvannadhan-details.jpg',
+        'sameen': '/static/images/staff-details/sameen-details.jpg',
+        'diana': '/static/images/staff-details/diana-details.jpg',
+        'naveen': '/static/images/staff-details/naveen-details.jpg',
+        'deepika': '/static/images/staff-details/deepika-details.jpg',
+        
+        // Non-Teaching Staff - will show their detail template images
+        'ganesh': '/static/images/staff-details/ganesh-details.jpg',
+        'vinayak': '/static/images/staff-details/vinayak-details.jpg',
+        'sandip': '/static/images/staff-details/sandip-details.jpg',
+        'shruti': '/static/images/staff-details/shruti-details.jpg',
+        'deepak': '/static/images/staff-details/deepak-details.jpg',
+        'komika': '/static/images/staff-details/komika-details.jpg'
+
+and for staff-images:
+
+ShrikeshSir.jpg
+PrashantSir.jpg
+jayant.jpg
+Brijesh.jpg
+NadarSir.jpg
+SameenMam.jpg
+DianaMam.jpg
+navin.jpg
+deepika.jpg
+ganesh.jpg
+vinayak.jpg
+sandip.jpg
+shruti.jpg
+deepak.jpg
+komika.jpg

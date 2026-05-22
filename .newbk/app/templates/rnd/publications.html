@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Activities - Saket College{% endblock %}
+
+{% block styles %}
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--m3-surface);
+  border-radius: var(--m3-shape-medium);
+  box-shadow: var(--m3-shadow-1);
+}
+
+.page-title {
+  color: var(--m3-primary);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--m3-outline-variant);
+}
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+  <h1 class="page-title">Activities</h1>
+  <style>
+    /* Global Styles */
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #211400;
+        background-color: #faf5eb;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+        color: #4a3a24;
+        margin: 20px 0;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    section {
+        margin-bottom: 40px;
+        background-color: #faf5eb;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .activity-images {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        justify-items: center;
+    }
+
+    .activity-images img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .activity-images img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+        h3 {
+            font-size: 1.4rem;
+        }
+
+        .container {
+            padding: 15px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <!-- Library Orientation Section -->
+    <section>
+        <h3>Library Orientation</h3>
+        <div class="activity-images">
+            <img src="orientation1.jpeg" alt="Library Orientation 1">
+            <img src="orientation2.jpeg" alt="Library Orientation 2">
+        </div>
+    </section>
+
+    <!-- Bookmark Making Competition Section -->
+    <section>
+        <h3>Bookmark Making Competition</h3>
+        <div class="activity-images">
+            <img src="bookmaking1.jpeg" alt="Bookmark Making 1">
+            <img src="bookmaking2.jpeg" alt="Bookmark Making 2">
+            <img src="bookmaking3.jpeg" alt="Bookmark Making 3">
+            <img src="bookmaking4.jpeg" alt="Bookmark Making 4">
+        </div>
+    </section>
+
+    <!-- Dr. Sarvepalli Radhakrishnan Birth Anniversary Section -->
+    <section>
+        <h3>Dr. Sarvepalli Radhakrishnan Birth Anniversary</h3>
+        <div class="activity-images">
+            <img src="dr1.jpeg" alt="Radhakrishnan Birth Anniversary 1">
+            <img src="dr2.jpeg" alt="Radhakrishnan Birth Anniversary 2">
+        </div>
+    </section>
+
+    <!-- Book Exhibition Section -->
+    <section>
+        <h3>Book Exhibition</h3>
+        <div class="activity-images">
+            <img src="be1.jpeg" alt="Book Exhibition 1">
+            <img src="be2.jpeg" alt="Book Exhibition 2">
+            <img src="be3.jpeg" alt="Book Exhibition 3">
+            <img src="be4.jpeg" alt="Book Exhibition 4">
+        </div>
+    </section>
+</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}M.M.S. Admission Details - PRUTSIM{% endblock %}
+
+{% block head %}
+<style>
+    .admission-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: var(--m3-surface-container-lowest);
+        box-shadow: var(--m3-shadow-2);
+        border-radius: 16px;
+    }
+    
+    .admission-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .admission-header h1 {
+        color: var(--m3-primary);
+        font-weight: 500;
+    }
+    
+    .admission-section {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: var(--m3-surface);
+        border-radius: 8px;
+    }
+    
+    .admission-section h2 {
+        color: var(--m3-primary);
+        border-bottom: 2px solid var(--m3-primary-container);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .admission-section p, .admission-section ul li {
+        color: var(--m3-on-surface);
+    }
+    
+    .eligibility-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    
+    .eligibility-list li {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+    
+    .eligibility-list li::before {
+        content: "•";
+        color: var(--m3-secondary);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+    }
+    
+    .seats-info {
+        background: var(--m3-secondary-container);
+        color: var(--m3-on-secondary-container);
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        margin: 1rem 0;
+    }
+    
+    .seats-info h3 {
+        color: var(--m3-secondary);
+        margin-bottom: 0.5rem;
+    }
+    
+    .important-note {
+        background: var(--m3-tertiary-container);
+        color: var(--m3-on-tertiary-container);
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        border: 1px solid var(--m3-outline-variant);
+    }
+    
+    .important-note h3 {
+        color: var(--m3-tertiary);
+        margin-bottom: 1rem;
+    }
+    
+    .cta-button {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background: var(--m3-primary);
+        color: var(--m3-on-primary);
+        text-decoration: none;
+        border-radius: 8px;
+        margin-top: 1rem;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: var(--m3-shadow-1);
+    }
+    
+    .cta-button:hover {
+        background: var(--m3-primary-container);
+        color: var(--m3-on-primary-container);
+        transform: translateY(-2px);
+        box-shadow: var(--m3-shadow-2);
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admission-container">
+    <div class="admission-header">
+        <h1>M.M.S. Programme Admission Details</h1>
+    </div>
+
+    <div class="admission-section">
+        <h2>About the Programme</h2>
+        <p>M.M.S. is a two year full-time master's degree course affiliated to the University of Mumbai. This course is approved by All India Council for Technical Education (AICTE), New Delhi. The program is conducted under the directions of the University of Mumbai with specializations offered in the areas of:</p>
+        <ul>
+            <li>Finance</li>
+            <li>Marketing</li>
+            <li>Operations</li>
+            <li>HR</li>
+            <li>Systems</li>
+        </ul>
+    </div>
+
+    <div class="admission-section">
+        <h2>Admission Process</h2>
+        <p>The M.M.S. admission process is administered by the DTE (Directorate of Technical Education), Maharashtra. The process includes:</p>
+        <ul>
+            <li>Online Computer Based Test MAH- MBA/MMS CET</li>
+            <li>Centralized Admission Process (CAP) conducted by CET Cell</li>
+            <li>Merit-based seat allocation</li>
+        </ul>
+    </div>
+
+    <div class="seats-info">
+        <h3>Number of Seats</h3>
+        <p><strong>120</strong> seats available</p>
+    </div>
+
+    <div class="admission-section">
+        <h2>Eligibility Criteria</h2>
+        <ul class="eligibility-list">
+            <li>
+                <strong>Basic Qualification:</strong> Three-year Bachelor's Degree from UGC recognized Universities or AIU with minimum 50% marks in aggregate (45% for reserved categories from Maharashtra State)
+            </li>
+            <li>
+                <strong>OR:</strong> Final year students of any Bachelor's degree from UGC recognized Universities or AIU
+            </li>
+        </ul>
+    </div>
+
+    <div class="important-note">
+        <h3>Important Note for Reserved Categories</h3>
+        <p>Candidates belonging to SC, VJ/DT (NT (A)), NT (B), NT(C), NT (D), OBC, SBC categories must produce:</p>
+        <ul>
+            <li>"Caste Validity Certificate" issued by Scrutiny Committee of Social Welfare Department</li>
+            <li>ST category candidates must submit "Tribe Validity Certificate" issued by Scrutiny Committee of Tribal Department</li>
+            <li>Valid Non-Creamy Layer certificate (except SC, ST candidates)</li>
+        </ul>
+    </div>
+
+    <div class="admission-section text-center">
+        <h2>For More Information</h2>
+        <p>Visit the official DTE CET Cell website for detailed guidelines and information brochure:</p>
+        <a href="https://info.mahacet.org/mahacet/" class="cta-button" target="_blank">Visit DTE CET Cell Website</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Library Facilities - PRUTSIM{% endblock %}
+
+{% block head %}
+<style>
+    .facilities-container {
+        padding: 2rem 0;
+    }
+
+    .facilities-card {
+        background: var(--m3-surface-container);
+        box-shadow: var(--m3-shadow-2);
+        border-radius: 8px;
+        padding: 2rem;
+    }
+
+    .facilities-title {
+        color: var(--m3-primary);
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        color: var(--m3-primary);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .info-card {
+        background: var(--m3-surface);
+        box-shadow: var(--m3-shadow-1);
+        border-radius: 6px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .info-card:last-child {
+        margin-bottom: 0;
+    }
+
+    .facilities-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .facilities-list li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+    }
+
+    .facilities-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--m3-primary);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="facilities-container">
+    <div class="facilities-card">
+        <h1 class="facilities-title">Library Facilities</h1>
+        
+        <section>
+            <h2 class="section-title">Library Card Registration</h2>
+            <div class="info-card">
+                <p>All Library users are requested to register with the library by applying for:</p>
+                <ul class="facilities-list">
+                    <li>Library admission card for reference use</li>
+                    <li>Borrower's card for borrowing materials</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Library Rules and Regulations</h2>
+            <div class="info-card">
+                <ul class="facilities-list">
+                    <li>Only the person named on the library card may use it</li>
+                    <li>Loss of card should be reported to the library immediately</li>
+                    <li>Users must not disturb other people using the library</li>
+                    <li>The card shall not be lend to anyone else, nor used to admit any one else</li>
+                    <li>Smoking, drinking and eating is prohibited in any part of the library</li>
+                    <li>Books, Journals & other library material must not be damaged, defaced or marked in any way</li>
+                    <li>Users are advised to switch off their mobile phone while in the library or in the reading room</li>
+                    <li>Silence is mandatory at all cost in the library and the reading room</li>
+                    <li>The mobile can be confiscated if found using in the library or the Reading room</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Borrowing and Returns</h2>
+            <div class="info-card">
+                <ul class="facilities-list">
+                    <li>Material belonging to the library may not be removed without the permission of the Librarian</li>
+                    <li>Periodicals and reference books are not normally available for loan</li>
+                    <li>Any items being removed may be examined by Library Attendant or Other member of staff</li>
+                    <li>Borrowers are responsible for all loans made with their card. A charge will be made for items lost or badly damaged while on loan</li>
+                    <li>Loan should be returned by due date stamped on the back page</li>
+                    <li>Normally loans may be renewed if they are not reserved by another User</li>
+                    <li>The Library reserves the right to recall any book if it is reserved by another user</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

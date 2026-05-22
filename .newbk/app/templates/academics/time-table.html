@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Time Table - PRUTSIM{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+<style>
+  .timetable-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .page-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    color: var(--m3-primary);
+    margin: 2rem 0 1rem;
+    text-align: center;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .view-button {
+    background: linear-gradient(135deg, var(--m3-primary), var(--m3-primary-dark));
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: var(--m3-shape-large);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 10px 15px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(var(--m3-primary-rgb), 0.2);
+    position: relative;
+    overflow: hidden;
+    min-width: 250px;
+  }
+
+  .view-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: 0.5s;
+  }
+
+  .view-button:hover:before {
+    left: 100%;
+  }
+
+  .view-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--m3-primary-rgb), 0.3);
+    background: linear-gradient(135deg, var(--m3-primary-dark), var(--m3-primary));
+  }
+
+  .section-divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--m3-outline-variant), transparent);
+    margin: 3rem 0;
+  }
+
+  .note {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 2rem;
+    font-style: italic;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="timetable-container">
+  <h1 class="page-title">Time Table</h1>
+  
+  <!-- FYMMS Section -->
+  <h2 class="section-title">First Year MMS (FYMMS)</h2>
+  <div class="button-container">
+    <a href="https://prutsim.edu.in/Docs/Time%20Table/FYMMSDIVA.pdf?_t=1688227972" class="view-button">Division A</a>
+    <a href="https://prutsim.edu.in/Docs/Time%20Table/FYMMSDIVB.pdf?_t=1688227970" class="view-button">Division B</a>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SYMMS Section -->
+  <h2 class="section-title">Second Year MMS (SYMMS)</h2>
+  <div class="button-container">
+    <a href="https://prutsim.edu.in/Docs/Time%20Table/SYMMSMARKETING.pdf?_t=1688227352" class="view-button">Marketing</a>
+    <a href="https://prutsim.edu.in/Docs/Time%20Table/SYMMSHR.pdf?_t=1688227352" class="view-button">Human Resources</a>
+    <a href="https://prutsim.edu.in/Docs/Time%20Table/SYMMSFINANCE.pdf?_t=1688227352" class="view-button">Finance</a>
+    <a href="https://prutsim.edu.in/Docs/Time%20Table/SYMMS%20OPS.pdf?_t=1688227352" class="view-button">Operations</a>
+    <a href="https://prutsim.edu.in/Docs/Time%20Table/SYMMS%20IT.pdf?_t=1688227352" class="view-button">Information Technology</a>
+  </div>
+
+  <div class="note">
+    <p>* Time tables are subject to change. Please check regularly for updates.</p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+
+{% block title %}NAAC - Saket College{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/naac.css') }}">
+{% endblock %}
+
+{% block content %}
+<main class="naac-container">
+  <div class="naac-content">
+    <!-- NAAC Navigation -->
+    <nav class="naac-nav">
+      <ul class="m3-list">
+        <li><a href="{{ url_for('frontend.naac_dvv') }}" class="view-btn {% if active_section == 'naac-dvv' %}active{% endif %}">AQAR – DVV</a></li>
+        <li><a href="{{ url_for('frontend.naac_appeal') }}" class="view-btn {% if active_section == 'naac-appeal' %}active{% endif %}">IIQA</a></li>
+        <li><a href="{{ url_for('frontend.naac_iqac') }}" class="view-btn {% if active_section == 'iqac' %}active{% endif %}">IQAC</a></li>
+        <li><a href="{{ url_for('frontend.naac_strategic_plan') }}" class="view-btn {% if active_section == 'strategic-plan' %}active{% endif %}">NAAC Undertaking And Self Declaration</a></li>
+        <li><a href="{{ url_for('frontend.naac_aqar') }}" class="view-btn {% if active_section == 'aqar' %}active{% endif %}">IPR</a></li>
+      </ul>
+    </nav>
+
+    <!-- Dynamic Content Sections -->
+    <div class="content-sections">
+      <!-- NAAC DVV Section -->
+      <section id="naac-dvv" class="naac-section {% if active_section == 'naac-dvv' %}active{% endif %}" {% if active_section != 'naac-dvv' %}style="display:none"{% endif %}>
+        <h2>NAAC DVV (2023-24)</h2>
+        <div class="dvv-grid">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Extended Profile</th>
+                <th>Cr-1</th>
+                <th>Cr-2</th>
+                <th>Cr-3</th>
+                <th>Cr-4</th>
+                <th>Cr-5</th>
+                <th>Cr-6</th>
+                <th>Cr-7</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="">1.1</a></td>
+                <td><a href="">1.1.1</a></td>
+                <td><a href="">2.2.1</a></td>
+                <td><a href="">3.1.3</a></td>
+                <td><a href="">4.1.1</a></td>
+                <td><a href="">5.1.1</a></td>
+                <td><a href="">6.1.1</a></td>
+                <td><a href="">7.1.10</a></td>
+              </tr>
+              <tr>
+                <td><a href="">2.1</a></td>
+                <td><a href="">1.1.2</a></td>
+                <td><a href="">2.2.2</a></td>
+                <td><a href="">3.2.1</a></td>
+                <td><a href="">4.1.2</a></td>
+                <td><a href="">5.1.3</a></td>
+                <td><a href="">6.1.2</a></td>
+                <td><a href="">7.1.11</a></td>
+              </tr>
+              <tr>
+                <td><a href="">2.2</a></td>
+                <td><a href="">1.1.3</a></td>
+                <td><a href="">2.3.1</a></td>
+                <td><a href="">3.2.2</a></td>
+                <td><a href="">4.1.3</a></td>
+                <td><a href="">5.1.4</a></td>
+                <td><a href="">6.2.1</a></td>
+                <td><a href="">7.1.2.1</a></td>
+              </tr>
+              <tr>
+                <td><a href="">3.1</a></td>
+                <td><a href="">1.2.1</a></td>
+                <td><a href="">2.3.2</a></td>
+                <td><a href="">3.3.1</a></td>
+                <td><a href="">4.1.4</a></td>
+                <td><a href="">5.1.5</a></td>
+                <td><a href="">6.2.2</a></td>
+                <td><a href="">7.1.2</a></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><a href="">1.2.2</a></td>
+                <td><a href="">2.3.3</a></td>
+                <td><a href="">3.3.2</a></td>
+                <td><a href="">4.2</a></td>
+                <td><a href="">5.2.1</a></td>
+                <td><a href="">6.2.3</a></td>
+                <td><a href="">7.1.3</a></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><a href="">1.3.1</a></td>
+                <td><a href="">2.4.1</a></td>
+                <td><a href="">3.3.3</a></td>
+                <td><a href="">4.3.1</a></td>
+                <td><a href="">5.3.2</a></td>
+                <td><a href="">6.3.1</a></td>
+                <td><a href="">7.1.4</a></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><a href="">1.3.3</a></td>
+                <td><a href="">2.4.2</a></td>
+                <td><a href="">3.3.4</a></td>
+                <td><a href="">4.3.2</a></td>
+                <td><a href="">5.3.3</a></td>
+                <td><a href="">6.3.2</a></td>
+                <td><a href="">7.1.5</a></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><a href="">1.4.1</a></td>
+                <td><a href="">2.4.3</a></td>
+                <td><a href="">3.4.1</a></td>
+                <td><a href="">4.3.3</a></td>
+                <td><a href="">5.4.1</a></td>
+                <td><a href="">6.3.3.1</a></td>
+                <td><a href="">7.1.6</a></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><a href="">1.4.2</a></td>
+                <td><a href="">2.5.1</a></td>
+                <td><a href="">3.4.2</a></td>
+                <td><a href="">4.4.1</a></td>
+                <td></td>
+                <td><a href="">6.3.4</a></td>
+                <td><a href="">7.1.7</a></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><a href="">1.2.3</a></td>
+                <td><a href="">2.5.2</a></td>
+                <td></td>
+                <td><a href="">4.2.2</a></td>
+                <td></td>
+                <td><a href="">6.3.5</a></td>
+                <td><a href="">7.1.8</a></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td><a href="">2.6.1</a></td>
+                <td></td>
+                <td><a href="">4.2.1</a></td>
+                <td></td>
+                <td><a href="">6.4.1</a></td>
+                <td><a href="">7.1.9</a></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td><a href="">2.6.2</a></td>
+                <td></td>
+                <td><a href="">4.4.2</a></td>
+                <td></td>
+                <td><a href="">6.4.3</a></td>
+                <td><a href="">7.3.1</a></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td><a href="">2.6.3</a></td>
+                <td></td>
+                <td><a href="">4.2.4</a></td>
+                <td></td>
+                <td><a href="">6.5.1</a></td>
+                <td><a href="">7.2.1</a></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td><a href="">2.7.1</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="">6.5.2</a></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td><a href="">2.2</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="">6.5.3</a></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- NAAC Appeal Section -->
+      <section id="naac-appeal" class="naac-section {% if active_section == 'naac-appeal' %}active{% endif %}" {% if active_section != 'naac-appeal' %}style="display:none"{% endif %}>
+        <h2>IIQA Documentation</h2>
+        <div class="iiqa-content">
+          <p>View our institution's IIQA document:</p>
+          <a href="https://prutsim.edu.in/Docs/IQAC/IIQA.pdf?_t=1684428978" target="_blank" class="view-btn">View IIQA Document</a>
+        </div>
+      </section>
+        
+      <!-- IQAC Section -->
+      <section id="iqac" class="naac-section {% if active_section == 'iqac' %}active{% endif %}" {% if active_section != 'iqac' %}style="display:none"{% endif %}>
+        <h2>IQAC Department</h2>
+        <div class="tab-container">
+          <div class="tab-buttons">
+            <button class="tab-btn active view-btn" data-tab="committee">IQAC Committee</button>
+            <button class="tab-btn view-btn" data-tab="meetings">IQAC Meetings</button>
+          </div>
+          
+          <div id="committee" class="tab-content active">
+            <div class="committee-content">
+              <!-- Committee details will be added later -->
+            </div>
+          </div>
+
+          <div id="meetings" class="tab-content">
+            <div class="meetings-content">
+              <!-- Meeting details will be added later -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Strategic Plan Section -->
+      <section id="strategic-plan" class="naac-section {% if active_section == 'strategic-plan' %}active{% endif %}" {% if active_section != 'strategic-plan' %}style="display:none"{% endif %}>
+        <h2>NAAC Undertaking And Self Declaration</h2>
+        <div class="strategic-plan-content">
+          <p>View our institution's NAAC Undertaking And Self Declaration:</p>
+          <a href="https://prutsim.edu.in/Docs/IQAC/Undetaking_merged.pdf?_t=1684429188" target="_blank" class="view-btn">NAAC Undertaking And Self Declaration Document</a>
+        </div>
+      </section>
+
+      <!-- AQAR Section -->
+      <section id="aqar" class="naac-section {% if active_section == 'aqar' %}active{% endif %}" {% if active_section != 'aqar' %}style="display:none"{% endif %}>
+        <h2>IPR Reports</h2>
+        <div class="aqar-reports">
+         <p>View our institution's IPR Reports:</p>
+          <a href="https://prutsim.edu.in/Doc/DVV/IPR.pdf?_t=1701149967" target="_blank" class="view-btn">IPR Reports</a>
+        </div>
+      </section>
+
+    
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/naac.js') }}" defer></script>
+{% endblock %}

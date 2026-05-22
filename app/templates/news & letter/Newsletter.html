@@ -1,0 +1,420 @@
+{% extends "base.html" %}
+
+{% block title %}Newsletter{% endblock %}
+
+{% block head %}
+<style>
+  .newsletter-page {
+    padding: 40px 20px 60px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .newsletter-page h1 {
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+    color: var(--m3-primary);
+  }
+
+  .newsletter-page p.intro {
+    margin: 0 0 32px;
+    color: var(--m3-on-surface-variant);
+    max-width: 760px;
+    line-height: 1.8;
+  }
+
+  .newsletter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .newsletter-card {
+    border-radius: var(--m3-shape-large);
+    padding: 24px 22px;
+    background: var(--m3-surface-container);
+    box-shadow: 0 12px 30px rgba(57, 36, 4, 0.08);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    border: 1px solid transparent;
+  }
+
+  .newsletter-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(57, 36, 4, 0.14);
+    border-color: rgba(57, 36, 4, 0.12);
+  }
+
+  .newsletter-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: var(--m3-primary);
+  }
+
+  .newsletter-card p {
+    margin: 0 0 16px;
+    color: var(--m3-on-surface-variant);
+    line-height: 1.7;
+  }
+
+  .newsletter-card .card-footer {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--m3-secondary);
+    font-weight: 600;
+  }
+
+  .newsletter-card .card-footer span {
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .image-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 16, 34, 0.84);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    z-index: 3000;
+  }
+
+  .image-modal.active {
+    display: flex;
+  }
+
+  .image-modal-box {
+    width: min(1100px, 100%);
+    max-height: min(90vh, 900px);
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.25);
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .image-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    background: var(--m3-primary);
+    color: var(--m3-on-primary);
+  }
+
+  .image-modal-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  .modal-close {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: inherit;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .image-modal-body {
+    padding: 24px;
+    display: grid;
+    gap: 18px;
+  }
+
+  .image-modal-main {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .image-modal-main img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .image-modal-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .image-modal-meta p {
+    margin: 0;
+    color: var(--m3-on-surface-variant);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .image-nav {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .image-nav button {
+    flex: 1;
+    border: none;
+    border-radius: 12px;
+    background: var(--m3-primary);
+    color: var(--m3-on-primary);
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .image-nav button:hover {
+    background: var(--m3-primary-container);
+  }
+
+  .thumb-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .thumb-list img {
+    width: 100%;
+    height: 92px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .thumb-list img.active {
+    opacity: 1;
+    transform: scale(1.02);
+    border: 2px solid var(--m3-primary);
+  }
+
+  @media (max-width: 992px) {
+    .newsletter-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .image-modal-main img {
+      height: 420px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .newsletter-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .image-modal-main img {
+      height: 280px;
+    }
+
+    .image-modal-body {
+      padding: 18px;
+    }
+
+    .thumb-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="newsletter-page">
+    <h1>Newsletter Gallery</h1>
+    <p class="intro">Tap any box to open the gallery. Each card contains a short summary and loads an image collection with left/right navigation.</p>
+
+    <div class="newsletter-grid">
+      <div class="newsletter-card" onclick="openGallery(0)">
+        <h3>Campus Events</h3>
+        <p>Explore the latest campus events and celebrations with a dedicated photo set.</p>
+        <div class="card-footer"><span>Tap to view</span></div>
+      </div>
+
+      <div class="newsletter-card" onclick="openGallery(1)">
+        <h3>Student Achievements</h3>
+        <p>See student awards, projects, and achievements captured in this curated collection.</p>
+        <div class="card-footer"><span>Tap to view</span></div>
+      </div>
+
+      <div class="newsletter-card" onclick="openGallery(2)">
+        <h3>Alumni Stories</h3>
+        <p>Learn from alumni success stories through images of events, meetups, and achievements.</p>
+        <div class="card-footer"><span>Tap to view</span></div>
+      </div>
+
+      <div class="newsletter-card" onclick="openGallery(3)">
+        <h3>Industry Visits</h3>
+        <p>Browse photos from recent industry visits and corporate interactions.</p>
+        <div class="card-footer"><span>Tap to view</span></div>
+      </div>
+
+      <div class="newsletter-card" onclick="openGallery(4)">
+        <h3>Workshops &amp; Trainings</h3>
+        <p>Discover workshop highlights with expert trainers and student learnings.</p>
+        <div class="card-footer"><span>Tap to view</span></div>
+      </div>
+
+      <div class="newsletter-card" onclick="openGallery(5)">
+        <h3>Community Outreach</h3>
+        <p>View our community outreach programs and social initiative highlights.</p>
+        <div class="card-footer"><span>Tap to view</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="image-modal-box">
+      <div class="image-modal-header">
+        <h2 id="modalTitle">Gallery</h2>
+        <button class="modal-close" onclick="closeGallery()" aria-label="Close gallery">×</button>
+      </div>
+      <div class="image-modal-body">
+        <div class="image-modal-main">
+          <img id="modalImage" src="" alt="Gallery image">
+        </div>
+        <div class="image-modal-meta">
+          <p id="modalDescription"></p>
+        </div>
+        <div class="image-nav">
+          <button type="button" onclick="changeImage(-1)">&larr; Previous</button>
+          <button type="button" onclick="changeImage(1)">Next &rarr;</button>
+        </div>
+        <div class="thumb-list" id="thumbList"></div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const galleryItems = [
+    {
+      title: 'Campus Events',
+      description: 'Photos from key campus events, festivals, and student activities.',
+      images: [
+        'https://via.placeholder.com/900x500?text=Campus+Event+1',
+        'https://via.placeholder.com/900x500?text=Campus+Event+2',
+        'https://via.placeholder.com/900x500?text=Campus+Event+3'
+      ]
+    },
+    {
+      title: 'Student Achievements',
+      description: 'Award ceremonies and academic recognition moments.',
+      images: [
+        'https://via.placeholder.com/900x500?text=Student+Achievement+1',
+        'https://via.placeholder.com/900x500?text=Student+Achievement+2',
+        'https://via.placeholder.com/900x500?text=Student+Achievement+3'
+      ]
+    },
+    {
+      title: 'Alumni Stories',
+      description: 'Snapshots of alumni meetups and success celebrations.',
+      images: [
+        'https://via.placeholder.com/900x500?text=Alumni+Story+1',
+        'https://via.placeholder.com/900x500?text=Alumni+Story+2',
+        'https://via.placeholder.com/900x500?text=Alumni+Story+3'
+      ]
+    },
+    {
+      title: 'Industry Visits',
+      description: 'Corporate visits, industrial exposure, and professional tours.',
+      images: [
+        'https://via.placeholder.com/900x500?text=Industry+Visit+1',
+        'https://via.placeholder.com/900x500?text=Industry+Visit+2',
+        'https://via.placeholder.com/900x500?text=Industry+Visit+3'
+      ]
+    },
+    {
+      title: 'Workshops & Trainings',
+      description: 'Training sessions, seminars, and workshop highlights.',
+      images: [
+        'https://via.placeholder.com/900x500?text=Workshop+1',
+        'https://via.placeholder.com/900x500?text=Workshop+2',
+        'https://via.placeholder.com/900x500?text=Workshop+3'
+      ]
+    },
+    {
+      title: 'Community Outreach',
+      description: 'Social service programs and outreach initiatives.',
+      images: [
+        'https://via.placeholder.com/900x500?text=Community+Outreach+1',
+        'https://via.placeholder.com/900x500?text=Community+Outreach+2',
+        'https://via.placeholder.com/900x500?text=Community+Outreach+3'
+      ]
+    }
+  ];
+
+  let activeGallery = null;
+  let activeImageIndex = 0;
+
+  function openGallery(index) {
+    activeGallery = galleryItems[index];
+    activeImageIndex = 0;
+    updateModal();
+    document.getElementById('imageModal').classList.add('active');
+  }
+
+  function closeGallery() {
+    document.getElementById('imageModal').classList.remove('active');
+  }
+
+  function updateModal() {
+    if (!activeGallery) return;
+
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const thumbList = document.getElementById('thumbList');
+
+    modalTitle.textContent = activeGallery.title;
+    modalDescription.textContent = activeGallery.description;
+    modalImage.src = activeGallery.images[activeImageIndex];
+    modalImage.alt = activeGallery.title + ' image ' + (activeImageIndex + 1);
+
+    thumbList.innerHTML = '';
+    activeGallery.images.forEach((src, index) => {
+      const thumb = document.createElement('img');
+      thumb.src = src;
+      thumb.alt = activeGallery.title + ' thumbnail ' + (index + 1);
+      thumb.className = index === activeImageIndex ? 'active' : '';
+      thumb.onclick = () => {
+        activeImageIndex = index;
+        updateModal();
+      };
+      thumbList.appendChild(thumb);
+    });
+  }
+
+  function changeImage(direction) {
+    if (!activeGallery) return;
+    activeImageIndex += direction;
+    if (activeImageIndex < 0) activeImageIndex = activeGallery.images.length - 1;
+    if (activeImageIndex >= activeGallery.images.length) activeImageIndex = 0;
+    updateModal();
+  }
+
+  document.addEventListener('click', function (event) {
+    const modal = document.getElementById('imageModal');
+    if (!modal.classList.contains('active')) return;
+    const modalBox = modal.querySelector('.image-modal-box');
+    if (!modalBox.contains(event.target)) {
+      closeGallery();
+    }
+  });
+</script>
+{% endblock %}

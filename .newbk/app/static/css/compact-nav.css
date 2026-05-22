@@ -1,0 +1,437 @@
+/* ============================================
+   COMPACT NAVIGATION CSS - Small Height & Small Dropdowns
+============================================ */
+
+/* Root Variables for Compact Design with Material Colors */
+:root {
+  --compact-nav-height: 50px; /* Slightly increased height */
+  --compact-nav-bg: var(--m3-primary, #392404);
+  --compact-nav-text: var(--m3-on-primary, #ffffff);
+  --compact-nav-hover: var(--m3-primary-container, #614b29);
+  --compact-dropdown-bg: var(--m3-surface-container-highest, #e7e1d6);
+  --compact-dropdown-text: var(--m3-on-surface, #211400);
+  --compact-dropdown-hover: var(--m3-surface-container-high, #ede7dc);
+  --compact-shadow: var(--m3-shadow-2, 0px 3px 6px rgba(0,0,0,0.15), 0px 2px 4px rgba(0,0,0,0.12));
+  --compact-shadow-dropdown: var(--m3-shadow-3, 0px 10px 20px rgba(0,0,0,0.15), 0px 3px 6px rgba(0,0,0,0.10));
+  --compact-transition: var(--animation-standard, 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+  --compact-radius: var(--m3-shape-small, 8px);
+  --compact-font-size: 14px; /* Slightly larger font */
+  --compact-dropdown-width: 220px; /* Bigger dropdown width */
+  --compact-submenu-width: 200px; /* Bigger submenu width */
+}
+
+/* Compact Navigation Container */
+.compact-nav {
+  background: var(--compact-nav-bg);
+  height: var(--compact-nav-height);
+  box-shadow: var(--compact-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.compact-nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the navigation */
+}
+
+/* Mobile Navigation Elements */
+.compact-mobile-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between; /* Keep mobile header spread out */
+  gap: 12px;
+  width: 100%; /* Take full width on mobile */
+}
+
+.compact-mobile-home {
+  color: var(--compact-nav-text);
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: var(--compact-radius);
+  transition: var(--compact-transition);
+}
+
+.compact-mobile-home:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--compact-nav-text);
+}
+
+/* Compact Hamburger Menu */
+.compact-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.compact-hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--compact-nav-text);
+  margin: 2px 0;
+  transition: var(--compact-transition);
+  border-radius: 1px;
+}
+
+.compact-hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+
+.compact-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.compact-hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Enhanced Navigation List for centering */
+.compact-nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the nav items */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%; /* Take full width to center properly */
+}
+
+.compact-nav-item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Compact Navigation Links */
+.compact-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0 16px; /* Increased padding */
+  height: var(--compact-nav-height);
+  color: var(--compact-nav-text);
+  text-decoration: none;
+  font-size: var(--compact-font-size);
+  font-weight: 500;
+  transition: var(--compact-transition);
+  white-space: nowrap;
+  position: relative;
+}
+
+.compact-nav-link:hover,
+.compact-nav-link:focus {
+  background: var(--compact-nav-hover);
+  color: var(--compact-nav-text);
+}
+
+.compact-nav-link.dropdown-toggle {
+  position: relative;
+}
+
+.compact-dropdown-icon {
+  font-size: 16px !important; /* Slightly larger icon */
+  margin-left: 6px; /* More spacing */
+  transition: var(--compact-transition);
+}
+
+.compact-nav-item.dropdown:hover .compact-dropdown-icon {
+  transform: rotate(180deg);
+}
+
+/* Compact Home Icon */
+.compact-desktop-home .compact-nav-link {
+  padding: 0 10px;
+}
+
+.compact-desktop-home .material-icons {
+  font-size: 18px;
+}
+
+/* Compact Dropdown Menu */
+.compact-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: var(--compact-dropdown-width);
+  max-width: 280px; /* Bigger max width */
+  background: var(--compact-dropdown-bg);
+  border: 1px solid var(--m3-outline-variant, #d0c5b1);
+  border-radius: var(--compact-radius);
+  box-shadow: var(--compact-shadow-dropdown);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: var(--compact-transition);
+  z-index: 1001;
+  padding: 6px 0; /* Increased padding */
+  list-style: none; /* Remove bullet points */
+}
+
+.compact-dropdown-menu ul {
+  list-style: none; /* Remove bullet points from ul elements */
+  margin: 0;
+  padding: 0;
+}
+
+.compact-dropdown-menu li {
+  list-style: none; /* Remove bullet points from li elements */
+}
+
+.compact-nav-item.dropdown:hover .compact-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Compact Dropdown Items */
+.compact-dropdown-item {
+  display: block;
+  padding: 10px 16px; /* Bigger padding */
+  color: var(--compact-dropdown-text);
+  text-decoration: none;
+  font-size: 13px; /* Slightly larger font */
+  line-height: 1.4;
+  transition: var(--compact-transition);
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  border-left: 3px solid transparent;
+}
+
+.compact-dropdown-item:hover,
+.compact-dropdown-item:focus {
+  background: var(--compact-dropdown-hover);
+  color: var(--m3-primary, #392404);
+  border-left-color: var(--m3-secondary, #b6ac46);
+  transform: translateX(2px); /* Subtle hover effect */
+}
+
+/* Compact Submenu */
+.compact-dropdown-submenu {
+  position: relative;
+}
+
+.compact-submenu-menu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: var(--compact-submenu-width);
+  max-width: 240px; /* Bigger submenu */
+  background: var(--compact-dropdown-bg);
+  border: 1px solid var(--m3-outline-variant, #d0c5b1);
+  border-radius: var(--compact-radius);
+  box-shadow: var(--compact-shadow-dropdown);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-8px);
+  transition: var(--compact-transition);
+  z-index: 1002;
+  padding: 6px 0; /* Increased padding */
+  margin-left: 4px;
+  list-style: none; /* Remove bullet points */
+}
+
+.compact-submenu-menu ul {
+  list-style: none; /* Remove bullet points from ul elements */
+  margin: 0;
+  padding: 0;
+}
+
+.compact-submenu-menu li {
+  list-style: none; /* Remove bullet points from li elements */
+}
+
+.compact-dropdown-submenu:hover .compact-submenu-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.compact-dropdown-submenu .compact-dropdown-item {
+  padding-right: 32px; /* More padding for arrow */
+  position: relative;
+}
+
+.compact-dropdown-submenu > .compact-dropdown-item::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid var(--m3-outline, #8c7c5a); /* Use material color */
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .compact-nav-container {
+    justify-content: space-between; /* Reset to space-between for mobile */
+  }
+
+  .compact-mobile-header {
+    display: flex;
+  }
+
+  .compact-hamburger {
+    display: flex;
+  }
+
+  .compact-desktop-home {
+    display: none;
+  }
+
+  .compact-nav-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--compact-nav-bg);
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start; /* Reset centering for mobile */
+    height: auto;
+    max-height: 75vh;
+    overflow-y: auto;
+    box-shadow: var(--compact-shadow-dropdown);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--compact-transition);
+  }
+
+  .compact-nav-list.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .compact-nav-item {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .compact-nav-link {
+    height: 44px; /* Slightly bigger mobile height */
+    padding: 0 20px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .compact-dropdown-menu {
+    position: static;
+    width: 100%;
+    background: rgba(57, 36, 4, 0.1); /* Use primary color with opacity */
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none;
+    padding: 0;
+  }
+
+  .compact-dropdown-menu.show {
+    display: block;
+  }
+
+  .compact-dropdown-item {
+    color: var(--compact-nav-text);
+    padding: 12px 36px; /* Bigger mobile padding */
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: none;
+  }
+
+  .compact-dropdown-item:hover {
+    background: rgba(182, 172, 70, 0.2); /* Use secondary color */
+    color: var(--compact-nav-text);
+  }
+
+  .compact-submenu-menu {
+    position: static;
+    width: 100%;
+    background: rgba(57, 36, 4, 0.15); /* Slightly darker */
+    border: none;
+    box-shadow: none;
+    margin-left: 0;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    display: none;
+  }
+
+  .compact-submenu-menu.show {
+    display: block;
+  }
+
+  .compact-submenu-menu .compact-dropdown-item {
+    padding-left: 52px; /* Bigger indent */
+  }
+
+  .compact-dropdown-submenu > .compact-dropdown-item::after {
+    border-left: 3px solid rgba(255, 255, 255, 0.7);
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+  }
+}
+
+@media (max-width: 480px) {
+  .compact-nav-container {
+    padding: 0 10px;
+  }
+
+  .compact-nav-link {
+    font-size: 13px; /* Bigger mobile font */
+    height: 40px;
+  }
+
+  .compact-dropdown-item {
+    padding: 10px 28px; /* Bigger mobile padding */
+    font-size: 12px;
+  }
+
+  .compact-submenu-menu .compact-dropdown-item {
+    padding-left: 44px;
+  }
+}
+
+/* Animation keyframes */
+@keyframes compactSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus styles for accessibility */
+.compact-nav-link:focus,
+.compact-dropdown-item:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 1px;
+}

@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Librarian's Message - PRUTSIM{% endblock %}
+
+{% block styles %}
+.librarian-message {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.message-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.message-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.profile-section {
+    flex: 0 0 250px;
+    text-align: center;
+}
+
+.profile-image {
+    margin-bottom: 1.5rem;
+}
+
+.profile-image img {
+    max-width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.librarian-name {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.librarian-title {
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.message-content {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+
+.message-text {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.message-text.lead {
+    font-size: 1.2em;
+    color: #2c3e50;
+}
+
+.signature-block {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.signature-name {
+    font-weight: bold;
+    margin: 0;
+}
+
+.signature-title {
+    color: #666;
+    font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+    .message-container {
+        flex-direction: column;
+    }
+    
+    .profile-section {
+        flex: 0 0 100%;
+        margin-bottom: 1.5rem;
+    }
+}
+{% endblock %}
+
+{% block content %}
+<div class="librarian-message">
+    <h2 class="message-title">Librarian's Message</h2>
+    
+    <div class="message-container">
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="{{ url_for('static', filename='images/librarian.png') }}" alt="Mr. Ganesh Parab - Librarian">
+            </div>
+            <h3 class="librarian-name">Mr. Ganesh Parab</h3>
+            <p class="librarian-title">Librarian</p>
+        </div>
+        
+        <div class="message-content">
+            <p class="message-text lead">It is a great pleasure to welcome you to the Department of Library which is the vital resource of our Institute. The library acts as a reservoir of resources for students and staff for their scholarly research and academic development. It functions as a repository constituent of the institute to support the programs run by the institution and satisfy the hunger of knowledge seekers.</p>
+
+            <p class="message-text">The Objective is achieved by Libraries, when library professionals can mobilize all the resources available to them in an effective and efficient manner. Keeping in view the aims and objectives, The Library has been planned and being developed by a team of Qualified Professional library staff and guided by the Library Council.</p>
+
+            <p class="message-text">We at PRUTSIM are determined to provide best library services to produce and build dynamic knowledge power-house capable of contributing to the National development and welfare of society.</p>
+
+            <p class="message-text">Library is rich with a wide variety of books on Management specialized in Finance, Marketing, H.R, Operations & Systems. It maintains an excellent collection of books, references, general reading material, periodicals, research journals, e-journals, research reports, magazines, CD-ROMs and reference source. The library has a reading room with a capacity of 60 seats. Newspapers of different languages are available to the stakeholders for reading. Online access to e-journals and books are available for students 24/7.</p>
+
+            <p class="message-text">We make sure that our dedicated library staff will assist in every way to ensure that you reach your full potential by providing the right materials for you.</p>
+
+            <p class="message-text">Good Luck in your studies and looking forward to your library visit.</p>
+            
+            <div class="signature-block">
+                <p class="signature-name">– Mr. Ganesh Parab</p>
+                <span class="signature-title">Librarian, PRUTSIM</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

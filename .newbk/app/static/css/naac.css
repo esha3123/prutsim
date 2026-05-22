@@ -1,0 +1,282 @@
+.naac-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.naac-content {
+  background-color: var(--m3-surface-container-low);
+  border-radius: var(--m3-shape-medium);
+  padding: 30px;
+  box-shadow: var(--m3-shadow-1);
+}
+
+/* Navigation */
+.naac-nav {
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--m3-outline-variant);
+}
+
+.naac-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.naac-nav ul li {
+  list-style: none;
+  color: var(--m3-on-surface);
+  background-color: var(--m3-primary);
+  border-radius: var(--m3-shape-small);
+}
+
+.naac-nav a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.naac-nav a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Section Styling */
+.naac-section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: var(--m3-surface-container);
+  border-radius: var(--m3-shape-medium);
+  box-shadow: var(--m3-shadow-1);
+}
+
+.naac-section h2 {
+  color: var(--m3-primary);
+  border-bottom: 2px solid var(--m3-outline-variant);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Table Styling - Consistent across all tables */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: var(--m3-surface-container-lowest);
+  border-radius: var(--m3-shape-small);
+  overflow: hidden;
+  box-shadow: var(--m3-shadow-1);
+}
+
+.data-table th {
+  background-color: var(--m3-primary);
+  color: var(--m3-on-primary);
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 500;
+}
+
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--m3-outline-variant);
+  color: var(--m3-on-surface);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background-color: var(--m3-surface-variant);
+}
+
+.data-table .view-link {
+  text-decoration: none;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* View Button Styling */
+.view-btn {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.view-btn button {
+  padding: 0.25rem 1rem;
+  background-color: #8B4513;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-btn button:hover {
+  background-color: var(--m3-primary-container);
+  color: var(--m3-on-primary-container);
+}
+
+.view-btn {
+  padding: 0.25rem 1rem;
+  background-color: #8B4513;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.view-btn:hover {
+  background-color: var(--m3-primary-container);
+  color: var(--m3-on-primary-container);
+}
+
+/* Tab styles */
+.tab-container {
+  margin-top: 20px;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Criteria grid */
+.criteria-grid {
+  overflow-x: auto;
+}
+
+.criteria-link {
+  color: #8B4513;
+  text-decoration: none;
+}
+
+.criteria-link:hover {
+  text-decoration: underline;
+}
+
+/* Vision Mission section */
+.vision-mission {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+@media (min-width: 768px) {
+  .vision-mission {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.vision, .mission {
+  background-color: var(--m3-surface-container-lowest);
+  padding: 20px;
+  border-radius: var(--m3-shape-medium);
+  box-shadow: var(--m3-shadow-1);
+}
+
+.vision h3, .mission h3 {
+  color: var(--m3-primary);
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--m3-tertiary-container);
+  padding-bottom: 10px;
+}
+
+.mission ul {
+  padding-left: 1.5rem;
+}
+
+.mission li {
+  margin-bottom: 0.5rem;
+}
+
+/* Appeal section specific styles */
+.appeal-grid {
+  margin-top: 1rem;
+}
+
+.appeal-grid .data-table {
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.appeal-grid .data-table th {
+  background-color: #8B4513;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.appeal-grid .data-table td {
+  text-align: center;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+}
+
+/* Strategic Plan Section */
+.strategic-plan-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.strategic-plan-content a {
+  text-decoration: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .tab-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .naac-nav ul {
+    flex-direction: column;
+  }
+  
+  .data-table th, 
+  .data-table td {
+    padding: 10px;
+  }
+  
+  .data-table {
+    font-size: 0.9rem;
+  }
+  
+  .naac-content {
+    padding: 15px;
+  }
+  
+  .naac-section {
+    padding: 15px;
+  }
+}

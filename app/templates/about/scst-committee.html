@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block title %}SC/ST Committee - PRUTSIM{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1 class="page-title">Constitution of SC/ST Committee</h1>
+    <p class="page-subtitle">Academic Year 2025-26</p>
+     <p class="page-subtitle">e-mail: scstcommittee@prutsim.edu.in</p>
+    
+    <div class="committee-table-container">
+        <table class="committee-table">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Role in Committee</th>
+                    <th>Category</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Dr. Sanoj Kumar</td>
+                    <td>Director</td>
+                    <td>Chairman</td>
+                    <td>General</td>
+                    <td>director@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Dr. Shrikesh Poojari</td>
+                    <td>Dean-Academics</td>
+                    <td>Member</td>
+                    <td>General</td>
+                    <td>shrikesh@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Dr. Prashant Mishra</td>
+                    <td>Faculty</td>
+                    <td>Coordinator (Teaching Representative)</td>
+                    <td>General</td>
+                    <td>prashant@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Mr. Deepak Bhalerao</td>
+                    <td>Staff</td>
+                    <td>Member (Non-Teaching Representative)</td>
+                    <td>SC/ST</td>
+                    <td>deepak.bhalerao@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Ms. Poonam Jagadale</td>
+                    <td>Staff</td>
+                    <td>Member (Non-Teaching Representative)</td>
+                    <td>General</td>
+                    <td>poonam.jagadale@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Mr. Kalpesh Gaikwad</td>
+                    <td>Student</td>
+                    <td>Member (Student Representative)</td>
+                    <td>SC/ST</td>
+                    <td>kalpesh.315824031@prutsim.edu.in</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+ 
+
+
+{% endblock %}
+
+{% block styles %}
+<style>
+    .content-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+    }
+
+    .page-title {
+        color: var(--m3-primary);
+        margin-bottom: 10px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--m3-primary);
+        font-size: 2.2em;
+        text-align: center;
+    }
+
+    .page-subtitle {
+        text-align: center;
+        color: var(--m3-on-surface-variant);
+        margin-bottom: 40px;
+        font-size: 1.1em;
+        font-style: italic;
+    }
+
+    .committee-table-container {
+        margin: 30px 0;
+        overflow-x: auto;
+        box-shadow: var(--m3-shadow-2);
+        border-radius: var(--m3-shape-medium);
+    }
+
+    .committee-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--m3-surface);
+    }
+
+    .committee-table th {
+        background: var(--m3-primary);
+        color: var(--m3-on-primary);
+        padding: 15px 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.95em;
+    }
+
+    .committee-table td {
+        padding: 12px;
+        border-bottom: 1px solid var(--m3-outline-variant);
+        color: var(--m3-on-surface);
+    }
+
+    .committee-table tbody tr:hover {
+        background: var(--m3-surface-variant);
+    }
+
+    .committee-table tbody tr:nth-child(even) {
+        background: var(--m3-surface-container-lowest);
+    }
+
+    .committee-functions,
+    .committee-guidelines {
+        margin-top: 40px;
+        padding: 25px;
+        background: var(--m3-surface-container-low);
+        border-radius: var(--m3-shape-medium);
+        border-left: 4px solid var(--m3-primary);
+    }
+
+    .committee-functions h3,
+    .committee-guidelines h3 {
+        color: var(--m3-primary);
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+
+    .committee-functions ul,
+    .committee-guidelines ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .committee-functions li,
+    .committee-guidelines li {
+        padding: 8px 0;
+        padding-left: 20px;
+        position: relative;
+        color: var(--m3-on-surface);
+    }
+
+    .committee-functions li::before,
+    .committee-guidelines li::before {
+        content: "•";
+        color: var(--m3-primary);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+    }
+
+    @media (max-width: 768px) {
+        .content-container {
+            padding: 40px 15px;
+        }
+        
+        .page-title {
+            font-size: 1.8em;
+        }
+        
+        .committee-table th,
+        .committee-table td {
+            padding: 8px 6px;
+            font-size: 0.9em;
+        }
+    }
+</style>
+{% endblock %}

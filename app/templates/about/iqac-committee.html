@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block title %}IQAC Committee - PRUTSIM{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1 class="page-title">Constitution of Internal Quality Assurance Committee (IQAC)</h1>
+    <p class="page-subtitle">Academic Year 2025-26</p>
+    
+    <div class="committee-table-container">
+        <table class="committee-table">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Role in Committee</th>
+                    <th>Institution/Organization</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Dr. Sanoj Kumar</td>
+                    <td>Director</td>
+                    <td>Chairperson</td>
+                    <td>PRUTSIM</td>
+                    <td>director@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Dr. Shrikesh Poojari</td>
+                    <td>Dean-Academics</td>
+                    <td>IQAC Coordinator</td>
+                    <td>PRUTSIM</td>
+                    <td>shrikesh@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Dr. Prashant Mishra</td>
+                    <td>Faculty</td>
+                    <td>Member (Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>prashant@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Mr. D Nadar</td>
+                    <td>Faculty</td>
+                    <td>Member (Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>duvannadhan@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Mr. Brijesh Poojari</td>
+                    <td>Faculty</td>
+                    <td>Member (Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>brijesh.poojari@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Mr. Anil Yadav</td>
+                    <td>Faculty</td>
+                    <td>Member (Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>anil@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Ms. Sameen Patel</td>
+                    <td>Faculty</td>
+                    <td>Member (Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>sameen.patel@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Ms. Deepika Rao</td>
+                    <td>Faculty</td>
+                    <td>Member (Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>deepika.rao@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Mr. Jayant Kalokhe</td>
+                    <td>Faculty</td>
+                    <td>Member (Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>jayant.kalokhe@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Mr. Navin Fernando</td>
+                    <td>Faculty</td>
+                    <td>Member (Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>navin.fernando@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Ms. Poonam Jagadale</td>
+                    <td>Staff</td>
+                    <td>Member (Non-Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>poonam.jagadale@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Mr. Ganesh Parab</td>
+                    <td>Staff</td>
+                    <td>Member (Non-Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>ganesh@prutsim.edu.in</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Mr. Sandip Shinde</td>
+                    <td>IT Staff</td>
+                    <td>Member (Non-Teaching Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>it@saketgyanpeeth.in</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Ms. Khushi Gupta</td>
+                    <td>Student</td>
+                    <td>Member (Student Representative)</td>
+                    <td>PRUTSIM</td>
+                    <td>khushi.315824037@prutsim.edu.in</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+   
+
+    
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .content-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+    }
+
+    .page-title {
+        color: var(--m3-primary);
+        margin-bottom: 10px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--m3-primary);
+        font-size: 2.2em;
+        text-align: center;
+    }
+
+    .page-subtitle {
+        text-align: center;
+        color: var(--m3-on-surface-variant);
+        margin-bottom: 40px;
+        font-size: 1.1em;
+        font-style: italic;
+    }
+
+    .committee-table-container {
+        margin: 30px 0;
+        overflow-x: auto;
+        box-shadow: var(--m3-shadow-2);
+        border-radius: var(--m3-shape-medium);
+    }
+
+    .committee-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--m3-surface);
+    }
+
+    .committee-table th {
+        background: var(--m3-primary);
+        color: var(--m3-on-primary);
+        padding: 15px 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.95em;
+    }
+
+    .committee-table td {
+        padding: 12px;
+        border-bottom: 1px solid var(--m3-outline-variant);
+        color: var(--m3-on-surface);
+    }
+
+    .committee-table tbody tr:hover {
+        background: var(--m3-surface-variant);
+    }
+
+    .committee-table tbody tr:nth-child(even) {
+        background: var(--m3-surface-container-lowest);
+    }
+
+    .committee-functions,
+    .committee-guidelines,
+    .committee-initiatives {
+        margin-top: 40px;
+        padding: 25px;
+        background: var(--m3-surface-container-low);
+        border-radius: var(--m3-shape-medium);
+        border-left: 4px solid var(--m3-primary);
+    }
+
+    .committee-functions h3,
+    .committee-guidelines h3,
+    .committee-initiatives h3 {
+        color: var(--m3-primary);
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+
+    .committee-functions ul,
+    .committee-guidelines ul,
+    .committee-initiatives ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .committee-functions li,
+    .committee-guidelines li,
+    .committee-initiatives li {
+        padding: 8px 0;
+        padding-left: 20px;
+        position: relative;
+        color: var(--m3-on-surface);
+    }
+
+    .committee-functions li::before,
+    .committee-guidelines li::before,
+    .committee-initiatives li::before {
+        content: "•";
+        color: var(--m3-primary);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+    }
+
+    @media (max-width: 768px) {
+        .content-container {
+            padding: 40px 15px;
+        }
+        
+        .page-title {
+            font-size: 1.8em;
+        }
+        
+        .committee-table th,
+        .committee-table td {
+            padding: 8px 6px;
+            font-size: 0.9em;
+        }
+    }
+</style>
+{% endblock %}

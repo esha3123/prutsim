@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Lost in Space</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a1a;
+            color: #e0e0ff;
+            overflow: hidden;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(to right, #667eea, #764ba2, #6B8DD6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .error-text {
+            font-size: 1.5rem;
+            margin: 10px 0 30px;
+            text-shadow: 0 0 5px #4a4aff;
+        }
+        
+        .funny-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #a0a0ff;
+        }
+        
+        .home-btn {
+            padding: 10px 25px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+        }
+        
+        .ufo {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .game-container {
+            width: 90%;
+            max-width: 600px;
+            height: 300px;
+            border: 2px solid #4a4aff;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
+        }
+        
+        #game-canvas {
+            background-color: #0a0a1a;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .game-instructions {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            color: #a0a0ff;
+        }
+        
+        #score {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            color: #e0e0ff;
+        }
+        
+        #game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(10, 10, 26, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        #restart-btn {
+            padding: 8px 16px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        @keyframes pulse {
+            0% {
+                text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(102, 126, 234, 0.8), 0 0 30px rgba(102, 126, 234, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+            
+            .error-text {
+                font-size: 1.2rem;
+            }
+            
+            .game-container {
+                height: 250px;
+            }
+            
+            .game-instructions {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <h1 class="error-code">404</h1>
+        <p class="error-text">Houston, we have a problem!</p>
+        <p class="funny-text">It seems your page has been abducted by aliens... or maybe it never existed at all!</p>
+        
+        <div class="game-container">
+            <canvas id="game-canvas"></canvas>
+            <div id="score">Score: 0</div>
+            <div id="game-over">
+                <h2>Game Over!</h2>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button id="restart-btn">Play Again</button>
+            </div>
+        </div>
+        
+        <p class="game-instructions">Use arrow keys or touch the screen to navigate your spaceship through the asteroid field!</p>
+        <p class="game-instructions">Desktop: Arrow keys | Mobile: Touch where you want to move</p>
+        
+        <a href="/" class="home-btn">Return to Earth</a>
+    </div>
+
+    <script>
+        // Create stars background
+        function createStars() {
+            const stars = document.getElementById('stars');
+            const count = window.innerWidth < 768 ? 100 : 200;
+            
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                const size = Math.random() * 2;
+                
+                star.style.position = 'absolute';
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.background = 'white';
+                star.style.borderRadius = '50%';
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.opacity = Math.random();
+                star.style.animation = `twinkle ${3 + Math.random() * 4}s ease-in-out infinite`;
+                
+                const keyframes = `
+                    @keyframes twinkle {
+                        0% { opacity: ${Math.random() * 0.5 + 0.3}; }
+                        50% { opacity: 1; }
+                        100% { opacity: ${Math.random() * 0.5 + 0.3}; }
+                    }
+                `;
+                
+                const style = document.createElement('style');
+                style.innerHTML = keyframes;
+                document.head.appendChild(style);
+                
+                stars.appendChild(star);
+            }
+        }
+        
+        // Game logic
+        const canvas = document.getElementById('game-canvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+        const gameOverElement = document.getElementById('game-over');
+        const finalScoreElement = document.getElementById('final-score');
+        const restartBtn = document.getElementById('restart-btn');
+        
+        let score = 0;
+        let isGameOver = false;
+        let animationId;
+        
+        // Set canvas dimensions
+        function setCanvasDimensions() {
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+        }
+        
+        // Player spaceship
+        const ship = {
+            x: 50,
+            y: 0,
+            width: 30,
+            height: 20,
+            color: '#4a4aff',
+            speed: 5
+        };
+        
+        // Asteroids array
+        let asteroids = [];
+        
+        // Controls
+        const keys = {
+            ArrowUp: false,
+            ArrowDown: false,
+            ArrowLeft: false,
+            ArrowRight: false
+        };
+        
+        // Touch position
+        let touchX = null;
+        let touchY = null;
+        
+        // Initialize game
+        function init() {
+            setCanvasDimensions();
+            ship.y = canvas.height / 2 - ship.height / 2;
+            score = 0;
+            asteroids = [];
+            isGameOver = false;
+            scoreElement.textContent = `Score: ${score}`;
+            gameOverElement.style.display = 'none';
+            
+            // Start game loop
+            animate();
+        }
+        
+        // Draw player spaceship
+        function drawShip() {
+            ctx.fillStyle = ship.color;
+            ctx.beginPath();
+            ctx.moveTo(ship.x, ship.y + ship.height / 2);
+            ctx.lineTo(ship.x + ship.width, ship.y);
+            ctx.lineTo(ship.x + ship.width, ship.y + ship.height);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Exhaust flame
+            ctx.fillStyle = '#ff6600';
+            ctx.beginPath();
+            ctx.moveTo(ship.x, ship.y + ship.height / 2 - 4);
+            ctx.lineTo(ship.x - 10 - Math.random() * 5, ship.y + ship.height / 2);
+            ctx.lineTo(ship.x, ship.y + ship.height / 2 + 4);
+            ctx.closePath();
+            ctx.fill();
+        }
+        
+        // Create asteroid
+        function createAsteroid() {
+            const size = Math.random() * 30 + 10;
+            const asteroid = {
+                x: canvas.width + size,
+                y: Math.random() * (canvas.height - size),
+                radius: size / 2,
+                speed: Math.random() * 3 + 2,
+                color: `hsl(${Math.random() * 60 + 200}, 50%, 50%)`,
+                vertices: []
+            };
+            
+            // Create irregular shape
+            const vertices = Math.floor(Math.random() * 5) + 5;
+            for (let i = 0; i < vertices; i++) {
+                const angle = (i / vertices) * Math.PI * 2;
+                const radiusVariance = asteroid.radius * (0.8 + Math.random() * 0.4);
+                asteroid.vertices.push({
+                    x: asteroid.x + Math.cos(angle) * radiusVariance,
+                    y: asteroid.y + Math.sin(angle) * radiusVariance
+                });
+            }
+            
+            asteroids.push(asteroid);
+        }
+        
+        // Draw asteroid
+        function drawAsteroid(asteroid) {
+            ctx.fillStyle = asteroid.color;
+            ctx.beginPath();
+            
+            // Update vertices position
+            for (let i = 0; i < asteroid.vertices.length; i++) {
+                const vertex = asteroid.vertices[i];
+                const dx = asteroid.x - vertex.x;
+                vertex.x = asteroid.x - dx;
+                
+                if (i === 0) {
+                    ctx.moveTo(vertex.x, vertex.y);
+                } else {
+                    ctx.lineTo(vertex.x, vertex.y);
+                }
+            }
+            
+            ctx.closePath();
+            ctx.fill();
+        }
+        
+        // Check collision
+        function checkCollision(ship, asteroid) {
+            // Simplified collision detection
+            const dx = ship.x + ship.width / 2 - asteroid.x;
+            const dy = ship.y + ship.height / 2 - asteroid.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            return distance < asteroid.radius + ship.width / 2;
+        }
+        
+        // Game over
+        function gameOver() {
+            isGameOver = true;
+            finalScoreElement.textContent = score;
+            gameOverElement.style.display = 'block';
+            cancelAnimationFrame(animationId);
+        }
+        
+        // Animation loop
+        function animate() {
+            if (isGameOver) return;
+            
+            animationId = requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw and update ship position
+            if (keys.ArrowUp) ship.y -= ship.speed;
+            if (keys.ArrowDown) ship.y += ship.speed;
+            if (keys.ArrowLeft) ship.x -= ship.speed;
+            if (keys.ArrowRight) ship.x += ship.speed;
+            
+            // Handle touch controls
+            if (touchY !== null) {
+                if (touchY < ship.y) ship.y -= ship.speed;
+                if (touchY > ship.y) ship.y += ship.speed;
+            }
+            
+            if (touchX !== null) {
+                if (touchX < ship.x) ship.x -= ship.speed;
+                if (touchX > ship.x) ship.x += ship.speed;
+            }
+            
+            // Keep ship in bounds
+            if (ship.y < 0) ship.y = 0;
+            if (ship.y > canvas.height - ship.height) ship.y = canvas.height - ship.height;
+            if (ship.x < 0) ship.x = 0;
+            if (ship.x > canvas.width - ship.width) ship.x = canvas.width - ship.width;
+            
+            drawShip();
+            
+            // Create new asteroid randomly
+            if (Math.random() < 0.02) {
+                createAsteroid();
+            }
+            
+            // Update and draw asteroids
+            asteroids.forEach((asteroid, index) => {
+                asteroid.x -= asteroid.speed;
+                
+                // Update all vertices
+                asteroid.vertices.forEach(vertex => {
+                    vertex.x -= asteroid.speed;
+                });
+                
+                drawAsteroid(asteroid);
+                
+                // Check if asteroid is off-screen
+                if (asteroid.x + asteroid.radius < 0) {
+                    asteroids.splice(index, 1);
+                    score++;
+                    scoreElement.textContent = `Score: ${score}`;
+                }
+                
+                // Check collision with player
+                if (checkCollision(ship, asteroid)) {
+                    gameOver();
+                }
+            });
+        }
+        
+        // Event listeners
+        window.addEventListener('keydown', (e) => {
+            if (keys.hasOwnProperty(e.key)) {
+                keys[e.key] = true;
+            }
+        });
+        
+        window.addEventListener('keyup', (e) => {
+            if (keys.hasOwnProperty(e.key)) {
+                keys[e.key] = false;
+            }
+        });
+        
+        // Touch events for mobile
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            touchX = touch.clientX - rect.left;
+            touchY = touch.clientY - rect.top;
+        });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            touchX = touch.clientX - rect.left;
+            touchY = touch.clientY - rect.top;
+        });
+        
+        canvas.addEventListener('touchend', () => {
+            touchX = null;
+            touchY = null;
+        });
+        
+        // Restart game
+        restartBtn.addEventListener('click', init);
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            setCanvasDimensions();
+        });
+        
+        // Initialize stars and game
+        window.onload = function() {
+            createStars();
+            init();
+        };
+    </script>
+</body>
+</html>

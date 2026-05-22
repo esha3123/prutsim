@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Conference 2024 - PRUTSIM{% endblock %}
+
+{% block head %}
+<style>
+    .conference-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .conference-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: var(--m3-surface-container);
+        border-radius: 8px;
+        box-shadow: var(--m3-shadow-2);
+    }
+
+    .conference-header h1 {
+        color: var(--m3-primary);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .conference-header p {
+        color: var(--m3-on-surface-variant);
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .conference-actions {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .conference-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        background: var(--m3-primary);
+        color: var(--m3-on-primary);
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: var(--m3-shadow-1);
+    }
+
+    .conference-button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--m3-shadow-2);
+        background: var(--m3-primary-container);
+        color: var(--m3-on-primary-container);
+    }
+
+    .conference-button i {
+        margin-right: 0.5rem;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="conference-container">
+    <div class="conference-header">
+        <h1>National Conference 2024</h1>
+        <p>Join us for the National Conference on "Vision for 10 Trillion Dollar Economy"</p>
+        <p>Organized by PRUTSIM</p>
+        
+        <div class="conference-actions">
+            <a href="https://prutsim.edu.in/Doc/Journal/Conference/%E2%80%9CVision%20for%2010%20Trillion%20Dollar%20Economy%E2%80%9D..%20FC.pdf?_t=1722662764" 
+               target="_blank" 
+               class="conference-button">
+                <i class="fas fa-file-pdf"></i>
+                Download Conference Brochure
+            </a>
+            <a href="https://forms.office.com/pages/responsepage.aspx?id=YKCmE75f10G7ASJLYcxMsBOH9993pJZHucY6CDJyKfVURVNUSlBVRFBSNk9DNENLSTVBNkxDVldNWi4u&route=shorturl" 
+               target="_blank" 
+               class="conference-button">
+                <i class="fas fa-user-plus"></i>
+                Register Now
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

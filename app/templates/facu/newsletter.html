@@ -1,0 +1,547 @@
+{% extends "base.html" %}
+
+{% block title %}Newsletter{% endblock %}
+
+{% block head %}
+<style>
+
+  .newsletter-page{
+    padding:40px 20px 60px;
+    max-width:1280px;
+    margin:auto;
+  }
+
+  .newsletter-page h1{
+    font-size:2.4rem;
+    margin-bottom:10px;
+    color:var(--m3-primary);
+  }
+
+  .newsletter-page .intro{
+    margin-bottom:30px;
+    color:var(--m3-on-surface-variant);
+    line-height:1.8;
+  }
+
+  .newsletter-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+
+  .newsletter-card{
+    background:var(--m3-surface-container);
+    border-radius:18px;
+    padding:24px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  }
+
+  .newsletter-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 35px rgba(0,0,0,0.12);
+  }
+
+  .newsletter-card h3{
+    margin-top:0;
+    margin-bottom:10px;
+    color:var(--m3-primary);
+  }
+
+  .newsletter-card p{
+    color:var(--m3-on-surface-variant);
+    line-height:1.7;
+  }
+
+  .card-footer{
+    margin-top:15px;
+    font-weight:600;
+    color:var(--m3-secondary);
+  }
+
+  /* MODAL */
+
+  .image-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    padding:20px;
+  }
+
+  .image-modal.active{
+    display:flex;
+  }
+
+  .image-modal-box{
+    width:min(1000px,100%);
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
+  }
+
+  .image-modal-header{
+    background:var(--m3-primary);
+    color:#fff;
+    padding:18px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  .image-modal-header h2{
+    margin:0;
+    font-size:1.3rem;
+  }
+
+  .modal-close{
+    border:none;
+    background:rgba(255,255,255,0.2);
+    color:#fff;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:1.5rem;
+  }
+
+  .image-modal-body{
+    padding:20px;
+  }
+
+  .image-modal-main{
+    position:relative;
+    width:100%;
+    background:#000;
+    border-radius:16px;
+    overflow:hidden;
+  }
+
+  .image-modal-main img{
+    width:100%;
+    height:520px;
+    object-fit:cover;
+    display:block;
+  }
+
+  /* NAVIGATION */
+
+  .image-nav button{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,0.25);
+    color:#fff;
+    font-size:1.5rem;
+    cursor:pointer;
+    z-index:10;
+  }
+
+  .image-nav button:hover{
+    background:rgba(255,255,255,0.4);
+  }
+
+  .prev-btn{
+    left:15px;
+  }
+
+  .next-btn{
+    right:15px;
+  }
+
+  .image-modal-meta{
+    margin-top:18px;
+  }
+
+  .image-modal-meta p{
+    line-height:1.7;
+    color:var(--m3-on-surface-variant);
+  }
+
+  /* THUMBNAILS */
+
+  .thumb-list{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-top:20px;
+  }
+
+  .thumb-list img{
+    width:100%;
+    height:90px;
+    object-fit:cover;
+    border-radius:10px;
+    cursor:pointer;
+    opacity:0.7;
+    transition:0.3s;
+  }
+
+  .thumb-list img.active{
+    opacity:1;
+    border:3px solid var(--m3-primary);
+    transform:scale(1.03);
+  }
+
+  @media(max-width:992px){
+
+    .newsletter-grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+
+    .image-modal-main img{
+      height:400px;
+    }
+
+  }
+
+  @media(max-width:680px){
+
+    .newsletter-grid{
+      grid-template-columns:1fr;
+    }
+
+    .image-modal-main img{
+      height:260px;
+    }
+
+    .thumb-list{
+      grid-template-columns:repeat(3,1fr);
+    }
+
+  }
+
+</style>
+{% endblock %}
+
+
+
+{% block content %}
+
+<main>
+
+  <section class="newsletter-page">
+
+    <h1>Newsletter Gallery</h1>
+
+    <p class="intro">
+      Tap any card to open the image gallery with swipe navigation.
+    </p>
+
+    <div class="newsletter-grid">
+
+      <div class="newsletter-card" onclick="openGallery(0)">
+        <h3>Campus Events</h3>
+        <p>Explore campus events and celebrations.</p>
+        <div class="card-footer">Tap to view</div>
+      </div>
+
+      <div class="newsletter-card" onclick="openGallery(1)">
+        <h3>Student Achievements</h3>
+        <p>Student awards and achievement highlights.</p>
+        <div class="card-footer">Tap to view</div>
+      </div>
+
+      <div class="newsletter-card" onclick="openGallery(2)">
+        <h3>Alumni Stories</h3>
+        <p>Alumni meetup and success stories.</p>
+        <div class="card-footer">Tap to view</div>
+      </div>
+
+      <div class="newsletter-card" onclick="openGallery(3)">
+        <h3>Industry Visits</h3>
+        <p>Corporate visits and industrial tours.</p>
+        <div class="card-footer">Tap to view</div>
+      </div>
+
+      <div class="newsletter-card" onclick="openGallery(4)">
+        <h3>Workshops & Trainings</h3>
+        <p>Training programs and workshop sessions.</p>
+        <div class="card-footer">Tap to view</div>
+      </div>
+
+      <div class="newsletter-card" onclick="openGallery(5)">
+        <h3>Community Outreach</h3>
+        <p>Social initiatives and outreach activities.</p>
+        <div class="card-footer">Tap to view</div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- MODAL -->
+
+  <div class="image-modal" id="imageModal">
+
+    <div class="image-modal-box">
+
+      <div class="image-modal-header">
+
+        <h2 id="modalTitle">Gallery</h2>
+
+        <button class="modal-close" onclick="closeGallery()">
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="image-modal-body">
+
+        <div class="image-modal-main">
+
+          <img id="modalImage" src="" alt="">
+
+
+          <!-- NAVIGATION -->
+
+          <div class="image-nav">
+
+            <button class="prev-btn" onclick="changeImage(-1)">
+              ❮
+            </button>
+
+            <button class="next-btn" onclick="changeImage(1)">
+              ❯
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="image-modal-meta">
+
+          <p id="modalDescription"></p>
+
+        </div>
+
+
+        <div class="thumb-list" id="thumbList"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+{% endblock %}
+
+
+
+
+{% block scripts %}
+
+<script>
+
+const galleryItems = [
+
+  {
+    title:'Campus Events',
+    description:'Photos from campus events and celebrations.',
+    images:[
+      'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200&auto=format&fit=crop'
+    ]
+  },
+
+  {
+    title:'Student Achievements',
+    description:'Awards and academic recognition moments.',
+    images:[
+      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1200&auto=format&fit=crop'
+    ]
+  },
+
+  {
+    title:'Alumni Stories',
+    description:'Alumni meetup and success stories.',
+    images:[
+      'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop'
+    ]
+  },
+
+  {
+    title:'Industry Visits',
+    description:'Corporate visits and industrial exposure.',
+    images:[
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1497366412874-3415097a27e7?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1497215842964-222b430dc094?q=80&w=1200&auto=format&fit=crop'
+    ]
+  },
+
+  {
+    title:'Workshops & Trainings',
+    description:'Training sessions and workshop highlights.',
+    images:[
+      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1515169067868-5387ec356754?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1516321165247-4aa89a48be28?q=80&w=1200&auto=format&fit=crop'
+    ]
+  },
+
+  {
+    title:'Community Outreach',
+    description:'Social work and community programs.',
+    images:[
+      'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1469571486292-b53601020f16?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop'
+    ]
+  }
+
+];
+
+
+
+let activeGallery = null;
+let activeImageIndex = 0;
+
+
+
+function openGallery(index){
+
+  activeGallery = galleryItems[index];
+
+  activeImageIndex = 0;
+
+  updateModal();
+
+  document.getElementById('imageModal').classList.add('active');
+
+  document.body.style.overflow = 'hidden';
+}
+
+
+
+function closeGallery(){
+
+  document.getElementById('imageModal').classList.remove('active');
+
+  document.body.style.overflow = 'auto';
+}
+
+
+
+function updateModal(){
+
+  if(!activeGallery) return;
+
+  const modalImage = document.getElementById('modalImage');
+
+  const modalTitle = document.getElementById('modalTitle');
+
+  const modalDescription = document.getElementById('modalDescription');
+
+  const thumbList = document.getElementById('thumbList');
+
+
+
+  modalTitle.textContent = activeGallery.title;
+
+  modalDescription.textContent = activeGallery.description;
+
+  modalImage.src = activeGallery.images[activeImageIndex];
+
+
+
+  thumbList.innerHTML = '';
+
+
+
+  activeGallery.images.forEach((src,index)=>{
+
+    const thumb = document.createElement('img');
+
+    thumb.src = src;
+
+    thumb.className = index === activeImageIndex ? 'active' : '';
+
+
+
+    thumb.onclick = ()=>{
+
+      activeImageIndex = index;
+
+      updateModal();
+    };
+
+
+
+    thumbList.appendChild(thumb);
+
+  });
+
+}
+
+
+
+function changeImage(direction){
+
+  if(!activeGallery) return;
+
+  activeImageIndex += direction;
+
+
+
+  if(activeImageIndex < 0){
+
+    activeImageIndex = activeGallery.images.length - 1;
+  }
+
+
+
+  if(activeImageIndex >= activeGallery.images.length){
+
+    activeImageIndex = 0;
+  }
+
+
+
+  updateModal();
+}
+
+
+
+/* CLOSE MODAL WHEN CLICK OUTSIDE */
+
+document.addEventListener('click',function(event){
+
+  const modal = document.getElementById('imageModal');
+
+  const modalBox = document.querySelector('.image-modal-box');
+
+
+
+  if(modal.classList.contains('active') &&
+     !modalBox.contains(event.target) &&
+     !event.target.closest('.newsletter-card')){
+
+    closeGallery();
+  }
+
+});
+
+</script>
+
+{% endblock %}

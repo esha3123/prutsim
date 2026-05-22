@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Academic Calendar - PRUTSIM{% endblock %}
+
+{% block head %}
+<meta http-equiv="refresh" content="0; url=https://saketgyanpeethkalyan-my.sharepoint.com/personal/iqac_prutsim_edu_in/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fiqac%5Fprutsim%5Fedu%5Fin%2FDocuments%2Fwebsite%2FAcademic%20Calander%2D23%2D2024%2Epdf&parent=%2Fpersonal%2Fiqac%5Fprutsim%5Fedu%5Fin%2FDocuments%2Fwebsite&ga=1">
+<style>
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+
+  .loading-text {
+    font-size: 1.2rem;
+    color: var(--m3-primary);
+    margin-bottom: 1rem;
+  }
+
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--m3-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="loading-container">
+  <div class="loading-text">Opening Academic Calendar...</div>
+  <div class="loading-spinner"></div>
+  <p>If you are not redirected automatically, <a href="https://saketgyanpeethkalyan-my.sharepoint.com/personal/iqac_prutsim_edu_in/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fiqac%5Fprutsim%5Fedu%5Fin%2FDocuments%2Fwebsite%2FAcademic%20Calander%2D23%2D2024%2Epdf&parent=%2Fpersonal%2Fiqac%5Fprutsim%5Fedu%5Fin%2FDocuments%2Fwebsite&ga=1">click here</a>.</p>
+</div>
+{% endblock %}

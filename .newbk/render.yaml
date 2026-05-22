@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: yaws
+    env: python
+    region: oregon # Choose your preferred region    buildCommand: |
+      pip install -r requirements.txt
+      chmod +x render_build.sh
+      ./render_build.sh
+    startCommand: gunicorn -c gunicorn.conf.py 'app:create_app("production")'
+    autoDeploy: false
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.8.0
+      - key: FLASK_ENV
+        value: production
+      - key: ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      # Database configuration - these values need to be set in Render dashboard
+      # Note: This is optional - app will use SQLite if not provided
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+    healthCheckPath: /
+    disk:
+      name: uploads
+      mountPath: /app/app/uploads
+      sizeGB: 1

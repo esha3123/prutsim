@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, request, session, redirect, url_for, render_template, current_app, flash
 
 frontend_bp = Blueprint('frontend', __name__)
@@ -104,6 +105,10 @@ def more(subpath):
 @frontend_bp.route('/<string:subpath>', methods=['GET'])
 def facu(subpath):
     try:
+        if subpath == 'placement':
+            image_dir = os.path.join(current_app.static_folder, 'placementcompany')
+            placementcompany_images = sorted([f for f in os.listdir(image_dir) if os.path.isfile(os.path.join(image_dir, f))])
+            return render_template('facu/placement.html', placementcompany_images=placementcompany_images)
         return render_template(f'facu/{subpath}.html')
     except:
         return render_template('404.html')
