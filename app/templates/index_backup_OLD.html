@@ -1,0 +1,952 @@
+{% extends "base.html" %}
+
+{% block title %}Home - PRUTSIM{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-carousel">
+    <div class="carousel-item active">
+      <video autoplay muted loop class="hero-video" playsinline>
+        <source src="{{ url_for('static', filename='video.webm') }}" type="video/webm" media="(min-width: 1200px)">
+        <source src="{{ url_for('static', filename='video.webm') }}" type="video/mp4" media="(max-width: 1199px)">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <div class="carousel-indicators">
+    </div>
+  </div>
+</section>
+
+<div class="caption-card">
+  <marquee id="caption-text" direction="left" scrollamount="13">
+    <span class="caption-text">Admission Started 2025-2026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Admission Started 2025-2026 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Admission Started 2025-2026 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     Admission Started 2025-2026 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     Admission Started 2025-2026 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     Admission Started 2025-2026 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    
+  </marquee>
+</div>
+
+<div class="noticesvisionmission">
+  <div class="notices">
+    <div class="notice-board">
+      <div class="notice-title"> Latest Notices</div>
+      <div class="date-time" id="dateTime"></div>
+      <div id="generalNoticesContainer" class="notices-wrapper active-tab">
+        <div class="notices-content" id="generalNoticeContent">
+         
+        </div>
+        <button id="loadMoreGeneralButton" class="load-more-btn" style="display:none;">Load More</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="message-carousel">
+    <div class="message-slides">
+      <div class="message-slide active">
+        <div class="message-image">
+          <img src="{{ url_for('static', filename='babuji.jpeg') }}" alt="Prof. Dr. Ram Ujagar Tiwari">
+        </div>
+        <div class="message-content">
+          <h3>Late - Dr.Ram Ujagar Tiwari</h3>
+          <h4>Founder Chairman</h4>
+          <div class="message-text">
+            <p>My Dear Friends,</p>
+            <p>I have great pleasure and sincere gratitude towards GOD, who made me instrumental to establish this great Institution. I feel that SERVICE THROUGH EDUCATION IS SERVICE TO HUMANITY AND THIS SERVICE TO MANKIND IS SERVICE TO GOD. Our passion is to excel in 'QUALITY EDUCATION'. Quality never comes by accident. It is always the result of High Intention, Sincere effort towards right direction and skillful Execution.</p>
+            <p>Our Programme is "Move To Grow" – focus on students' 'Personality Development', who are responsible leaders of tomorrow.</p>
+          </div>
+        </div>
+      </div>
+      <div class="message-slide">
+        <div class="message-image">
+          <img src="{{ url_for('static', filename='Pramod.R.t.jpeg') }}" alt="Dr. Pramod R. Tiwari">
+        </div>
+        <div class="message-content">
+          <h3>Late - Pramod R. Tiwari</h3>
+          <h4>Founder Hon. Secretary</h4>
+          <div class="message-text">
+            <p>"Let us be the wings of others' dreams" Welcome to Saket Gyanpeeth established in 1994 with our motto "Gyanam Anantam". A "vibrant innovative temple of service". The main purpose of this trust is to render untiring selfless service to the society through value based education.</p>
+            <p>चाहे थक जाये पर राह नहीं थकती, चाहे थक जाये पर चाह नहीं थकती। हुये आज इनके कितने साल पर सेवा से इनकी चाह नहीं थकती।।</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="message-nav-controls"></div>
+    <div class="message-controls">
+      <span class="message-indicator active"></span>
+      <span class="message-indicator"></span>
+    </div>
+
+
+<link rel="stylesheet"
+      <div class="vision-mission-content">
+        <div class="vm-box">
+          <div class="content" id="vision">
+            <h2>Our Vision</h2>
+            <div class="expandable-content">
+              <p>“To became a pioneer in Management Education by creating global leaders with strong ethical and social commitment”</p>
+              <div class="expanded-content"> -->
+                <!-- <p>We envision Saket College as a center of excellence that transforms students into leaders.</p> -->
+              <!-- </div>
+              <button class="expand-btn" onclick="toggleContent('vision')">Read More</button>
+            </div>
+          </div>
+          <div class="content" id="mission">
+            <h2>Our Mission</h2>
+            <div class="expandable-content">
+              <ul class="mission-list">
+                <li>To equip students with advanced knowledge and skills.</li>
+              </ul>
+              <div class="expanded-content">
+                <ul class="mission-list">
+                  <li>To provide quality value-based education.</li>
+                  <li>To metamorphose budding talent into managers par excellence.</li>
+                  <li>To instill a sense of social responsibility so as to create ethical leaders.</li>
+                  <li>To provide students with competitive edge in dynamic / global business environment scenario.</li>
+                  <li>To enrich students with pragmatic knowledge.
+                      To facilitate personality development of the students.</li>
+                  <li>To offer a platform for student community to develop professionally.</li>
+                </ul>
+              </div> -->
+              <!-- <button class="expand-btn" onclick="toggleContent('mission')">Read More</button> -->
+            </div>
+          </div>
+        </div>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vision-mission.css') }}">
+        <div class="message-slides">
+          <div class="message-slide active">
+            <div class="message-image">
+              <img src="{{ url_for('static', filename='babuji.jpeg') }}" alt="Prof. Dr. Ram Ujagar Tiwari">
+            </div>
+            <div class="message-content">
+              <h3>Late - Dr.Ram Ujagar Tiwari</h3>
+              <h4>Founder Chairman</h4>
+              <div class="message-text">
+                <p>My Dear Friends,</p>
+
+              <p>    I have great pleasure and sincere gratitude towards GOD, who made me instrumental to establish this great Institution. I feel that SERVICE THROUGH EDUCATION IS SERVICE TO HUMANITY AND THIS SERVICE TO MANKIND IS SERVICE TO GOD. 
+                Our passion is to excel in 'QUALITY EDUCATION'. Quality never comes by accident. It is always the result of High Intention, Sincere effort towards right direction and skillful Execution.</p>
+                  <p>  Our Programme is “Move To Grow” – focus on students’ 'Personality Development', who are responsible leaders of tomorrow.</p>
+              </div>
+            </div>
+          </div>
+          <div class="message-slide">
+            <div class="message-image">
+              <img src="{{ url_for('static', filename='Pramod.R.t.jpeg') }}" alt="Dr. Pramod R. Tiwari">
+            </div>
+            <div class="message-content">
+              <h3>Late - Pramod R. Tiwari</h3>
+              <h4>FounderHon. Secretary</h4>
+              <div class="message-text">
+                <p>"Let us be the wings of others' dreams"
+                  Welcome to Saket Gyanpeeth established in 1994 with our motto "Gyanam Anantam". A "vibrant innovative temple of service".
+                   The main purpose of this trust is to render untiring selfless service to the society through value based education.</p>
+                   <p>चाहे थक जाये पर राह नहीं थकती,
+                    चाहे थक जाये पर चाह नहीं थकती।
+                    हुये आज इनके कितने साल पर सेवा से इनकी चाह नहीं थकती।।</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="message-nav-controls">
+
+        </div>
+        <div class="message-controls">
+          <span class="message-indicator active"></span>
+          <span class="message-indicator"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vision-mission.css') }}">
+<section>
+<div class="container">
+<svg id="mainSvg" width="100%" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Why PRUTSIM — circular infographic</title>
+  <desc>Nine features of PRUTSIM arranged in a circle around a central logo.</desc>
+  <defs>
+    <radialGradient id="bggrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a3a6e"/>
+      <stop offset="100%" stop-color="#0a1f4a"/>
+    </radialGradient>
+    <radialGradient id="centerglow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e8a020" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#e8a020" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="680" height="680" fill="url(#bggrad)" rx="16"/>
+  <circle cx="340" cy="340" r="260" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.08"/>
+  <circle cx="340" cy="340" r="195" fill="none" stroke="#e8a020" stroke-width="0.5" stroke-opacity="0.2"/>
+  <circle cx="340" cy="340" r="80" fill="none" stroke="#e8a020" stroke-width="0.8" stroke-opacity="0.3"/>
+  <circle cx="340" cy="340" r="100" fill="url(#centerglow)"/>
+  <circle cx="340" cy="340" r="72" fill="#0e2a5e" stroke="#e8a020" stroke-width="2"/>
+  <text x="340" y="330" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-weight="700" font-size="14" fill="#ffffff">WHY</text>
+  <text x="340" y="352" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-weight="900" font-size="18" fill="#e8a020">PRUTSIM</text>
+
+  <!-- Feature 1: 100% Placement Assistance -->
+  <g class="feature" id="f0" data-label="100% Placement Assistance" onclick="activateFeature(0)">
+    <line class="spoke" x1="340" y1="268" x2="340" y2="148" stroke="#e8a020" stroke-width="0.6" stroke-opacity="0.35"/>
+    <circle class="pulse-ring" cx="340" cy="110" r="40"/>
+    <circle class="node-circle" cx="340" cy="110" r="38" fill="#0e2a5e" stroke="#e8a020" stroke-width="1.5"/>
+    <g transform="translate(340,110)">
+      <rect class="icon-part" x="-13" y="-8" width="26" height="18" rx="3" fill="none" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="icon-part" d="M-7,-8 L-7,-12 Q-7,-14 -5,-14 L5,-14 Q7,-14 7,-12 L7,-8" fill="none" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round"/>
+      <line class="icon-part" x1="-13" y1="-1" x2="13" y2="-1" stroke="#e8a020" stroke-width="1.5"/>
+      <circle class="icon-dot" cx="4" cy="-1" r="2.5" fill="#e8a020" stroke="none"/>
+    </g>
+    <text class="node-label" x="340" y="161" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">100% Placement</text>
+    <text class="node-label" x="340" y="173" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Assistance</text>
+  </g>
+
+  <!-- Feature 2: Industry-Driven Curriculum -->
+  <g class="feature" id="f1" data-label="Industry-Driven Curriculum" onclick="activateFeature(1)">
+    <line class="spoke" x1="390" y1="291" x2="461" y2="187" stroke="#e8a020" stroke-width="0.6" stroke-opacity="0.35"/>
+    <circle class="pulse-ring" cx="475" cy="163" r="40"/>
+    <circle class="node-circle" cx="475" cy="163" r="38" fill="#0e2a5e" stroke="#e8a020" stroke-width="1.5"/>
+    <g transform="translate(475,163)">
+      <rect class="icon-part" x="-10" y="-14" width="20" height="22" rx="2" fill="none" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line class="icon-part" x1="-6" y1="-8" x2="2" y2="-8" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-6" y1="-3" x2="6" y2="-3" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-6" y1="2" x2="4" y2="2" stroke="#e8a020" stroke-width="1.5"/>
+      <circle class="icon-part" cx="7" cy="6" r="5" fill="#0e2a5e" stroke="#e8a020" stroke-width="1.5"/>
+      <circle class="icon-dot" cx="7" cy="6" r="2" fill="#e8a020" stroke="none"/>
+    </g>
+    <text class="node-label" x="475" y="213" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Industry-Driven</text>
+    <text class="node-label" x="475" y="225" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Curriculum</text>
+  </g>
+
+  <!-- Feature 3: Experienced Faculty -->
+  <g class="feature" id="f2" data-label="Experienced Faculty" onclick="activateFeature(2)">
+    <line class="spoke" x1="412" y1="332" x2="513" y2="311" stroke="#e8a020" stroke-width="0.6" stroke-opacity="0.35"/>
+    <circle class="pulse-ring" cx="550" cy="303" r="40"/>
+    <circle class="node-circle" cx="550" cy="303" r="38" fill="#0e2a5e" stroke="#e8a020" stroke-width="1.5"/>
+    <g transform="translate(550,303)">
+      <rect class="icon-part" x="-12" y="-14" width="18" height="12" rx="2" fill="none" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line class="icon-part" x1="3" y1="-14" x2="3" y2="-18" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-3" y1="-18" x2="9" y2="-18" stroke="#e8a020" stroke-width="1.5"/>
+      <circle class="icon-part" cx="-5" cy="4" r="4" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-5" y1="8" x2="-5" y2="14" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-5" y1="14" x2="-9" y2="18" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-5" y1="14" x2="-1" y2="18" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-9" y1="10" x2="-1" y2="10" stroke="#e8a020" stroke-width="1.5"/>
+    </g>
+    <text class="node-label" x="550" y="353" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Experienced</text>
+    <text class="node-label" x="550" y="365" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Faculty</text>
+  </g>
+
+  <!-- Feature 4: Live Projects & Internships -->
+  <g class="feature" id="f3" data-label="Live Projects &amp; Internships" onclick="activateFeature(3)">
+    <line class="spoke" x1="404" y1="368" x2="492" y2="422" stroke="#e8a020" stroke-width="0.6" stroke-opacity="0.35"/>
+    <circle class="pulse-ring" cx="516" cy="452" r="40"/>
+    <circle class="node-circle" cx="516" cy="452" r="38" fill="#0e2a5e" stroke="#e8a020" stroke-width="1.5"/>
+    <g transform="translate(516,452)">
+      <rect class="icon-part" x="-14" y="-12" width="28" height="18" rx="2" fill="none" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line class="icon-part" x1="-18" y1="6" x2="18" y2="6" stroke="#e8a020" stroke-width="1.5"/>
+      <polyline class="icon-part" points="-8,0 -3,-6 3,-1 8,-8" fill="none" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text class="node-label" x="516" y="502" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Live Projects &amp;</text>
+    <text class="node-label" x="516" y="514" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Internships</text>
+  </g>
+
+  <!-- Feature 5: State-of-the-Art Campus -->
+  <g class="feature" id="f4" data-label="State-of-the-Art Campus" onclick="activateFeature(4)">
+    <line class="spoke" x1="360" y1="408" x2="388" y2="510" stroke="#e8a020" stroke-width="0.6" stroke-opacity="0.35"/>
+    <circle class="pulse-ring" cx="393" cy="546" r="40"/>
+    <circle class="node-circle" cx="393" cy="546" r="38" fill="#0e2a5e" stroke="#e8a020" stroke-width="1.5"/>
+    <g transform="translate(393,546)">
+      <rect class="icon-part" x="-14" y="-12" width="28" height="24" rx="1" fill="none" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect class="icon-part" x="-6" y="-6" width="5" height="5" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <rect class="icon-part" x="1" y="-6" width="5" height="5" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <rect class="icon-part" x="-6" y="2" width="5" height="5" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <rect class="icon-part" x="1" y="2" width="5" height="5" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <rect class="icon-part" x="-4" y="9" width="8" height="3" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="0" y1="-12" x2="0" y2="-18" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-3" y1="-15" x2="3" y2="-15" stroke="#e8a020" stroke-width="1.5"/>
+    </g>
+    <text class="node-label" x="393" y="596" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">State-of-the-Art</text>
+    <text class="node-label" x="393" y="608" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Campus</text>
+  </g>
+
+  <!-- Feature 6: Alumni Network & Mentorship -->
+  <g class="feature" id="f5" data-label="Alumni Network &amp; Mentorship" onclick="activateFeature(5)">
+    <line class="spoke" x1="320" y1="408" x2="292" y2="510" stroke="#e8a020" stroke-width="0.6" stroke-opacity="0.35"/>
+    <circle class="pulse-ring" cx="287" cy="546" r="40"/>
+    <circle class="node-circle" cx="287" cy="546" r="38" fill="#0e2a5e" stroke="#e8a020" stroke-width="1.5"/>
+    <g transform="translate(287,546)">
+      <circle class="icon-part" cx="0" cy="-4" r="5" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <circle class="icon-part" cx="-11" cy="8" r="4" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <circle class="icon-part" cx="11" cy="8" r="4" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-4" y1="0" x2="-9" y2="5" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="4" y1="0" x2="9" y2="5" stroke="#e8a020" stroke-width="1.5"/>
+      <path class="icon-part" d="M-4,1 Q0,6 4,1" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+    </g>
+    <text class="node-label" x="287" y="596" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Alumni Network</text>
+    <text class="node-label" x="287" y="608" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">&amp; Mentorship</text>
+  </g>
+
+  <!-- Feature 7: Cutting-Edge Research -->
+  <g class="feature" id="f6" data-label="Cutting-Edge Research" onclick="activateFeature(6)">
+    <line class="spoke" x1="276" y1="368" x2="188" y2="422" stroke="#e8a020" stroke-width="0.6" stroke-opacity="0.35"/>
+    <circle class="pulse-ring" cx="164" cy="452" r="40"/>
+    <circle class="node-circle" cx="164" cy="452" r="38" fill="#0e2a5e" stroke="#e8a020" stroke-width="1.5"/>
+    <g transform="translate(164,452)">
+      <line class="icon-part" x1="-8" y1="12" x2="8" y2="12" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round"/>
+      <line class="icon-part" x1="0" y1="12" x2="0" y2="4" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round"/>
+      <ellipse class="icon-part" cx="0" cy="-2" rx="4" ry="6" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="0" y1="-8" x2="0" y2="-14" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round"/>
+      <line class="icon-part" x1="-4" y1="-14" x2="4" y2="-14" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round"/>
+      <path class="icon-part" d="M4,-10 Q10,-8 10,0" fill="none" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text class="node-label" x="164" y="502" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Cutting-Edge</text>
+    <text class="node-label" x="164" y="514" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Research</text>
+  </g>
+
+  <!-- Feature 8: Global Corporate Tie-Ups -->
+  <g class="feature" id="f7" data-label="Global Corporate Tie-Ups" onclick="activateFeature(7)">
+    <line class="spoke" x1="268" y1="332" x2="167" y2="311" stroke="#e8a020" stroke-width="0.6" stroke-opacity="0.35"/>
+    <circle class="pulse-ring" cx="130" cy="303" r="40"/>
+    <circle class="node-circle" cx="130" cy="303" r="38" fill="#0e2a5e" stroke="#e8a020" stroke-width="1.5"/>
+    <g transform="translate(130,303)">
+      <circle class="icon-part" cx="0" cy="-4" r="10" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <ellipse class="icon-part" cx="0" cy="-4" rx="5" ry="10" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-10" y1="-4" x2="10" y2="-4" stroke="#e8a020" stroke-width="1.5"/>
+      <path class="icon-part" d="M-7,5 Q-3,9 3,9 Q6,9 7,5" fill="none" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text class="node-label" x="130" y="353" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Global Corporate</text>
+    <text class="node-label" x="130" y="365" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Tie-Ups</text>
+  </g>
+
+  <!-- Feature 9: Leadership & Entrepreneurship Training -->
+  <g class="feature" id="f8" data-label="Leadership &amp; Entrepreneurship Training" onclick="activateFeature(8)">
+    <line class="spoke" x1="290" y1="291" x2="219" y2="187" stroke="#e8a020" stroke-width="0.6" stroke-opacity="0.35"/>
+    <circle class="pulse-ring" cx="205" cy="163" r="40"/>
+    <circle class="node-circle" cx="205" cy="163" r="38" fill="#0e2a5e" stroke="#e8a020" stroke-width="1.5"/>
+    <g transform="translate(205,163)">
+      <circle class="icon-part" cx="4" cy="-10" r="6" fill="none" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="4" y1="-4" x2="4" y2="2" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round"/>
+      <line class="icon-part" x1="1" y1="2" x2="7" y2="2" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round"/>
+      <path class="icon-part" d="M-8,-2 Q-10,4 -6,6 L6,6 L6,10 L-6,10" fill="none" stroke="#e8a020" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line class="icon-part" x1="-6" y1="10" x2="6" y2="10" stroke="#e8a020" stroke-width="1.5"/>
+      <line class="icon-part" x1="-6" y1="13" x2="6" y2="13" stroke="#e8a020" stroke-width="1.5"/>
+    </g>
+    <text class="node-label" x="205" y="213" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Leadership &amp;</text>
+    <text class="node-label" x="205" y="225" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Entrepreneurship</text>
+  </g>
+
+</svg>
+</div>
+
+<!-- Info Bar -->
+<div class="info-bar">
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+  <div class="info-card">
+    <div class="info-number" id="infoNum">1</div>
+    <div class="info-text" id="infoText">100% Placement Assistance</div>
+  </div>
+  <div class="dots" id="dotsContainer"></div>
+  <!-- <div class="controls">
+    <button class="btn" onclick="stepFeature(-1)">◀ Prev</button>
+    <button class="btn pause-btn" id="pauseBtn" onclick="togglePause()">⏸ Pause</button>
+    <button class="btn" onclick="stepFeature(1)">Next ▶</button>
+  </div> -->
+</div>
+
+<script>
+  const INTERVAL = 2200;   // ms per feature
+  const TOTAL = 9;
+
+  const features = document.querySelectorAll('.feature');
+  const labels   = Array.from(features).map(f => f.dataset.label);
+  const dotsWrap = document.getElementById('dotsContainer');
+  const progressBar = document.getElementById('progressBar');
+
+  let current = 0;
+  let paused  = false;
+  let startTs = null;
+  let rafId   = null;
+
+  // Build dot indicators
+  labels.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.onclick = () => { activateFeature(i); if (!paused) restartAnim(); };
+    dotsWrap.appendChild(d);
+  });
+
+  function activateFeature(idx) {
+    features.forEach(f => f.classList.remove('active'));
+    dotsWrap.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+    features[idx].classList.add('active');
+    dotsWrap.children[idx].classList.add('active');
+    document.getElementById('infoNum').textContent  = idx + 1;
+    document.getElementById('infoText').textContent = labels[idx];
+    current = idx;
+  }
+
+  function stepFeature(dir) {
+    activateFeature((current + dir + TOTAL) % TOTAL);
+    if (!paused) restartAnim();
+  }
+
+  function togglePause() {
+    paused = !paused;
+    document.getElementById('pauseBtn').textContent = paused ? '▶ Play' : '⏸ Pause';
+    if (paused) {
+      cancelAnimationFrame(rafId);
+      progressBar.style.width = '0%';
+    } else {
+      restartAnim();
+    }
+  }
+
+  function restartAnim() {
+    cancelAnimationFrame(rafId);
+    startTs = null;
+    tick();
+  }
+
+  function tick(ts) {
+    if (!startTs) startTs = ts || performance.now();
+    const elapsed = (ts || performance.now()) - startTs;
+    const pct = Math.min(elapsed / INTERVAL * 100, 100);
+    progressBar.style.width = pct + '%';
+
+    if (elapsed >= INTERVAL) {
+      activateFeature((current + 1) % TOTAL);
+      startTs = null;
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  // Kick off
+  activateFeature(0);
+  restartAnim();
+</script>
+</section>
+
+
+
+<!-- <section class="features">
+
+  <div class="features-grid">
+    <div class="feature-card">
+  
+      <h3>PRUTSIM Life</h3>
+      <p>Life @PRUTSIM is Awesome</p>
+    </div>
+    <div class="feature-card">
+   
+      <h3>MMS/MBA Program</h3>
+      <p>2 Years Full Time</p>
+    </div>
+    <div class="feature-card">
+   
+      <h3>Industrial Visit</h3>
+      <p>VIsit To Dubai, Manali, Dalhouse.</p>
+    </div>
+    <div class="feature-card">
+     
+      <h3>Add On Certification</h3>
+      <p>College known for excellence to ensure a high-quality education that aligns with your career goals.</p>
+    </div>
+     <div class="feature-card">
+      
+      <h3>Add On Certification</h3>
+      <p>College known for excellence to ensure a high-quality education that aligns with your career goals.</p>
+    </div>
+  </div>
+</section> -->
+
+<section class="publications-magazines">
+  <div class="container">
+    <h2 class="section-title">Student Testimonials</h2>
+    <div class="ugc-centers-container" style="display: flex; gap: 20px; justify-content: center;">
+      <!-- Left Testimonial Section -->
+      <div class="testimonial-carousel-container" style="flex: 1; max-width: auto;">
+        <div class="testimonial-carousel">
+          <div class="testimonial-slide active">
+            <img src="{{ url_for('static', filename='testimonal(1).png') }}" alt="Student Testimonial 1">
+          </div>
+          <div class="testimonial-slide">
+            <img src="{{ url_for('static', filename='testimonal(2).png') }}" alt="Student Testimonial 2">
+          </div>
+        </div>
+        <div class="testimonial-dot">
+          <span class="active"></span>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- Right Testimonial Section -->
+      <div class="testimonial-carousel-container" style="flex: 1; max-width: auto;">
+        <div class="testimonial-carousel">
+          <div class="testimonial-slide active">
+            <img src="{{ url_for('static', filename='testimonal(3).png') }}" alt="Student Testimonial 3">
+          </div>
+          <div class="testimonial-slide">
+            <img src="{{ url_for('static', filename='testimonal(4).png') }}" alt="Student Testimonial 4">
+          </div>
+        </div>
+        <div class="testimonial-dot">
+          <span class="active"></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- video section -->
+<section>
+   <div class="video-container">
+
+    <!-- Box 1 -->
+    <div class="video-box" onclick="openVideo('Alumni')">
+      Alumni Speak
+    </div>
+
+    <!-- Box 2 -->
+    <div class="video-box" onclick="openVideo('Student')">
+      Student Speak
+    </div>
+
+    <!-- Box 3 -->
+    <div class="video-box" onclick="openVideo('Corporate')">
+      Corporate Speak
+    </div>
+
+  </div>
+
+
+  <!-- Popup -->
+
+  <div class="popup" id="popup">
+
+    <div class="popup-content">
+
+      <span class="close-btn" onclick="closeVideo()">&times;</span>
+
+      <!-- Previous Button -->
+      <button class="nav-btn prev-btn" onclick="prevVideo()">❮</button>
+
+      <!-- Video -->
+      <video id="popupVideo" controls>
+        <source id="videoSource" src="" type="video/mp4">
+      </video>
+
+      <!-- Next Button -->
+      <button class="nav-btn next-btn" onclick="nextVideo()">❯</button>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    let currentVideos = [];
+    let currentIndex = 0;
+
+    // Multiple videos for each box
+
+    const videoData = {
+
+      Alumni: [
+        "/static/homevideo/Sports Hype Video 30 Sec.mp4",
+        "/static/homevideo/video2.mp4",
+        "/static/homevideo/video3.mp4.mp4"
+      ],
+
+      Student: [
+        "annual1.mp4",
+        "annual2.mp4"
+      ],
+
+      Corporate: [
+        "sports1.mp4",
+        "sports2.mp4",
+        "sports3.mp4"
+      ]
+
+    };
+
+
+
+    function openVideo(category){
+
+      currentVideos = videoData[category];
+      currentIndex = 0;
+
+      loadVideo();
+
+      document.getElementById("popup").style.display = "flex";
+    }
+
+
+
+    function loadVideo(){
+
+      let video = document.getElementById("popupVideo");
+      let source = document.getElementById("videoSource");
+
+      source.src = currentVideos[currentIndex];
+
+      video.load();
+      video.play();
+    }
+
+
+
+    function nextVideo(){
+
+      currentIndex++;
+
+      if(currentIndex >= currentVideos.length){
+        currentIndex = 0;
+      }
+
+      loadVideo();
+    }
+
+
+
+    function prevVideo(){
+
+      currentIndex--;
+
+      if(currentIndex < 0){
+        currentIndex = currentVideos.length - 1;
+      }
+
+      loadVideo();
+    }
+
+
+
+    function closeVideo(){
+
+      let video = document.getElementById("popupVideo");
+
+      video.pause();
+      video.currentTime = 0;
+
+      document.getElementById("popup").style.display = "none";
+    }
+
+  </script>
+
+</section>
+
+<!-- Our Recruiters Section -->
+<section class="publications-magazines">
+  <div class="container">
+    <h2 class="section-title">Our Recruiters</h2>
+    <div class="ugc-centers-container" style="display: flex; gap: 20px; justify-content: center;">
+      <!-- Left Recruiters Section -->
+      <div class="testimonial-carousel-container" style="flex: 1; max-width: 45%;">
+        <div class="testimonial-carousel">
+          <div class="testimonial-slide active">
+            <img src="{{ url_for('static', filename='recruiters1.jpg') }}" alt="Our Recruiters 1">
+          </div>
+          <div class="testimonial-slide">
+            <img src="{{ url_for('static', filename='recruiters2.jpg') }}" alt="Our Recruiters 2">
+          </div>
+        </div>
+        <div class="testimonial-dot">
+          <span class="active"></span>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- Right Recruiters Section -->
+      <div class="testimonial-carousel-container" style="flex: 1; max-width: 45%;">
+        <div class="testimonial-carousel">
+          <div class="testimonial-slide active">
+            <img src="{{ url_for('static', filename='recruiters2.jpg') }}" alt="Our Recruiters 2">
+          </div>
+          <div class="testimonial-slide">
+            <img src="{{ url_for('static', filename='recruiters3.jpg') }}" alt="Our Recruiters 3">
+          </div>
+        </div>
+        <div class="testimonial-dot">
+          <span class="active"></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/campus-life.js') }}"></script>
+<script>
+  // Testimonials and Recruiters Slider Functionality
+  function initSlider(carouselContainers) {
+    carouselContainers.forEach(container => {
+      const slides = container.querySelector('.testimonial-carousel').children;
+      const dots = container.querySelector('.testimonial-dot').children;
+      let currentSlide = 0;
+      
+      function showSlide(index) {
+        // Hide all slides and remove active class from dots
+        Array.from(slides).forEach(slide => slide.classList.remove('active'));
+        Array.from(dots).forEach(dot => dot.classList.remove('active'));
+        
+        // Show current slide and activate corresponding dot
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+      }
+      
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+      
+      // Add click events to dots
+      Array.from(dots).forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          currentSlide = index;
+          showSlide(currentSlide);
+        });
+      });
+      
+      // Start automatic sliding
+      setInterval(nextSlide, 5000); // Change slides every 5 seconds
+    });
+  }
+
+  // Initialize all sliders when the document is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const testimonialContainers = document.querySelectorAll('.testimonial-carousel-container');
+    initSlider(testimonialContainers);
+  });
+
+  function ViewCampusImages(category, title) {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000;';
+
+    const modalContent = document.createElement('div');
+    modalContent.className = 'modal-content';
+    modalContent.style.cssText = 'background-color:#fff; border-radius:8px; width:80%; max-width:1200px; max-height:90vh; overflow-y:auto; padding:20px; position:relative;';
+
+    const closeBtn = document.createElement('span');
+    closeBtn.innerHTML = '&times;';
+    closeBtn.className = 'close-button';
+    closeBtn.style.cssText = 'position:absolute; top:10px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; color:#333;';
+    closeBtn.onclick = function() {
+      document.body.removeChild(modal);
+    };
+    
+    const header = document.createElement('h2');
+    header.textContent = title;
+    header.style.cssText = 'margin-bottom:20px; color:#333; border-bottom:1px solid #ddd; padding-bottom:10px;';
+
+    const imageGrid = document.createElement('div');
+    imageGrid.className = 'image-grid';
+    imageGrid.style.cssText = 'display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:15px; margin-top:20px;';
+
+    const loadingDiv = document.createElement('div');
+    loadingDiv.textContent = 'Loading images...';
+    loadingDiv.style.cssText = 'text-align:center; padding:20px; width:100%;';
+    
+    modalContent.appendChild(closeBtn);
+    modalContent.appendChild(header);
+    modalContent.appendChild(loadingDiv);
+    modalContent.appendChild(imageGrid);
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    fetch(`/api/images?category=${category}&per_page=20`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch images');
+        }
+        return response.json();
+      })
+      .then(data => {
+        loadingDiv.style.display = 'none';
+        
+        if (!data.images || data.images.length === 0) {
+          const noImagesMsg = document.createElement('p');
+          noImagesMsg.textContent = `No ${title.toLowerCase()} images available.`;
+          noImagesMsg.style.cssText = 'text-align:center; padding:20px; width:100%;';
+          imageGrid.appendChild(noImagesMsg);
+          return;
+        }
+        data.images.forEach(image => {
+          const imgContainer = document.createElement('div');
+          imgContainer.className = 'image-item';
+          imgContainer.style.cssText = 'border-radius:8px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:relative;';
+          
+          const img = document.createElement('img');
+          img.src = image.url;
+          img.alt = image.title;
+          img.style.cssText = 'width:100%; height:200px; object-fit:cover; display:block;';
+          const overlay = document.createElement('div');
+          overlay.className = 'image-overlay';
+          overlay.style.cssText = 'position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.7); color:white; padding:10px; transition:all 0.3s ease;';
+          
+          const imageTitle = document.createElement('h4');
+          imageTitle.textContent = image.title;
+          imageTitle.style.cssText = 'margin:0 0 5px 0; font-size:16px;';
+          
+          overlay.appendChild(imageTitle);
+          
+          if (image.description) {
+            const imageDesc = document.createElement('p');
+            imageDesc.textContent = image.description;
+            imageDesc.style.cssText = 'margin:0; font-size:14px;';
+            overlay.appendChild(imageDesc);
+          }
+          
+          img.onclick = function() {
+            const fullView = document.createElement('div');
+            fullView.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); display:flex; justify-content:center; align-items:center; z-index:1100;';
+            
+            const fullImg = document.createElement('img');
+            fullImg.src = image.url;
+            fullImg.alt = image.title;
+            fullImg.style.cssText = 'max-width:90%; max-height:90%; object-fit:contain;';
+            
+            fullView.appendChild(fullImg);
+            fullView.onclick = function() {
+              document.body.removeChild(fullView);
+            };
+            
+            document.body.appendChild(fullView);
+          };
+          
+          imgContainer.appendChild(img);
+          imgContainer.appendChild(overlay);
+          imageGrid.appendChild(imgContainer);
+        });
+        if (data.has_next) {
+          const loadMoreBtn = document.createElement('button');
+          loadMoreBtn.textContent = 'Load More';
+          loadMoreBtn.style.cssText = 'grid-column:1/-1; padding:10px 20px; background-color:#4a89dc; color:white; border:none; border-radius:4px; margin-top:15px; cursor:pointer; font-weight:bold;';
+          let currentPage = 1;
+          
+          loadMoreBtn.onclick = function() {
+            currentPage++;
+    
+            loadMoreBtn.textContent = 'Loading...';
+            loadMoreBtn.disabled = true;
+            
+            fetch(`/api/images?category=${category}&per_page=20&page=${currentPage}`)
+              .then(response => response.json())
+              .then(moreData => {
+                moreData.images.forEach(image => {
+                  const imgContainer = document.createElement('div');
+                  imgContainer.className = 'image-item';
+                  imgContainer.style.cssText = 'border-radius:8px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:relative;';
+                  
+                  const img = document.createElement('img');
+                  img.src = image.url;
+                  img.alt = image.title;
+                  img.style.cssText = 'width:100%; height:200px; object-fit:cover; display:block;';
+                  
+                  const overlay = document.createElement('div');
+                  overlay.className = 'image-overlay';
+                  overlay.style.cssText = 'position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.7); color:white; padding:10px;';
+                  
+                  const imageTitle = document.createElement('h4');
+                  imageTitle.textContent = image.title;
+                  imageTitle.style.cssText = 'margin:0 0 5px 0; font-size:16px;';
+                  
+                  overlay.appendChild(imageTitle);
+                  
+                  if (image.description) {
+                    const imageDesc = document.createElement('p');
+                    imageDesc.textContent = image.description;
+                    imageDesc.style.cssText = 'margin:0; font-size:14px;';
+                    overlay.appendChild(imageDesc);
+                  }
+
+                  img.onclick = function() {
+                    const fullView = document.createElement('div');
+                    fullView.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); display:flex; justify-content:center; align-items:center; z-index:1100;';
+                    
+                    const fullImg = document.createElement('img');
+                    fullImg.src = image.url;
+                    fullImg.alt = image.title;
+                    fullImg.style.cssText = 'max-width:90%; max-height:90%; object-fit:contain;';
+                    
+                    fullView.appendChild(fullImg);
+                    fullView.onclick = function() {
+                      document.body.removeChild(fullView);
+                    };
+                    
+                    document.body.appendChild(fullView);
+                  };
+                  
+                  imgContainer.appendChild(img);
+                  imgContainer.appendChild(overlay);
+                  imageGrid.appendChild(imgContainer);
+                });
+                
+                loadMoreBtn.disabled = false;
+                loadMoreBtn.textContent = 'Load More';
+                
+                if (!moreData.has_next) {
+                  loadMoreBtn.style.display = 'none';
+                }
+              })
+              .catch(error => {
+                console.error('Error loading more images:', error);
+                loadMoreBtn.textContent = 'Error Loading More';
+                setTimeout(() => {
+                  loadMoreBtn.textContent = 'Try Again';
+                  loadMoreBtn.disabled = false;
+                }, 2000);
+              });
+          };
+          
+          imageGrid.appendChild(loadMoreBtn);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching images:', error);
+        loadingDiv.textContent = 'Error loading images. Please try again later.';
+        loadingDiv.style.color = 'red';
+      });
+  
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        document.body.removeChild(modal);
+      }
+    });
+    
+    document.body.style.overflow = 'hidden';
+    
+    closeBtn.addEventListener('click', function() {
+      document.body.style.overflow = '';
+    });
+    
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        document.body.style.overflow = '';
+      }
+    });
+  } 
+</script>
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+    // Initialize GSAP and ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+</script>
+<script src="{{ url_for('static', filename='js/gsap-animations.js') }}"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
+{% endblock content %}
