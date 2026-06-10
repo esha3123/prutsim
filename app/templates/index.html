@@ -5,6 +5,21 @@
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/vision-mission.css') }}">
+<style>
+  /* Responsive SVG and info-bar spacing */
+  #mainSvg { width: 100%; max-width: 760px; height: auto; display: block; margin: 0 auto; }
+  .info-bar { margin-top: 12px; width: 100%; max-width: 760px; margin-left: auto; margin-right: auto; }
+
+  @media (min-width: 1200px) {
+    #mainSvg { max-width: 1100px; }
+    .info-bar { max-width: 1100px; margin-top: 20px; }
+  }
+
+  @media (max-width: 600px) {
+    .info-bar { margin-top: 6px; padding: 0 12px; }
+    #mainSvg { max-width: 100%; }
+  }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -59,48 +74,48 @@
   </div>
 
   <!-- Right: Message and Vision/Mission Section -->
-  <div class="message-carousel">
-    
-    <!-- Message Carousel Slides -->
-    <div class="message-slides">
-      <div class="message-slide active">
-        <div class="message-image">
-          <img src="{{ url_for('static', filename='babuji.jpeg') }}" alt="Prof. Dr. Ram Ujagar Tiwari">
+  <div class="message-column">
+    <div class="notice-title">Founder's Message</div>
+    <div class="message-carousel">
+      
+      <!-- Message Carousel Slides -->
+      <div class="message-slides">
+        <div class="message-slide active">
+          <div class="message-image">
+            <img src="{{ url_for('static', filename='babuji.jpeg') }}" alt="Prof. Dr. Ram Ujagar Tiwari">
+          </div>
+          <div class="message-content">
+            <h3>Late - Dr.Ram Ujagar Tiwari</h3>
+            <h4>Founder Chairman</h4>
+            <div class="message-text">
+              <p>My Dear Friends,</p>
+              <p>I have great pleasure and sincere gratitude towards GOD, who made me instrumental to establish this great Institution. I feel that SERVICE THROUGH EDUCATION IS SERVICE TO HUMANITY AND THIS SERVICE TO MANKIND IS SERVICE TO GOD. Our passion is to excel in 'QUALITY EDUCATION'. Quality never comes by accident. It is always the result of High Intention, Sincere effort towards right direction and skillful Execution.</p>
+              <p>Our Programme is "Move To Grow" – focus on students' 'Personality Development', who are responsible leaders of tomorrow.</p>
+            </div>
+          </div>
         </div>
-        <div class="message-content">
-          <h3>Late - Dr.Ram Ujagar Tiwari</h3>
-          <h4>Founder Chairman</h4>
-          <div class="message-text">
-            <p>My Dear Friends,</p>
-            <p>I have great pleasure and sincere gratitude towards GOD, who made me instrumental to establish this great Institution. I feel that SERVICE THROUGH EDUCATION IS SERVICE TO HUMANITY AND THIS SERVICE TO MANKIND IS SERVICE TO GOD. Our passion is to excel in 'QUALITY EDUCATION'. Quality never comes by accident. It is always the result of High Intention, Sincere effort towards right direction and skillful Execution.</p>
-            <p>Our Programme is "Move To Grow" – focus on students' 'Personality Development', who are responsible leaders of tomorrow.</p>
+        <div class="message-slide">
+          <div class="message-image">
+            <img src="{{ url_for('static', filename='Pramod.R.t.jpeg') }}" alt="Dr. Pramod R. Tiwari">
+          </div>
+          <div class="message-content">
+            <h3>Late - Pramod R. Tiwari</h3>
+            <h4>Founder Hon. Secretary</h4>
+            <div class="message-text">
+              <p>"Let us be the wings of others' dreams" Welcome to Saket Gyanpeeth established in 1994 with our motto "Gyanam Anantam". A "vibrant innovative temple of service". The main purpose of this trust is to render untiring selfless service to the society through value based education.</p>
+              <p>चाहे थक जाये पर राह नहीं थकती, चाहे थक जाये पर चाह नहीं थकती। हुये आज इनके कितने साल पर सेवा से इनकी चाह नहीं थकती।।</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="message-slide">
-        <div class="message-image">
-          <img src="{{ url_for('static', filename='Pramod.R.t.jpeg') }}" alt="Dr. Pramod R. Tiwari">
-        </div>
-        <div class="message-content">
-          <h3>Late - Pramod R. Tiwari</h3>
-          <h4>Founder Hon. Secretary</h4>
-          <div class="message-text">
-            <p>"Let us be the wings of others' dreams" Welcome to Saket Gyanpeeth established in 1994 with our motto "Gyanam Anantam". A "vibrant innovative temple of service". The main purpose of this trust is to render untiring selfless service to the society through value based education.</p>
-            <p>चाहे थक जाये पर राह नहीं थकती, चाहे थक जाये पर चाह नहीं थकती। हुये आज इनके कितने साल पर सेवा से इनकी चाह नहीं थकती।।</p>
-          </div>
-        </div>
+
+      <!-- Message Navigation and Controls -->
+      <div class="message-nav-controls"></div>
+      <div class="message-controls">
+        <span class="message-indicator active"></span>
+        <span class="message-indicator"></span>
       </div>
     </div>
-
-    <!-- Message Navigation and Controls -->
-    <div class="message-nav-controls"></div>
-    <div class="message-controls">
-      <span class="message-indicator active"></span>
-      <span class="message-indicator"></span>
-    </div>
-
-
-
   </div>
 
 </div>
@@ -108,9 +123,9 @@
 <!-- ============================================
      WHY PRUTSIM SECTION (SVG Infographic)
      ============================================ -->
-<section>
-  <div class="container">
-    <svg id="mainSvg" width="100%" viewBox="0 0 880 680" xmlns="http://www.w3.org/2000/svg" role="img">
+<section style="display:flex;flex-direction:column;align-items:center;">
+  <div class="container" style="display:flex;flex-direction:column;align-items:center;width:100%;">
+    <svg id="mainSvg" width="100%" viewBox="0 0 880 680" style="height:auto;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg" role="img">
       <title>Why PRUTSIM — circular infographic</title>
       <desc>Nine features of PRUTSIM arranged in a circle around a central logo.</desc>
       <defs>
@@ -124,12 +139,13 @@
         </radialGradient>
       </defs>
 
-      <rect width="880px" height="680px" fill="url(#bggrad)" rx="36"/>
-      <circle cx="340" cy="340" r="260" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.08"/>
-      <circle cx="340" cy="340" r="195" fill="none" stroke="#e8a020" stroke-width="0.5" stroke-opacity="0.2"/>
-      <circle cx="340" cy="340" r="80" fill="none" stroke="#e8a020" stroke-width="0.8" stroke-opacity="0.3"/>
-      <circle cx="340" cy="340" r="100" fill="url(#centerglow)"/>
-      <circle cx="340" cy="340" r="72" fill="#392404" stroke="#e8a020" stroke-width="2"/>
+      <rect x="115" y="65" width="650" height="550" fill="url(#bggrad)" rx="36"/>
+      <g transform="translate(100,0)">
+        <circle cx="340" cy="340" r="206" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.08"/>
+        <circle cx="340" cy="340" r="124" fill="none" stroke="#e8a020" stroke-width="0.5" stroke-opacity="0.2"/>
+        <circle cx="340" cy="340" r="52" fill="none" stroke="#e8a020" stroke-width="0.8" stroke-opacity="0.3"/>
+        <circle cx="340" cy="340" r="64" fill="url(#centerglow)"/>
+        <circle cx="340" cy="340" r="45" fill="#392404" stroke="#e8a020" stroke-width="2"/>
       <text x="340" y="330" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-weight="700" font-size="14" fill="#ffffff">WHY</text>
       <text x="340" y="352" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-weight="900" font-size="18" fill="#e8a020">PRUTSIM</text>
 
@@ -283,11 +299,12 @@
         <text class="node-label" x="205" y="225" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="10.5" font-weight="600" fill="#e8a020">Entrepreneurship</text>
       </g>
 
+      </g>
     </svg>
   </div>
 
   <!-- Info Bar -->
-  <div class="info-bar">
+  <div class="info-bar" style="clear:both; width:100%; display:flex; align-items:center; justify-content:space-between;">
     <div class="progress-wrap">
       <div class="progress-bar" id="progressBar" style="width:0%"></div>
     </div>
