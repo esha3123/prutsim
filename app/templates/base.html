@@ -233,7 +233,7 @@
           <ul class="compact-dropdown-menu">
             
 
-             <li class="compact-dropdown-submenu">
+             <!-- <li class="compact-dropdown-submenu">
             <a class="compact-dropdown-item dropdown-toggle" href="#">
               Category Wise Fees <i class="material-icons compact-dropdown-icon"></i>
             </a>
@@ -241,15 +241,31 @@
               <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/FY-MMS-FEES_2025-2026.pdf')}}" target="_blank">FY MMS</a></li>
               <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/SY-MMS-FEES-2024-2025.pdf')}}" target="_blank">SY MMS</a></li>
             </ul>
-          </li>
+          </li> -->
            
             <li class="compact-dropdown-submenu">
             <a class="compact-dropdown-item dropdown-toggle" href="#">
               FRA- Fee Structure <i class="material-icons compact-dropdown-icon"></i>
             </a>
             <ul class="compact-submenu-menu">
-              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/fra_24_25.pdf')}}" target="_blank">2024-2025</a></li>
-              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/fra_25_26.pdf')}}" target="_blank">2025-2026</a></li>
+              <li class="compact-dropdown-submenu">
+            <a class="compact-dropdown-item dropdown-toggle" href="#">
+              2024-2025<i class="material-icons compact-dropdown-icon"></i>
+            </a>
+            <ul class="compact-submenu-menu">
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/FY-MMS-FEES_2025-2026.pdf')}}" target="_blank">FY MMS</a></li>
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/SY-MMS-FEES-2024-2025.pdf')}}" target="_blank">SY MMS</a></li>
+            </ul>
+          </li>
+              <li class="compact-dropdown-submenu">
+            <a class="compact-dropdown-item dropdown-toggle" href="#">
+              2025-2026<i class="material-icons compact-dropdown-icon"></i>
+            </a>
+            <ul class="compact-submenu-menu">
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/FY-MMS-FEES_2025-2026.pdf')}}" target="_blank">FY MMS</a></li>
+              <li><a class="compact-dropdown-item" href="{{ url_for('static', filename='docs/SY-MMS-FEES-2024-2025.pdf')}}" target="_blank">SY MMS</a></li>
+            </ul>
+          </li>
             </ul>
           </li>
           

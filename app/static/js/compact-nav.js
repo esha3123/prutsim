@@ -153,8 +153,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const viewport = window.innerWidth;
                 
                 if (rect.right > viewport - 20) {
-                    submenu.style.left = 'auto';
-                    submenu.style.right = '100%';
+                        submenu.style.left = 'auto';
+                        submenu.style.right = 'calc(100% + 8px)';
                     submenu.style.marginLeft = '0';
                     submenu.style.marginRight = '2px';
                 }
