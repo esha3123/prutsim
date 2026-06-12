@@ -1,6 +1,5 @@
 // Compact Navigation JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Navigation elements
     const hamburger = document.querySelector('.compact-hamburger');
     const navList = document.querySelector('.compact-nav-list');
     
@@ -9,9 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
             const isOpen = this.classList.contains('active');
-            
             if (isOpen) {
                 closeMobileNav();
             } else {
@@ -53,34 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (dropdownMenu) {
                 const isOpen = dropdownMenu.classList.contains('show');
-                
-                // Close other dropdowns
                 document.querySelectorAll('.compact-dropdown-menu.show').forEach(menu => {
-                    if (menu !== dropdownMenu) {
-                        menu.classList.remove('show');
-                    }
+                    if (menu !== dropdownMenu) menu.classList.remove('show');
                 });
-                
-                    // Toggle current dropdown
-                    if (isOpen) {
-                        dropdownMenu.classList.remove('show');
-                    } else {
-                        dropdownMenu.classList.add('show');
-                        // Smart positioning: if there's not enough space on the right,
-                        // open dropdown from left.
-                        // (Works for desktop-like static submenus on mobile too.)
-                        requestAnimationFrame(() => {
-                            const dropdownRect = dropdownMenu.getBoundingClientRect();
-                            const viewportWidth = window.innerWidth;
-                            if (dropdownRect.right > viewportWidth - 12) {
-                                dropdownMenu.style.left = 'auto';
-                                dropdownMenu.style.right = '0';
-                            } else {
-                                dropdownMenu.style.left = '0';
-                                dropdownMenu.style.right = 'auto';
-                            }
-                        });
-                    }
+                if (isOpen) {
+                    dropdownMenu.classList.remove('show');
+                } else {
+                    dropdownMenu.classList.add('show');
+                }
             }
         }
         
@@ -96,20 +73,15 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (submenuMenu) {
                 const isOpen = submenuMenu.classList.contains('show');
-                
-                // Close sibling submenus
                 const parentDropdown = parentSubmenu.closest('.compact-dropdown-menu');
                 parentDropdown.querySelectorAll('.compact-submenu-menu.show').forEach(menu => {
-                    if (menu !== submenuMenu) {
-                        menu.classList.remove('show');
-                    }
+                    if (menu !== submenuMenu) menu.classList.remove('show');
                 });
-                
-                // Toggle current submenu
                 if (isOpen) {
                     submenuMenu.classList.remove('show');
                 } else {
                     submenuMenu.classList.add('show');
+                    // Positioning handled in adjustDropdownPosition
                 }
             }
         }
@@ -149,35 +121,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Smart positioning for dropdowns near screen edges
+    // Smart positioning
     function adjustDropdownPosition() {
         if (window.innerWidth > 991) {
+            // Dropdowns → same as before
             document.querySelectorAll('.compact-dropdown-menu').forEach(menu => {
                 const rect = menu.getBoundingClientRect();
                 const viewport = window.innerWidth;
-                
                 if (rect.right > viewport - 20) {
-                    menu.style.left = 'auto';
+                    menu.style.right = 'auto';
                     menu.style.right = '0';
                 }
             });
             
+            // Submenus → default right side, FRA Fees special case left side
             document.querySelectorAll('.compact-submenu-menu').forEach(submenu => {
-                const rect = submenu.getBoundingClientRect();
-                const viewport = window.innerWidth;
-
-                // If submenu overflows on right side -> open it on the left.
-                // Otherwise keep default behavior (open to the right of its parent).
-                if (rect.right > viewport - 20) {
+                const parentDropdown = submenu.closest('.compact-nav-item.dropdown');
+                if (parentDropdown && parentDropdown.querySelector('.compact-nav-link').textContent.includes('FRA-Fees')) {
+                    // FRA Fees → open LEFT
+                    submenu.style.right = '100%';
                     submenu.style.left = 'auto';
-                    submenu.style.right = 'calc(100% + 8px)';
-                    submenu.style.marginLeft = '0';
-                    submenu.style.marginRight = '2px';
+                    submenu.style.marginRight = 'px';
                 } else {
-                    submenu.style.right = '';
-                    submenu.style.left = '';
-                    submenu.style.marginRight = '';
-                    submenu.style.marginLeft = '';
+                    // All others → open RIGHT
+                    submenu.style.left = '100%';
+                    submenu.style.right = 'auto';
+                    submenu.style.marginLeft = 'px';
                 }
             });
         }
