@@ -61,12 +61,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
                 
-                // Toggle current dropdown
-                if (isOpen) {
-                    dropdownMenu.classList.remove('show');
-                } else {
-                    dropdownMenu.classList.add('show');
-                }
+                    // Toggle current dropdown
+                    if (isOpen) {
+                        dropdownMenu.classList.remove('show');
+                    } else {
+                        dropdownMenu.classList.add('show');
+                        // Smart positioning: if there's not enough space on the right,
+                        // open dropdown from left.
+                        // (Works for desktop-like static submenus on mobile too.)
+                        requestAnimationFrame(() => {
+                            const dropdownRect = dropdownMenu.getBoundingClientRect();
+                            const viewportWidth = window.innerWidth;
+                            if (dropdownRect.right > viewportWidth - 12) {
+                                dropdownMenu.style.left = 'auto';
+                                dropdownMenu.style.right = '0';
+                            } else {
+                                dropdownMenu.style.left = '0';
+                                dropdownMenu.style.right = 'auto';
+                            }
+                        });
+                    }
             }
         }
         
@@ -151,12 +165,19 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.compact-submenu-menu').forEach(submenu => {
                 const rect = submenu.getBoundingClientRect();
                 const viewport = window.innerWidth;
-                
+
+                // If submenu overflows on right side -> open it on the left.
+                // Otherwise keep default behavior (open to the right of its parent).
                 if (rect.right > viewport - 20) {
-                        submenu.style.left = 'auto';
-                        submenu.style.right = 'calc(100% + 8px)';
+                    submenu.style.left = 'auto';
+                    submenu.style.right = 'calc(100% + 8px)';
                     submenu.style.marginLeft = '0';
                     submenu.style.marginRight = '2px';
+                } else {
+                    submenu.style.right = '';
+                    submenu.style.left = '';
+                    submenu.style.marginRight = '';
+                    submenu.style.marginLeft = '';
                 }
             });
         }

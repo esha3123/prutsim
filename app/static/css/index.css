@@ -869,73 +869,71 @@ color: rgba(255, 255, 255, 0.7);
   /* ============================================
      Info Bar Section
   ============================================ */
-  .info-bar-section {
+  /* .info-bar-section {
     grid-column: 1 / -1;
     display: flex;
     justify-content: center;
     padding: 32px;
     background: linear-gradient(135deg, #0a1f4a 0%, #1a3a6e 100%);
     border-radius: 16px;
-    margin-top: 32px;
+    margin-top: px;
     box-shadow: 0 8px 24px rgba(10, 31, 74, 0.2);
-  }
+  } */
 
-  .info-bar-wrapper {
+  /* .info-bar-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     max-width: 600px;
     gap: 20px;
-  }
+  } */
 
-  .info-bar-title {
+  /* .info-bar-title {
     color: #ffffff;
     font-size: 1.5rem;
     font-weight: 600;
     text-align: center;
-  }
+  } */
 
-  .progress-container {
+  /* .progress-container {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 12px;
-  }
+  } */
 
-  .progress-label {
+  /* .progress-label {
     color: rgba(232, 160, 32, 0.8);
     font-size: 0.9rem;
     font-weight: 500;
     text-align: center;
-  }
+  } */
 
-  .progress-wrap {
+  /* .progress-wrap {
     width: 100%;
     height: 8px;
     background: rgba(232, 160, 32, 0.15);
     border-radius: 4px;
     overflow: hidden;
     position: relative;
-  }
+  } */
 
-  .progress-bar {
+  /* .progress-bar {
     height: 100%;
     background: linear-gradient(90deg, #e8a020 0%, #f5b041 100%);
     border-radius: 4px;
     transition: width 0.3s ease;
     width: 0%;
-  }
+  } */
 
   .info-card {
     background: rgba(255, 255, 255, 0.1);
     border: 1.5px solid rgba(232, 160, 32, 0.5);
     border-radius: 12px;
-    padding: 20px 24px;
     display: flex;
     align-items: center;
-    gap: 20px;
-    width: 100%;
+    width: 70%;
     min-height: 70px;
     backdrop-filter: blur(10px);
   }
@@ -956,15 +954,15 @@ color: rgba(255, 255, 255, 0.7);
     line-height: 1.4;
     flex: 1;
   }
-
+/* 
   .dots {
     display: flex;
     gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
-  }
+  } */
 
-  .dot {
+  /* .dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -972,7 +970,7 @@ color: rgba(255, 255, 255, 0.7);
     border: 1.5px solid rgba(232, 160, 32, 0.45);
     cursor: pointer;
     transition: all 0.3s ease;
-  }
+  } */
 
   .dot.active {
     background: #e8a020;
@@ -1292,7 +1290,6 @@ color: rgba(255, 255, 255, 0.7);
   section:has(svg#mainSvg) .container {
     width: 100%;
     max-width: 100%;
-    padding: 20px 20px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1335,12 +1332,9 @@ color: rgba(255, 255, 255, 0.7);
 
   /* Info Bar Section - Full Width */
   .info-bar {
-    width: 100%;
-    display: flex;
+    width: 70%;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #614b29 0%, #392404 100%au);
   }
 
   
@@ -1370,19 +1364,17 @@ color: rgba(255, 255, 255, 0.7);
 
   
   .info-bar {
-    width: 100%;
-    max-width: 720px;
-    padding: 0 20px 12px;
+    width: 50%;
+   padding: 0 20px 12px;
   }
   .info-card {
-    background: rgba(14,42,94,0.85);
+    background: rgba(64, 43, 1, 0.85);
     border: 1.5px solid rgba(232,160,32,0.5);
     border-radius: 14px;
     padding: 14px 22px;
     display: flex;
     align-items: center;
-    gap: 16px;
-    min-height: 58px;
+    min-height: 50px;
     
   }
   .info-number {
