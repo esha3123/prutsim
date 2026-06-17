@@ -1,0 +1,564 @@
+{% extends "base.html" %}
+
+{% block title %}Notices - Saket College{% endblock title %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock head %}
+
+{% block styles %}
+{{ super() }}
+<style>
+  .notice-container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+  }
+
+  .page-header {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    color: var(--m3-on-surface);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    color: var(--m3-on-surface-variant);
+    font-size: 1.1rem;
+  }
+
+  .notice-filters {
+    background-color: var(--m3-surface-container);
+    padding: 2rem;
+    border-radius: var(--m3-shape-large);
+    box-shadow: var(--m3-shadow-2);
+    margin: 0 2rem 2rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .notice-filters:hover {
+    box-shadow: var(--m3-shadow-3);
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .filter-group label {
+    color: var(--m3-on-surface-variant);
+    font-weight: 500;
+    font-size: 0.95rem;
+    min-width: 100px;
+  }
+
+  .filter-group select, 
+  .filter-group input[type="date"],
+  .filter-group input[type="text"] {
+    padding: 0.75rem;
+    border: 2px solid var(--m3-outline-variant);
+    border-radius: var(--m3-shape-medium);
+    background-color: var(--m3-surface);
+    color: var(--m3-on-surface);
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    transition: all 0.2s ease;
+  }
+
+  .filter-group select:hover, 
+  .filter-group input[type="date"]:hover,
+  .filter-group input[type="text"]:hover {
+    border-color: var(--m3-primary);
+  }
+
+  .filter-group select:focus, 
+  .filter-group input[type="date"]:focus,
+  .filter-group input[type="text"]:focus {
+    border-color: var(--m3-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--m3-primary-container);
+  }
+
+  .notice-table {
+    background-color: var(--m3-surface-container);
+    border-radius: var(--m3-shape-large);
+    box-shadow: var(--m3-shadow-2);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+    margin: 0 2rem;
+  }
+
+  .notice-table:hover {
+    box-shadow: var(--m3-shadow-3);
+  }
+
+  .notice-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .notice-table th,
+  .notice-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--m3-outline-variant);
+  }
+
+  .notice-table th {
+    background-color: var(--m3-surface-container-highest);
+    color: var(--m3-on-surface);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .notice-table tr:hover {
+    background-color: var(--m3-surface-container-high);
+  }
+
+  .notice-link {
+    color: var(--m3-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .notice-link:hover {
+    color: var(--m3-primary-container);
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 2.5rem 2rem 0 2rem;
+  }
+
+  .pagination button {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    background-color: var(--m3-surface-variant);
+    color: var(--m3-on-surface-variant);
+    border-radius: var(--m3-shape-medium);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .pagination button.active {
+    background-color: var(--m3-primary);
+    color: var(--m3-on-primary);
+    transform: scale(1.05);
+  }
+
+  .pagination button:hover:not(.active) {
+    background-color: var(--m3-surface-container-highest);
+    transform: translateY(-2px);
+  }
+
+  .loading {
+    text-align: center;
+    padding: 3rem;
+    color: var(--m3-on-surface-variant);
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    .notice-container {
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .notice-filters {
+      padding: 1.5rem;
+      flex-direction: column;
+      align-items: stretch;
+      margin: 0 1rem 2rem 1rem;
+    }
+
+    .notice-table {
+      margin: 0 1rem;
+    }
+
+    .pagination {
+      margin: 2rem 1rem 0 1rem;
+    }
+
+    .filter-group {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .filter-group label {
+      min-width: auto;
+      margin-bottom: 0.5rem;
+    }
+
+    .notice-table {
+      overflow-x: auto;
+    }
+
+    .notice-table th,
+    .notice-table td {
+      padding: 0.75rem;
+    }
+  }
+  
+  /* Styles for local notices section */
+  .section-divider {
+    margin: 3rem 0;
+    border-top: 2px solid var(--m3-outline-variant);
+    position: relative;
+  }
+  
+  .section-title {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--m3-background);
+    padding: 0 2rem;
+    color: var(--m3-primary);
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  
+  .local-notices {
+    background-color: var(--m3-surface-container);
+    border-radius: var(--m3-shape-large);
+    box-shadow: var(--m3-shadow-2);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .local-notices:hover {
+    box-shadow: var(--m3-shadow-3);
+  }
+  
+  .local-notices table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .local-notices th,
+  .local-notices td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--m3-outline-variant);
+  }
+  
+  .local-notices th {
+    background-color: var(--m3-surface-container-highest);
+    color: var(--m3-on-surface);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  .local-notices tr:hover {
+    background-color: var(--m3-surface-container-high);
+  }
+  
+  .material-icons {
+    font-size: 1.25rem;
+    color: var(--m3-primary);
+    transition: transform 0.2s ease;
+  }
+  
+  .notice-link:hover .material-icons {
+    transform: scale(1.1);
+  }
+</style>
+{% endblock styles %}
+
+{% block content %}
+<main class="main-content">
+  <div class="notice-container">
+    <div class="page-header">
+      <h1>Notice Board</h1>
+      <p>Stay updated with the latest announcements and notifications</p>
+    </div>
+
+    <div class="notice-filters">
+      <div class="filter-group">
+        <label>Filter by Date:</label>
+        <input type="date" id="dateFilter">
+      </div>
+      <div class="filter-group">
+        <label>Filter by Month:</label>
+        <select id="monthFilter">
+          <option value="">All Months</option>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Text Search:</label>
+        <input type="text" id="textFilter" placeholder="Search by notice title">
+      </div>
+    </div>
+
+    <div class="notice-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Notice Title</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="noticeTableBody">
+          <tr>
+            <td colspan="3" class="loading">
+              <span class="material-icons" style="margin-right: 8px;">hourglass_empty</span>
+              Loading notices...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination" id="paginationContainer"></div>
+    
+    {% if local_notices %}
+    <div class="section-divider">
+      <span class="section-title">Notice Library</span>
+    </div>
+    
+    <div class="notice-filters" style="margin-bottom: 1rem;">
+      <div class="filter-group">
+        <label>Sort by:</label>
+        <select id="localNoticeSort">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="az">A to Z</option>
+          <option value="za">Z to A</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="local-notices">
+      <table>
+        <thead>
+          <tr>
+            <th>Notice Title</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="localNoticeTableBody">
+          {% for notice in local_notices %}
+          <tr>
+            <td>{{ notice.title }}</td>
+            <td>
+              <a href="{{ url_for('frontend.serve_docs', filepath=notice.url[6:]) }}" class="notice-link" target="_blank">
+                View
+                <span class="material-icons">visibility</span>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+  </div>
+</main>
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+  let currentPage = 1;
+  const perPage = 30;
+
+  function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-IN', options);
+  }
+
+  async function fetchNotices(page = 1, filters = {}) {
+    try {
+      const queryParams = new URLSearchParams({
+        page: page,
+        per_page: perPage,
+        ...filters
+      });
+      const response = await fetch(`/api/notices/general?${queryParams}`);
+      if (!response.ok) throw new Error('Failed to fetch notices');
+      
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching notices:', error);
+      return null;
+    }
+  }
+
+  function renderNotices(notices) {
+    const tableBody = document.getElementById('noticeTableBody');
+    tableBody.innerHTML = '';
+
+    if (!notices.length) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="3" style="text-align: center;">No notices found</td>
+        </tr>
+      `;
+      return;
+    }
+
+    notices.forEach(notice => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${formatDate(notice.date_uploaded)}</td>
+        <td>
+          <a href="${notice.url}" class="notice-link" target="_blank">
+            ${notice.title}
+          </a>
+        </td>
+        <td>
+          <a href="${notice.url}" class="notice-link" target="_blank">
+            View
+            <span class="material-icons">visibility</span>
+          </a>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  function renderPagination(data) {
+    const container = document.getElementById('paginationContainer');
+    container.innerHTML = '';
+
+    if (data.pages <= 1) return;
+    
+    if (data.has_prev) {
+      const prevBtn = document.createElement('button');
+      prevBtn.innerHTML = '<span class="material-icons">chevron_left</span>';
+      prevBtn.onclick = () => changePage(currentPage - 1);
+      container.appendChild(prevBtn);
+    }
+    
+    for (let i = 1; i <= data.pages; i++) {
+      const btn = document.createElement('button');
+      btn.textContent = i;
+      btn.onclick = () => changePage(i);
+      if (i === currentPage) btn.classList.add('active');
+      container.appendChild(btn);
+    }
+
+    if (data.has_next) {
+      const nextBtn = document.createElement('button');
+      nextBtn.innerHTML = '<span class="material-icons">chevron_right</span>';
+      nextBtn.onclick = () => changePage(currentPage + 1);
+      container.appendChild(nextBtn);
+    }
+  }
+
+  async function changePage(page) {
+    currentPage = page;
+    const data = await fetchNotices(page, getFilters());
+    if (data) {
+      renderNotices(data.notices);
+      renderPagination(data);
+    }
+  }
+
+  function getFilters() {
+    const filters = {};
+    const dateFilter = document.getElementById('dateFilter').value;
+    const monthFilter = document.getElementById('monthFilter').value;
+    const textFilter = document.getElementById('textFilter').value;
+
+    if (dateFilter) filters.date = dateFilter;
+    if (monthFilter) filters.month = monthFilter;
+    if (textFilter) filters.text = textFilter;
+
+    return filters;
+  }
+
+  // Event listeners for filters
+  document.getElementById('dateFilter').addEventListener('change', () => changePage(1));
+  document.getElementById('monthFilter').addEventListener('change', () => changePage(1));
+  document.getElementById('textFilter').addEventListener('input', () => changePage(1));
+  
+  // Local notices filtering
+  document.getElementById('textFilter').addEventListener('input', function() {
+    const searchText = this.value.toLowerCase();
+    const noticeRows = document.querySelectorAll('#localNoticeTableBody tr');
+    
+    noticeRows.forEach(row => {
+      const title = row.querySelector('td').textContent.toLowerCase();
+      if (searchText === '' || title.includes(searchText)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
+  
+  // Local notices sorting
+  document.getElementById('localNoticeSort')?.addEventListener('change', function() {
+    const sortValue = this.value;
+    const tableBody = document.getElementById('localNoticeTableBody');
+    const noticeRows = Array.from(tableBody.querySelectorAll('tr'));
+    
+    noticeRows.sort((a, b) => {
+      const titleA = a.querySelector('td').textContent.trim();
+      const titleB = b.querySelector('td').textContent.trim();
+      
+      switch(sortValue) {
+        case 'newest':
+          const numA = parseInt(titleA.match(/(\d+)/)?.[0] || '0');
+          const numB = parseInt(titleB.match(/(\d+)/)?.[0] || '0');
+          return numB - numA;
+        case 'oldest':
+          const numAOld = parseInt(titleA.match(/(\d+)/)?.[0] || '0');
+          const numBOld = parseInt(titleB.match(/(\d+)/)?.[0] || '0');
+          return numAOld - numBOld;
+        case 'az':
+          return titleA.localeCompare(titleB);
+        case 'za':
+          return titleB.localeCompare(titleA);
+        default:
+          return 0;
+      }
+    });
+    
+    while (tableBody.firstChild) {
+      tableBody.removeChild(tableBody.firstChild);
+    }
+    
+    noticeRows.forEach(row => {
+      tableBody.appendChild(row);
+    });
+  });
+  
+  // Initialize
+  changePage(1);
+</script>
+{% endblock scripts %}

@@ -7,6 +7,10 @@ frontend_bp = Blueprint('frontend', __name__)
 def index():
     return render_template('index.html')
 
+@frontend_bp.route('/notice', methods=['GET'])
+def notice():
+    return render_template('notice.html')
+
 @frontend_bp.route('/student/<string:subpath>', methods=['GET'])
 def student(subpath):
     try:
