@@ -29,8 +29,7 @@
     margin: 0 0 14px;
     color: #f8f1e4;
     text-align: center;
-    padding-bottom: 8px;
-    border-bottom: 2px solid rgb(250, 245, 235);
+    padding-bottom: 1px;
     
   }
 
@@ -44,6 +43,12 @@
     flex: 1 1 48%;
     background: #fff;
     padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  }
+  .placement-block-img {
+    flex: 1 1 48%;
+    background: #92767677;
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   }
@@ -128,40 +133,31 @@
 {% block content %}
 <main class="placement-container">
   <div class="placement-header">
-    <h1>Executive Placements</h1>
-    <p>PRUTSIM welcomes corporates at its campus for the Executive Placement Season. The institute encourages students to take forward Corporate Management Trainee-ship Program as the leading step in their Management Career.</p>
-  </div>
+    <h1>Placement</h1>
+</div>
 
   <div class="placement-row">
     <div class="placement-block">
-      <h3>Executive Placement Process</h3>
-      <p>Companies can conduct a Pre Placement Talk (PPT) on a date which is convenient to the company and PRUTSIM. In case company can not come for the PPT, a soft copy of PPT could be forwarded which will then be shown to the students.</p>
-      <p>PPT needs to include the company profile, available job profiles, progression of career and compensation details.</p>
-      <p>Interested students will then apply for the position.</p>
-      <p>The company may then short list the candidates and conduct first level selection process (GD/Case Study/Test) for short listed students during the Placement Week. In case if the company is unable to make it during the Placement week, they may contact the Placement Coordinator for a convenient date.</p>
-      <p>Preparing students for Mock Group Discussion & Personal Interviews which helps them to prepare for the actual interviews.</p>
+     <p>At Pramod Ram Ujagar Tiwari Saket Institute of Management, placements are more than just job opportunities—they are a pathway to successful careers. Our structured Mentee-Mentor Process ensures personalized guidance, skill enhancement, career planning, and continuous industry readiness for every student. Through rigorous training, mock interviews, industry interactions, and professional development programs, students are prepared to excel in a competitive business environment. We take pride in our strong corporate network, with recruitment opportunities from 100+ leading companies across IT, Finance, Marketing, HR, Operations, and Consulting sectors. Our commitment is to transform talented students into confident professionals ready to lead and succeed</p>
     </div>
 
-    <div class="placement-block">
-      <h3>Summer Internship</h3>
-      <p>Summer internship is an important and integral part of the academic curriculum at PRUTSIM.
-The mentorship by the management of the corporates facilitates students with an insight
-into the dynamic management issues. The summer internship is planned for 8 to 10 weeks,
-during the months of May and June at the end of the first year.</p>
-      <p>The program provides students ample opportunities to innovate, add to, and challenge ideas
-and techniques used in the corporates. The organization in turn benefits from the objective and
-unbiased perspective that the management students provide. It further aims to serve as a
-platform towards building a long and fruitful relationship between the institute and the
-organization. PRUTSIM welcomes corporates at its campus for the Executive Placement Season.
-The institute encourages students to take forward Corporate Management Trainee ship Program
-as the leading step in their Management Career.</p>
+    <div class="placement-block-img">
+      <img src="{{ url_for('static', filename='images/mentorship_process.png') }}" alt="Placement" style="width: 100%; height: auto;">
+      
     </div>
   </div>
+  <section class="placement-section">
+  <h2><center>Final Placement Highlights | Batch 2023-25</center></h2>
+  <div class="placement-row">
+   <div class="placement-block">
+      <img src="{{ url_for('static', filename='images/placement_highlights.png') }}" alt="Placement" style="width: 100%; height: 400px;">
+      
+    </div>
+  </div>
+  </section>
 
   <section class="placement-section">
-    <h2>Recruiters</h2>
-    <p>PRUTSIM is honoured to have its students placed in executive positions and summer internship programmes in secure, stable and well known organizations in India and across the globe.</p>
-
+    <h2>Leading Organizations Recruiting Our Students</h2>
     <div class="image-upload-grid">
       {% if placementcompany_images %}
         {% for image_name in placementcompany_images %}
