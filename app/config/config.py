@@ -10,6 +10,8 @@ class Config:
     ALLOWED_EXTENSIONS = {'pdf'}
     ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME') or 'admin'
     ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD') or 'test@admin'
+    STAFF_USERNAME = os.environ.get('STAFF_USERNAME') or 'staff'
+    STAFF_PASSWORD = os.environ.get('STAFF_PASSWORD') or 'test@staff'
     
     @staticmethod
     def init_app(app):

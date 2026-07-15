@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block title %}Staff Admin Panel{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f5f5f5;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 20px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #eee;
+    }
+    h1 {
+        color: #333;
+        font-size: 28px;
+    }
+    .logout-btn {
+        background: #dc3545;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    .logout-btn:hover {
+        background: #c82333;
+    }
+    .content {
+        padding: 20px 0;
+    }
+    .list-section {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 4px;
+        border-left: 4px solid #007bff;
+    }
+    .list-section h2 {
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+    .staff-list {
+        list-style: none;
+        padding: 0;
+    }
+    .staff-list li {
+        padding: 12px;
+        background: white;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        border-left: 3px solid #007bff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .staff-list li:hover {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        transform: translateX(5px);
+        transition: all 0.3s;
+    }
+    .empty-message {
+        text-align: center;
+        padding: 30px;
+        color: #999;
+        font-size: 16px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1>Staff Admin Panel</h1>
+        <a href="{{ url_for('auth.staff_logout') }}" class="logout-btn">Logout</a>
+    </div>
+
+    <div class="content">
+        <div class="list-section">
+            <h2>Staff List</h2>
+            <ul class="staff-list">
+                <!-- Staff list items will appear here -->
+                <div class="empty-message">
+                    No staff members to display
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize the staff admin panel
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Staff Admin Panel loaded');
+        // Add your scripts here for fetching and displaying staff data
+    });
+</script>
+{% endblock %}
